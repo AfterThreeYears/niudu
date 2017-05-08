@@ -1,4 +1,3 @@
-import Vue from 'vue';
 import { Store } from 'vuex';
 import createLogger from 'vuex/dist/logger';
 import note from './modules/note';
