@@ -10,9 +10,8 @@
 
 <script>
 import './Hello.css';
+
 export default {
   name: 'Hello',
 };
-
-
 </script>

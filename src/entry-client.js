@@ -5,7 +5,7 @@ import { createApp } from './app';
 
 
 // client-specific bootstrapping logic...
-const { app, router, store } = createApp();
+const { app, store } = createApp();
 
 //  the store should pick up the state before mounting the application:
 const initialState = window.__INITIAL_STATE__; // eslint-disable-line no-underscore-dangle
@@ -15,4 +15,4 @@ if (initialState) {
 }
 
 // this assumes App.vue template root element has id="app"
-app.$mount('#app')
+app.$mount('#app');

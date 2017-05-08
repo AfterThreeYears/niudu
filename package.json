@@ -12,6 +12,7 @@
     "build:server": "cross-env NODE_ENV=production webpack --config build/webpack.server.config.js --progress --hide-modules",
     "mock": "cross-env PORT=9092 nodemon --harmony-async-await ./api/mock.js",
     "eslint": "eslint 'api/**/*.js' 'bin/**/*' 'build/*.js' 'scripts/**/*' 'test/**/*' 'src/**/*.js' 'src/**/*.vue'",
+    "eslintFix": "eslint --fix 'api/**/*.js' 'bin/**/*' 'build/*.js' 'scripts/**/*' 'test/**/*' 'src/**/*.js' 'src/**/*.vue'",
     "pm2:reload": "NODE_ENV=production pm2 reload all"
   },
   "engines": {
@@ -32,6 +33,7 @@
     "lodash": "^4.17.4",
     "log4js": "^1.1.1",
     "lru-cache": "^4.0.2",
+    "memory-fs": "^0.4.1",
     "moment": "^2.18.1",
     "normalize.css": "^7.0.0",
     "serve-favicon": "^2.4.1",
@@ -45,6 +47,7 @@
     "autoprefixer": "^6.7.7",
     "axios": "^0.16.1",
     "babel-core": "^6.24.1",
+    "babel-eslint": "^7.2.3",
     "babel-loader": "^6.4.1",
     "babel-preset-env": "^1.4.0",
     "babel-preset-latest": "^6.0.0",
@@ -55,7 +58,7 @@
     "eslint-config-airbnb-base": "^11.0.1",
     "eslint-import-resolver-webpack": "^0.8.1",
     "eslint-loader": "^1.6.1",
-    "eslint-plugin-html": "^2.0.0",
+    "eslint-plugin-html": "^2.0.3",
     "eslint-plugin-import": "^2.2.0",
     "extract-text-webpack-plugin": "^2.1.0",
     "faker-zh-cn": "^0.5.9",
