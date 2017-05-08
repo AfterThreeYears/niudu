@@ -1,0 +1,10 @@
+@import './core/scaffolding.css';
+@import './core/utilities.css';
+
+*,
+*::before,
+*::after {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+}

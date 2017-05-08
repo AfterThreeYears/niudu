@@ -1,0 +1,24 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  font-family: PingFangSC-Regular;
+  font-size: 12px;
+}
+
+@font-face {
+  font-family: Oswald;
+  src: url(~public/font/Oswald.ttf);
+}
+
+a {
+  color: #454545;
+  text-decoration: none;
+  transition: color .35s;
+}
