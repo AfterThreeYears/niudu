@@ -33,16 +33,17 @@
 </template>
 
 <script>
-import {mapGetters, mapState, mapActions, mapMutations} from 'vuex';
+import { mapState, mapActions, mapMutations } from 'vuex';
 import './Note.css';
+
 export default {
   name: 'Note',
   data() {
     return {
       status: 'all',
-    }
+    };
   },
-  asyncData ({ store }) {
+  asyncData({ store }) {
     // console.log('asyncData哈哈哈哈');
     return store.dispatch('initData');
   },
@@ -103,7 +104,7 @@ export default {
     },
     filter() {
       this.status = 'like';
-    }
+    },
   },
 };
 

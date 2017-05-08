@@ -1,4 +1,3 @@
-import moment from 'moment';
 import axios from 'axios';
 
 export default {
@@ -54,7 +53,6 @@ export default {
     add({ commit }) {
       return new Promise((resolve) => {
         setTimeout(() => {
-          const time = moment().format('MMMM Do YYYY, h:mm:ss a');
           commit('addNote', {
             brandName: '日记',
             productNameZH: '内容...',
