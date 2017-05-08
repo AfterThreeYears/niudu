@@ -18,7 +18,7 @@ const router = new Router({
   prefix: '/api',
 });
 
-router.get('/users', getNotes);
+router.get('/users', getUsers);
 
 router.get('/notes', getNotes);
 

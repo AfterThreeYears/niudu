@@ -11,14 +11,14 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, '../dist'),
     publicPath: '/dist/',
-    filename: '[name].[chunkhash].js'
+    filename: '[name].[chunkhash].js',
   },
   resolve: {
     extensions: ['.js', '.vue', '.json'],
     alias: {
       // vue$: 'vue/dist/vue.esm.js',
       '@': path.resolve(__dirname, '../src'),
-      'public': path.resolve(__dirname, '../public'),
+      public: path.resolve(__dirname, '../public'),
     },
   },
   module: {
@@ -27,12 +27,12 @@ module.exports = {
       {
         test: /\.vue$/,
         loader: 'vue-loader',
-        options: vueConfig
+        options: vueConfig,
       },
       {
         test: /\.js$/,
         loader: 'babel-loader',
-        exclude: /node_modules/
+        exclude: /node_modules/,
       },
       {
         test: /\.(png|jpg|gif|svg)$/,
@@ -46,8 +46,8 @@ module.exports = {
         test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
         loader: 'url-loader',
         query: {
-            limit: 1024 * 100,
-            name: 'fonts/[name].[hash:7].[ext]',
+          limit: 1024 * 100,
+          name: 'fonts/[name].[hash:7].[ext]',
         },
       },
       {
@@ -63,23 +63,23 @@ module.exports = {
   },
   performance: {
     maxEntrypointSize: 300000,
-    hints: isProd ? 'warning' : false
+    hints: isProd ? 'warning' : false,
   },
   plugins: isProd
     ? [
-        new webpack.optimize.UglifyJsPlugin({
-          compress: {
-            warnings: false,
-            screw_ie8: true,
-          },
-          comments: false,
-          sourceMap: false,
-        }),
-        new ExtractTextPlugin({
-          filename: 'common.[chunkhash].css'
-        })
-      ]
+      new webpack.optimize.UglifyJsPlugin({
+        compress: {
+          warnings: false,
+          screw_ie8: true,
+        },
+        comments: false,
+        sourceMap: false,
+      }),
+      new ExtractTextPlugin({
+        filename: 'common.[chunkhash].css',
+      }),
+    ]
     : [
-        new FriendlyErrorsPlugin()
-      ]
-}
+      new FriendlyErrorsPlugin(),
+    ],
+};

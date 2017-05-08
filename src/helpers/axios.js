@@ -55,5 +55,5 @@ export const getBaseURL = (remoteHost) => {
     return remoteHost;
   }
 
-  return `http://localhost:9092`;
+  return 'http://localhost:9092';
 };
