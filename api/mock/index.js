@@ -5,6 +5,7 @@ const serve = require('koa-static');
 const mount = require('koa-mount');
 const router = require('./routes/index');
 const proxy = require('./helpers/proxy');
+const { MOCK_PORT } = require('../../config.js');
 
 const app = new Koa();
 
@@ -75,7 +76,6 @@ app.use(async (ctx, next) => {
 });
 
 app.use(router.routes()).use(router.allowedMethods());
-const port = process.env.PORT || 8081;
-app.listen(port, () => {
-  console.log(`🌏  mock server started at http://localhost:${port}`); // eslint-disable-line no-console
+app.listen(MOCK_PORT, () => {
+  console.log(`🌏  mock server started at http://localhost:${MOCK_PORT}`); // eslint-disable-line no-console
 });

@@ -12,6 +12,14 @@ const useMicroCache = process.env.MICRO_CACHE !== 'false'
 const serverInfo =
   `express/${require('express/package.json').version} ` +
   `vue-server-renderer/${require('vue-server-renderer/package.json').version}`
+let PORT;
+const { DEV_PORT, PROD_PORT } = require('./config.js');
+
+if (isProd) {
+  PORT = PROD_PORT;
+} else {
+  PORT = DEV_PORT;
+}
 
 const app = express()
 
@@ -130,7 +138,6 @@ app.get('*', isProd ? render : (req, res) => {
   readyPromise.then(() => render(req, res))
 })
 
-const port = process.env.PORT || 8980;
-app.listen(port, () => {
-  console.log(`server started at http://localhost:${port}`);
+app.listen(PORT, () => {
+  console.log(`server started at http://localhost:${PORT}`);
 });

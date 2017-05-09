@@ -50,11 +50,7 @@ export default {
     // return store.dispatch('fetchUser', '1561426455');
     const fetchUserTest = store.dispatch('fetchUserTest');
     const initData = store.dispatch('initData');
-    return Promise.all([fetchUserTest, initData]).then((data) => {
-      return data;
-    });
-    // console.log('asyncData哈哈哈哈');
-    return store.dispatch('initData');
+    return Promise.all([fetchUserTest, initData]).then(data => data);
   },
   computed: {
     ...mapState({

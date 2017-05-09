@@ -23,7 +23,7 @@ export default {
       user(state) {
         return state.users.entities['1561426455'];
       },
-    })
+    }),
   },
 };
 </script>
