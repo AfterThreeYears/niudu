@@ -9,14 +9,17 @@
       <button @click="save">save</button>
       <button @click="handleLike">{{isLike ? '讨厌' : '喜欢'}}</button>
       <h1>list</h1>
-      <ul>
-        <li
-          v-for="note in noteList"
-          @click="choseNote(note)"
-        >
-          {{note.brandName}}
-        </li>
-      </ul>
+      <section>
+        <ul class="haha">
+          <li
+            v-for="note in noteList"
+            @click="choseNote(note)"
+          >
+            {{note.brandName}}
+          </li>
+        </ul>
+        <pre>{{user}}</pre>
+      </section>
     </div>
     <hr />
     <input :value="curNote.brandName" @input="handleUpdateTitle" />
@@ -44,8 +47,12 @@ export default {
     };
   },
   asyncData({ store }) {
-    // console.log('asyncData哈哈哈哈');
-    return store.dispatch('initData');
+    // return store.dispatch('fetchUser', '1561426455');
+    const fetchUserTest = store.dispatch('fetchUserTest');
+    const initData = store.dispatch('initData');
+    return Promise.all([fetchUserTest, initData]).then((data) => {
+      return data;
+    });
   },
   computed: {
     ...mapState({
@@ -58,6 +65,9 @@ export default {
       },
       curNote(state) {
         return state.note.curNote;
+      },
+      user(state) {
+        return state.users.entities['1561426455'];
       },
     }),
     isLike() {

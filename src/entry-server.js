@@ -17,7 +17,7 @@ export default context => new Promise((resolve, reject) => {
     if (!matchedComponents.length) {
       reject({ code: 404 });
     }
-
+    // console.log('matchedComponents', matchedComponents);
     // call asyncData() on all matched route components
     Promise.all(matchedComponents.map((Component) => {
       if (Component.asyncData) {
