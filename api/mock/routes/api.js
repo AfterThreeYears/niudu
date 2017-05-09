@@ -18,7 +18,6 @@ const router = new Router({
   prefix: '/api',
 });
 
-<<<<<<< HEAD
 router.get('/test', (ctx) => {
   ctx.body = {
     data: [
@@ -37,8 +36,6 @@ router.get('/test', (ctx) => {
   };
 });
 
-=======
->>>>>>> b56bc8c... fix: eslint fix
 router.get('/users', getUsers);
 
 router.get('/notes', getNotes);

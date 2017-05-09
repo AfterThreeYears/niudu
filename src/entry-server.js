@@ -9,7 +9,6 @@ export default context => new Promise((resolve, reject) => {
 
   // set server-side router's location
   router.push(context.url);
-<<<<<<< HEAD
 
   // wait until router has resolved possible async components and hooks
   router.onReady(() => {
@@ -19,17 +18,6 @@ export default context => new Promise((resolve, reject) => {
       reject({ code: 404 });
     }
     // console.log('matchedComponents', matchedComponents);
-=======
-
-  // wait until router has resolved possible async components and hooks
-  router.onReady(() => {
-    const matchedComponents = router.getMatchedComponents();
-    // no matched routes, reject with 404
-    if (!matchedComponents.length) {
-      reject({ code: 404 });
-    }
-
->>>>>>> b56bc8c... fix: eslint fix
     // call asyncData() on all matched route components
     Promise.all(matchedComponents.map((Component) => {
       if (Component.asyncData) {
