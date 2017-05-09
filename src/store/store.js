@@ -1,7 +1,7 @@
 import { Store } from 'vuex';
 import createLogger from 'vuex/dist/logger';
 import note from './modules/note';
-import number0 from './modules/number0';
+import users from './modules/users';
 
 
 export default function createStore() {
@@ -18,7 +18,7 @@ export default function createStore() {
     strict: process.env.NODE_ENV !== 'production',
     modules: {
       note,
-      number0,
+      users,
     },
   });
 }
