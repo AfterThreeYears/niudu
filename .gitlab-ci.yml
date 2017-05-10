@@ -1,0 +1,15 @@
+before_script:
+  - node -v
+  - npm -v
+
+build_master:
+  only:
+    - master
+  script:
+    - echo 'build success123'
+
+build_not_master:
+  except:
+    - master
+  script:
+    - echo 'build success'
