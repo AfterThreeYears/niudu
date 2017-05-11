@@ -1,3 +1,7 @@
+cache:
+  key: 123
+  paths:
+    - node_modules/
 before_script:
   - node -v
   - npm -v
