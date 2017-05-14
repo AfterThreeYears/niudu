@@ -27,10 +27,11 @@ const app = express();
 const template = fs.readFileSync(resolve('./src/index.template.html'), 'utf-8');
 
 function createRenderer(bundle, options) {
+  // console.log(bundle);
   // https://github.com/vuejs/vue/blob/dev/packages/vue-server-renderer/README.md#why-use-bundlerenderer
   return createBundleRenderer(bundle, Object.assign(options, {
     template,
-    // for component caching
+      // for component caching
     cache: LRU({
       max: 1000,
       maxAge: 1000 * 60 * 15,
@@ -64,14 +65,14 @@ if (isProd) {
 }
 
 const serve = (paths, cache) => express.static(resolve(paths), {
-  maxAge: cache && isProd ? 60 * 60 * 24 * 30 : 0,
+  maxAge: cache && isProd ? 60 * 60 * 24 * 30 : 60 * 60 * 24 * 30,
 });
 
 app.use(compression({ threshold: 0 }));
 // app.use(favicon('./public/logo-48.png'))
 app.use('/dist', serve('./dist', true));
 app.use('/public', serve('./public', true));
-app.use('/manifest.json', serve('./manifest.json', true));
+// app.use('/manifest.json', serve('./manifest.json', true));
 // app.use('/service-worker.js', serve('./dist/service-worker.js'))
 
 // 1-second microcache.

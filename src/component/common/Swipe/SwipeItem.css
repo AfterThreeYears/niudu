@@ -1,0 +1,20 @@
+.SwipeItem {
+  display: inline-block;
+  position: relative;
+}
+
+.SwipeItem-cursor-container {
+  height: .06rem;
+  margin-top: -.06rem;
+  position: relative;
+}
+
+.SwipeItem-cursor {
+  background: #ff2859;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  width: 1px;
+  transition: transform .5s;
+  transform-origin: 0;
+}

@@ -23,7 +23,7 @@ export const cnzzIDs = {
   [channelNames.myxjbeijingban]: '1261608437',
   [channelNames.mtxxiconsec]: '1261622050',
   [channelNames.myxjiconseven]: '1261622603',
-  [channelNames.main]: '1261320517',
+  [channelNames.main]: '1261873822',
 };
 
 export const downloadLinks = {

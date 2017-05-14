@@ -6,3 +6,5 @@ export const getProperties = () => {
     transition: 'transition' in div.style ? 'transition' : '-webkit-transition',
   };
 };
+
+export const letPxGo = value => Number(value.replace('px', ''));

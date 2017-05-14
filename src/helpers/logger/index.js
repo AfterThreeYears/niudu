@@ -4,6 +4,7 @@ const doConsole = (level, ...args) => {
   const fn = console[level]; // eslint-disable-line no-console
   const isDev = process.env.NODE_ENV !== 'production';
   const enableByLocalStorage = typeof localStorage !== 'undefined' && localStorage.getItem('vinci_enable_production_log');
+
   if (fn && (isDev || enableByLocalStorage)) {
     fn.apply(console, args);
   }

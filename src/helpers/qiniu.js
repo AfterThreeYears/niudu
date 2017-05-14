@@ -70,7 +70,7 @@ export const getAVInfo = url => axios.get(`${url}?avinfo`, {
     <Quality>修正值算法：min[90, 原图quality*sqrt(原图长宽乘积/结果图片长宽乘积)]
  */
 
-const letPxGo = (s) => {
+const fixPx = (s) => {
   s = `${s}`;
   return Math.round(s.replace(/px$/ig, '') - 0);
 };
@@ -83,60 +83,41 @@ const getPpi = () => {
 };
 
 /**
- * @deprecated 这个不合适
+ * 七牛路径剪裁函数,imageView2
+ * @param opt:Object
+ *  {
+ *    t: type, 类型, 参考七牛剪裁api
+ *    q: 质量, 默认70
+ *    i: 是否渐进加载, 默认false，仅支持jpeg
+ *    w: 宽度(不带参数，认为px)
+ *    h: 高度(不带参数，认为px)
+ *  }
  */
-export class QiniuPath {
-  constructor(url = '') {
-    this.url = url;
+export const cut = (url, opt) => {
+  url = url.replace(/^https:\/\//, 'http://');
+  opt = {
+    f: '',
+    t: '1',
+    q: 70,
+    i: false,
+    ...opt,
+  };
+
+  opt.w = opt.w ? fixPx(opt.w) : 0;
+  opt.h = opt.h ? fixPx(opt.h) : 0;
+  const ppi = getPpi();
+
+  opt.w *= ppi;
+  opt.h *= ppi;
+  const ws = opt.w ? `/w/${opt.w}` : '';
+  const hs = opt.h ? `/h/${opt.h}` : '';
+  const ty = opt.t || '1';
+  const imgView = (/\?/).test(url) ? '/imageView2' : '?imageView2';
+
+  const format = (!opt.f || /\.gif$/.test(url)) ? '' : `/format/${opt.f}`;
+
+  if (opt.f === 'webp') {
+    opt.q = Math.round(opt.q / 1.5);
   }
-
-  // 变成https
-  toHttps() {
-    this.url = this.url.replace(/^http:\/\//i, 'https://');
-    return this.url;
-  }
-
-  getAVInfoUrl() {
-    return `${this.toHttps()}?avinfo`;
-  }
-
-  getFrameUrl(index, w, h) {
-    w = letPxGo(w);
-    h = letPxGo(h);
-    const ppi = getPpi();
-    w *= ppi;
-    h *= ppi;
-    const ws = `${w ? `/w/${w}` : ''}`;
-    const hs = `${h ? `/h/${h}` : ''}`;
-    return `${this.url}?vframe/png/offset/${index}${ws}${hs}`;
-  }
-
-  // 剪裁
-  cut(w, h, type, quality = 70) {
-    w = w ? letPxGo(w) : 0;
-    h = h ? letPxGo(h) : 0;
-    const ppi = getPpi();
-    w *= ppi;
-    h *= ppi;
-    const ws = w ? `/w/${w}` : '';
-    const hs = h ? `/h/${h}` : '';
-    const ty = type || 1;
-    const imgView = (/\?/).test(this.url) ? '/imageView2' : '?imageView2';
-
-    this.toHttps();
-
-    return `${this.url}${imgView}/${ty}${ws}${hs}/q/${quality}`;
-
-    // let format = '/format/webp';
-
-    // // 排除gif，仅判断URL后缀
-    // if (/\.gif$/.test(this.url)) {
-    //   format = '';
-    // }
-    // return `${this.url}${imgView}/${ty}${format}${ws}${hs}/q/${quality}`;
-  }
-
-  origin() {
-    return this.url;
-  }
-}
+  return `${url}${imgView}/${ty}${format}${ws}${hs}/q/${opt.q}`;
+};

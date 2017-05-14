@@ -2,6 +2,7 @@
   <div id="note">
     Note
     <div>
+      <button @click='addNumer'>{{test}}---{{title}}</button>
       <button @click='adds'>add</button>
       <button @click='handleRemove'>remove</button>
       <button @click="filter">love</button>
@@ -37,6 +38,7 @@
 
 <script>
 import { mapState, mapActions, mapMutations } from 'vuex';
+import titleMixin from '@/mixins/title.js';
 import './Note.css';
 
 export default {
@@ -44,13 +46,23 @@ export default {
   data() {
     return {
       status: 'all',
+      test: 0,
+      title: 'NOTE_TITLE',
     };
+  },
+  updated(e) {
+    console.log(e);
+    console.log('-----update------');
   },
   asyncData({ store }) {
     // return store.dispatch('fetchUser', '1561426455');
     const fetchUserTest = store.dispatch('fetchUserTest');
     const initData = store.dispatch('initData');
     return Promise.all([fetchUserTest, initData]).then(data => data);
+  },
+  mixins: [titleMixin],
+  title() {
+    return this.title;
   },
   computed: {
     ...mapState({
@@ -113,6 +125,9 @@ export default {
     filter() {
       this.status = 'like';
     },
+    addNumer() {
+      this.test = this.test+=1;
+    }
   },
 };
 

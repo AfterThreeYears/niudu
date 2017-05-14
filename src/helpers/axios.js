@@ -2,7 +2,6 @@ import { hasOwnProperty } from '@/helpers/lang';
 import logger from '@/helpers/logger';
 
 export const getResponseErrorInterceptor = errorCallback => (error) => {
-  // console.log('1111111111')
   if (process.env.VUE_ENV === 'server') {
     logger.warn(`http error: ${error.message}`);
   } else {
@@ -14,7 +13,6 @@ export const getResponseErrorInterceptor = errorCallback => (error) => {
 };
 
 export const getResponseSuccessInterceptor = errorCallback => (res) => {
-  // console.log('2222222222')
   if (!res.headers || res.config.skipResponseInterceptor) return res;
 
   try {
@@ -22,9 +20,9 @@ export const getResponseSuccessInterceptor = errorCallback => (res) => {
       throw new Error('数据格式错误，请重试');
     }
 
-    // if (!res.data.success) {
-    //   throw new Error(`${res.data.errorCode}:${res.data.errorMSG} - 数据请求失败，请重试`);
-    // }
+    if (!res.data.success) {
+      throw new Error(`${res.data.errorCode}:${res.data.errorMSG} - 数据请求失败，请重试`);
+    }
 
     const data = res.data.data;
 
@@ -50,10 +48,9 @@ export const getResponseSuccessInterceptor = errorCallback => (res) => {
 };
 
 export const getBaseURL = (remoteHost) => {
-  // console.log(33333333, remoteHost);
   if (process.env.NODE_ENV === 'production') {
     return remoteHost;
   }
 
-  return 'http://localhost:9092';
+  return 'http://localhost:3001';
 };

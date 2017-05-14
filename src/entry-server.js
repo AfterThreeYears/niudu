@@ -1,6 +1,5 @@
 import { createApp } from './app';
 
-
 // since there could potentially be asynchronous route hooks or components,
 // we will be returning a Promise so that the server can wait until
 // everything is ready before rendering.

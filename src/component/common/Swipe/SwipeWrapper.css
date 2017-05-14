@@ -1,0 +1,16 @@
+.SwipeWrapper-overflow {
+  overflow: hidden;
+}
+
+.SwipeWrapper {
+  width: 100%;
+  overflow: hidden;
+  display: table;
+}
+
+.SwipeWrapper-container {
+  white-space: nowrap;
+
+  /* display: table-row; */
+  display: flex;
+}

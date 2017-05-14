@@ -1,11 +1,13 @@
 import axios from 'axios';
 
-
 const fileTypeMap = {
   'image/gif': '.gif',
   'image/jpeg': '.jpeg',
   'image/jpg': '.jpg',
   'image/png': '.png',
+  'text/html': '.html',
+  'video/quicktime': '.mov',
+  'video/mp4': '.mp4',
 };
 
 export const getToken = file =>
