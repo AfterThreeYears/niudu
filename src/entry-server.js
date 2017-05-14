@@ -1,4 +1,5 @@
 import { createApp } from './app';
+import { env } from './helpers/ua';
 
 // since there could potentially be asynchronous route hooks or components,
 // we will be returning a Promise so that the server can wait until
@@ -16,6 +17,15 @@ export default context => new Promise((resolve, reject) => {
     if (!matchedComponents.length) {
       reject({ code: 404 });
     }
+
+    const sharedContext = {
+      host: context.host,
+      protocol: context.protocol,
+      navigation: context.navigation,
+      ua: env(context.userAgent),
+    };
+    store.commit('setShared', sharedContext);
+
     // console.log('matchedComponents', matchedComponents);
     // call asyncData() on all matched route components
     Promise.all(matchedComponents.map((Component) => {

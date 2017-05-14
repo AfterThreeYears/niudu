@@ -1,7 +1,6 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import Note from './component/Note/Note';
-import Hello from './component/Hello/Hello';
+import CNode from '@/component/CNode/CNode';
 
 Vue.use(Router);
 
@@ -12,11 +11,7 @@ export function createRouter() {
     routes: [
       {
         path: '/',
-        component: Note,
-      },
-      {
-        path: '/hello',
-        component: Hello,
+        component: CNode,
       },
     ],
   });

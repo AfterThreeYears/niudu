@@ -7,7 +7,7 @@ import {
 
 function init() {
   axios.defaults.baseURL = getBaseURL('http://localhost:9092');
-  axios.defaults.withCredentials = true;
+  // axios.defaults.withCredentials = true;
 
   axios.interceptors.response.use(
     getResponseSuccessInterceptor({}),

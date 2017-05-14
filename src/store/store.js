@@ -1,8 +1,8 @@
 import { Store } from 'vuex';
 import createLogger from 'vuex/dist/logger';
 import note from './modules/note';
-import users from './modules/users';
-
+import cnode from './modules/cnode';
+import shared from './modules/shared';
 
 export default function createStore() {
   const plugins = [];
@@ -18,13 +18,8 @@ export default function createStore() {
     strict: process.env.NODE_ENV !== 'production',
     modules: {
       note,
-      users,
+      cnode,
+      shared,
     },
   });
 }
-
-// const getters = {
-//   num:function (state) {
-//     return state.num += 0;
-//   }
-// }

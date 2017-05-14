@@ -9,7 +9,7 @@
       "type": "node",
       "request": "launch",
       "name": "启动程序1111",
-      "program": "${workspaceRoot}/server"
+      "program": "${workspaceRoot}/server.js"
     }
   ]
 }

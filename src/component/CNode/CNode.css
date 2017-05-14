@@ -1,0 +1,71 @@
+.CNode-List {
+  font-size: 0.3rem;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 0.1rem;
+  margin: 0.2rem 0.2rem 0;
+}
+
+.CNode-title {
+  font-size: 0.3rem;
+  margin-bottom: 0.1rem;
+}
+
+.CNode-detail-info {
+  float: left;
+  width: 70%;
+}
+
+.CNode-detail-imgWrap {
+  float: left;
+  height: 1rem;
+  width: 1rem;
+  margin-right: 0.2rem;
+  display: inline-block;
+}
+
+.CNode-detail-info-img {
+  height: 100%;
+  width: 100%;
+  border-radius: 100%;
+  border: 1px solid #eee;
+}
+
+.CNode-detail-loginname {
+  color: #111;
+  font-size: .3rem;
+  margin-top: 0.15rem;
+}
+
+.CNode-detail-last_reply_at {
+  font-size: 0.28rem;
+  color: #7e7e7e;
+  margin-top: 0.15rem;
+}
+
+.CNode-detail-params {
+  text-align: right;
+  height: 1rem;
+}
+
+.CNode-detail-tab {
+  background: #999;
+  color: #fff;
+  display: inline-block;
+  padding: 0.05rem;
+  border-radius: 10px;
+  margin: 0.1rem 0 0.15rem;
+  font-size: 0.24rem;
+}
+
+.CNode-detail-count {
+  display: flex;
+ justify-content: flex-end;
+}
+
+.CNode-detail-text {
+  font-size: 0.24rem;
+}
+
+.CNode-detail-reply_count {
+  color: #7e7e7e;
+}

@@ -49,6 +49,7 @@ const setLazyNodesImageUrl = (nodes, url) => {
 };
 
 const traverseImages = () => {
+  console.log('****************');
   logger.debug('Begin Traverse Image', lazyNodes.length);
   for (let i = 0; i < lazyNodes.length; i += 1) {
     const lazyNode = lazyNodes[i];

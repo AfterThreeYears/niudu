@@ -23,7 +23,7 @@
 <script>
 import cookie from 'js-cookie';
 import Vue from 'vue';
-import { SwipeWrapper, SwipeItem } from '@/components/Swipe';
+import { SwipeWrapper, SwipeItem } from '@/component/common/Swipe';
 import { NAVIGATION_STORAGE_KEY } from '@/constants';
 import { encodeStorage, decodeStorage } from '@/helpers/navigation';
 import './Navigation.css';

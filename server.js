@@ -2,8 +2,10 @@ const fs = require('fs');
 const path = require('path');
 const LRU = require('lru-cache');
 const express = require('express');
+const cookieParser = require('cookie-parser')
 // const favicon = require('serve-favicon')
 const compression = require('compression');
+const { NAVIGATION_STORAGE_KEY } = require('./src/constants');
 
 const resolve = file => path.resolve(__dirname, file);
 const { createBundleRenderer } = require('vue-server-renderer');
@@ -23,7 +25,6 @@ if (isProd) {
 }
 
 const app = express();
-
 const template = fs.readFileSync(resolve('./src/index.template.html'), 'utf-8');
 
 function createRenderer(bundle, options) {
@@ -69,6 +70,7 @@ const serve = (paths, cache) => express.static(resolve(paths), {
 });
 
 app.use(compression({ threshold: 0 }));
+app.use(cookieParser());
 // app.use(favicon('./public/logo-48.png'))
 app.use('/dist', serve('./dist', true));
 app.use('/public', serve('./public', true));
@@ -115,10 +117,14 @@ function render(req, res) {
       return res.end(hit);
     }
   }
-
   const context = {
     title: 'default title', // default title
     url: req.url,
+    protocol: req.connection.encrypted ? 'https' : 'http',
+    host: req.headers.host,
+    accessToken: req.cookies.accessToken,
+    navigation: req.cookies[NAVIGATION_STORAGE_KEY],
+    userAgent: req.headers['user-agent'],
   };
   // console.log(`访问地址${req.url}`);
   renderer.renderToString(context, (err, html) => {
