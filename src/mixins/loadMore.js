@@ -1,4 +1,5 @@
 import debounce from 'lodash.debounce';
+import lazyload from '@/libs/lazyload';
 
 const loadMore = {
   data() {
@@ -16,6 +17,7 @@ const loadMore = {
       if (hasLoad() && !this.isLoading) {
         this.isLoading = true;
         this.handleFetchTopics().then(() => {
+          lazyload();
           this.isLoading = false;
         });
       }

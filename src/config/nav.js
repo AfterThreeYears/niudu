@@ -2,16 +2,12 @@ const nav = [
   {
     title: 'cnodejs',
     id: 0,
-    tab: {
-      ask: '问答',
-      job: '招聘',
-      share: '分享',
-      good: '精华',
-    },
+    url: 'cnode',
   },
   {
     title: 'v2ex',
     id: 1,
+    url: 'v2ex',
   },
 ];
 

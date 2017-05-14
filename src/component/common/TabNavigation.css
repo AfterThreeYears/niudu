@@ -1,0 +1,50 @@
+.TabNavigation {
+  font-size: 50px;
+  position: fixed;
+  top: .82rem;
+  z-index: 1001;
+  background: #fff;
+  width: 100%;
+  transform: translate3d(0, 0, 0);
+
+  &::after {
+    content: '';
+    width: 100%;
+    height: 1px;
+    background: #f2f2f2;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+  }
+}
+
+.TabNavigation-item {
+  font-size: .28rem;
+  line-height: .83rem;
+  color: #333;
+  padding: 0 .27rem;
+  font-family: 'pingfangsc-light';
+}
+
+.TabNavigation-item:first-child {
+  padding-left: .3rem;
+}
+
+.TabNavigation-item:last-child {
+  padding-right: .3rem;
+}
+
+.TabNavigation-selectedItem {
+  color: #ff2859;
+}
+
+.TabNavigation-selectedItem > span {
+  display: inline-block;
+  position: relative;
+  font-family: 'pingfangsc-regular';
+}
+
+.TabNavigation-beforeRequest {
+  background: #e1e1e1;
+}

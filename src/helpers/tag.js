@@ -1,12 +1,7 @@
-const cnodeTagMap = {
-  ask: '问答',
-  job: '招聘',
-  share: '分享',
-  good: '精华',
-  top: '置顶',
-};
+import { cnodeTagMap } from '@/config/tabs';
 
 export const cnodeTag = (item) => {
+  if (!item) return '';
   if (item.top) {
     return cnodeTagMap.top;
   } else if (item.good) {

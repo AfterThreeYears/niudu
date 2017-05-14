@@ -1,0 +1,71 @@
+.V2EX-List {
+  font-size: 0.3rem;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 0.1rem;
+  margin: 0.2rem 0.2rem 0;
+}
+
+.V2EX-title {
+  font-size: 0.3rem;
+  margin-bottom: 0.1rem;
+}
+
+.V2EX-detail-info {
+  float: left;
+  width: 70%;
+}
+
+.V2EX-detail-imgWrap {
+  float: left;
+  height: 1rem;
+  width: 1rem;
+  margin-right: 0.2rem;
+  display: inline-block;
+}
+
+.V2EX-detail-info-img {
+  height: 100%;
+  width: 100%;
+  border-radius: 100%;
+  border: 1px solid #eee;
+}
+
+.V2EX-detail-loginname {
+  color: #111;
+  font-size: .3rem;
+  margin-top: 0.15rem;
+}
+
+.V2EX-detail-last_reply_at {
+  font-size: 0.28rem;
+  color: #7e7e7e;
+  margin-top: 0.15rem;
+}
+
+.V2EX-detail-params {
+  text-align: right;
+  height: 1rem;
+}
+
+.V2EX-detail-tab {
+  background: #999;
+  color: #fff;
+  display: inline-block;
+  padding: 0.05rem;
+  border-radius: 10px;
+  margin: 0.1rem 0 0.15rem;
+  font-size: 0.24rem;
+}
+
+.V2EX-detail-count {
+  display: flex;
+ justify-content: flex-end;
+}
+
+.V2EX-detail-text {
+  font-size: 0.24rem;
+}
+
+.V2EX-detail-reply_count {
+  color: #7e7e7e;
+}

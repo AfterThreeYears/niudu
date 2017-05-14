@@ -1,31 +1,29 @@
 <template>
-  <div id="CNode">
+  <div id="V2EX">
     <ul>
-      <li class="CNode-List" v-for="topic in topics">
-        <router-link :to="{ name: 'CNodeDetail', params: { id: topic.id }}">
-          <h6 class="text-line-clamp2v CNode-title">{{topic.title}}</h6>
-          <div class="CNode-detail">
-          <div class="clearfix CNode-detail-info">
-            <section class="clearfix CNode-detail-imgWrap">
+      <li class="V2EX-List" v-for="topic in topics">
+        <h6 class="text-line-clamp2v V2EX-title">{{topic.title}}</h6>
+        <div class="V2EX-detail">
+          <div class="clearfix V2EX-detail-info">
+            <section class="clearfix V2EX-detail-imgWrap">
               <lazy-img
                 :src="topic.author.avatar_url"
                 :alt="topic.author.avatar_url"
-                class="CNode-detail-info-img"
+                class="V2EX-detail-info-img"
               />
             </section>
-            <p class="text-ellipsis CNode-detail-loginname">{{topic.author.loginname}}</p>
-            <p class="text-ellipsis CNode-detail-last_reply_at">{{topic.last_reply_at_str}}</p>
+            <p class="text-ellipsis V2EX-detail-loginname">{{topic.author.loginname}}</p>
+            <p class="text-ellipsis V2EX-detail-last_reply_at">{{topic.last_reply_at_str}}</p>
           </div>
-          <div class="CNode-detail-params">
-            <p class="CNode-detail-tab">{{topic.tabStr}}</p>
-            <div class="CNode-detail-count">
-              <span class="CNode-detail-text">
-                <span class="CNode-detail-reply_count">{{topic.reply_count}}</span>/{{topic.visit_count}}
+          <div class="V2EX-detail-params">
+            <p class="V2EX-detail-tab">{{topic.tabStr}}</p>
+            <div class="V2EX-detail-count">
+              <span class="V2EX-detail-text">
+                <span class="V2EX-detail-reply_count">{{topic.reply_count}}</span>/{{topic.visit_count}}
               </span>
             </div>
           </div>
         </div>
-        </router-link>
       </li>
     </ul>
   </div>
@@ -36,16 +34,16 @@ import { mapState, mapActions, mapMutations } from 'vuex';
 import LazyImg from '@/component/common/LazyImg';
 import titleMixin from '@/mixins/title.js';
 import loadMore from '@/mixins/loadMore';
-import './CNode.css';
+import './V2EX.css';
 
 export default {
-  name: 'CNode',
+  name: 'V2EX',
   asyncData({ store }) {
     return store.dispatch('fetchTopics');
   },
   mixins: [titleMixin, loadMore],
   title() {
-    return 'CNode';
+    return 'V2EX';
   },
   components: {
     LazyImg,
@@ -57,16 +55,13 @@ export default {
       },
     }),
   },
-  created() {
-    this.allShow();
-  },
   methods: {
     ...mapActions([
       'fetchTopics',
     ]),
     ...mapMutations([
       'setPage',
-      'allShow',
+      'setTab',
     ]),
     handleFetchTopics() {
       return new Promise((resolve) => {

@@ -1,6 +1,6 @@
 import { Store } from 'vuex';
 import createLogger from 'vuex/dist/logger';
-import note from './modules/note';
+import header from './modules/header';
 import cnode from './modules/cnode';
 import shared from './modules/shared';
 
@@ -17,7 +17,7 @@ export default function createStore() {
     plugins,
     strict: process.env.NODE_ENV !== 'production',
     modules: {
-      note,
+      header,
       cnode,
       shared,
     },

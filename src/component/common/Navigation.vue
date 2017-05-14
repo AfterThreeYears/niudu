@@ -14,7 +14,7 @@
       class="Navigation-item"
     >
       <span @click="handleSelect(idx, item.id)">
-        {{item.title}}
+        <router-link :to="item.url">{{item.title}}</router-link>
       </span>
     </swipe-item>
   </swipe-wrapper>
@@ -68,9 +68,9 @@ export default {
       this.selectedIndex = index;
 
       // 防止游标游走卡顿
-      Vue.nextTick(() => {
-        this.$emit('change', id);
-      });
+      // Vue.nextTick(() => {
+      //   this.$emit('change', id);
+      // });
     },
 
     abortRequest() {
