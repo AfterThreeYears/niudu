@@ -16,7 +16,6 @@
 </template>
 
 <script>
-import Vue from 'vue';
 import { mapMutations, mapActions } from 'vuex';
 import { SwipeWrapper, SwipeItem } from '@/component/common/Swipe';
 import './TabNavigation.css';
@@ -63,8 +62,7 @@ export default {
     },
     abortRequest() {
       // TODO 停止请求
-    }
-
+    },
   },
 };
 </script>

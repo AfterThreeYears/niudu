@@ -22,7 +22,6 @@
 
 <script>
 import cookie from 'js-cookie';
-import Vue from 'vue';
 import { SwipeWrapper, SwipeItem } from '@/component/common/Swipe';
 import { NAVIGATION_STORAGE_KEY } from '@/constants';
 import { encodeStorage, decodeStorage } from '@/helpers/navigation';
@@ -61,7 +60,7 @@ export default {
   },
 
   methods: {
-    handleSelect(index, id) {
+    handleSelect(index) {
       if (this.selectedIndex === index) return; // 当前 tab，跳过
 
       this.abortRequest();

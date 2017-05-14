@@ -42,12 +42,12 @@
 <script>
 import { mapMutations, mapState, mapActions, mapGetters } from 'vuex';
 import LazyImg from '@/component/common/LazyImg';
-import titleMixin from '@/mixins/title.js';
+import titleMixin from '@/mixins/title';
 import './CNodeDetail.css';
 
 export default {
   name: 'CNode-detail',
-  asyncData({ store, route}) {
+  asyncData({ store, route }) {
     const id = route.params.id;
     return store.dispatch('fetchTopicsDetail', {
       id,
@@ -68,7 +68,7 @@ export default {
     }),
     ...mapGetters([
       'replyLength',
-    ])
+    ]),
   },
   created() {
     console.log('created');
@@ -81,10 +81,10 @@ export default {
       id,
     });
   },
-  beforeRouteEnter (to, from, next) {
+  beforeRouteEnter(to, from, next) {
     // 进入页面之前把store里面的detail清空
     // https://router.vuejs.org/zh-cn/advanced/navigation-guards.html
-    next(vm => {
+    next((vm) => {
       vm.setTopicsDetail({});
     });
   },

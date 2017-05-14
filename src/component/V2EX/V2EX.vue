@@ -32,7 +32,7 @@
 <script>
 import { mapState, mapActions, mapMutations } from 'vuex';
 import LazyImg from '@/component/common/LazyImg';
-import titleMixin from '@/mixins/title.js';
+import titleMixin from '@/mixins/title';
 import loadMore from '@/mixins/loadMore';
 import './V2EX.css';
 

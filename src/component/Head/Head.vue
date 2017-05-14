@@ -11,17 +11,18 @@ import nav from '@/config/nav';
 import { cnodeTagArr } from '@/config/tabs';
 import Navigation from '@/component/common/Navigation';
 import TabNavigation from '@/component/common/TabNavigation';
+
 export default {
   name: 'header',
   data() {
     return {
       navs: nav,
       cnodeTagArrs: cnodeTagArr,
-    }
+    };
   },
   components: {
     Navigation,
-    TabNavigation
+    TabNavigation,
   },
   computed: {
     ...mapState({
@@ -36,5 +37,5 @@ export default {
       },
     }),
   },
-}
+};
 </script>

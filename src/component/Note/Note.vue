@@ -2,7 +2,6 @@
   <div id="note">
     Note
     <div>
-      <button @click='addNumer'>{{test}}---{{title}}</button>
       <button @click='adds'>add</button>
       <button @click='handleRemove'>remove</button>
       <button @click="filter">love</button>
@@ -38,7 +37,7 @@
 
 <script>
 import { mapState, mapActions, mapMutations } from 'vuex';
-import titleMixin from '@/mixins/title.js';
+import titleMixin from '@/mixins/title';
 import './Note.css';
 
 export default {
@@ -125,9 +124,6 @@ export default {
     filter() {
       this.status = 'like';
     },
-    addNumer() {
-      this.test = this.test+=1;
-    }
   },
 };
 

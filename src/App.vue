@@ -10,6 +10,7 @@
 import { mapState } from 'vuex';
 import MyHead from '@/component/Head/Head';
 import lazyload from '@/libs/lazyload';
+
 export default {
   components: {
     MyHead,
@@ -37,9 +38,9 @@ export default {
       if (!showHead) return { 'main-wrap-body-hide': true };
       if (showNav && !showTab) return { 'main-wrap-body-showNav': true };
       return { 'main-wrap-body-showTab': true };
-    }
+    },
   },
-}
+};
 </script>
 <style>
   .main-wrap-body-hide {
