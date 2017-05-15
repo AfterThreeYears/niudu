@@ -2,12 +2,17 @@ const path = require('path');
 const Koa = require('koa');
 const bodyParser = require('koa-bodyparser');
 const serve = require('koa-static');
+const compress = require('koa-compress');
 const mount = require('koa-mount');
 const router = require('./routes/index');
 const proxy = require('./helpers/proxy');
 const { MOCK_PORT } = require('../../config.js');
 
 const app = new Koa();
+
+app.use(compress({
+  flush: require('zlib').Z_SYNC_FLUSH,
+}));
 
 app.use(mount('/assets', serve(path.resolve(__dirname, './assets'))));
 

@@ -10,6 +10,12 @@
       "request": "launch",
       "name": "启动程序1111",
       "program": "${workspaceRoot}/server.js"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "mock",
+      "program": "${workspaceRoot}/api/mock/index.js"
     }
   ]
 }

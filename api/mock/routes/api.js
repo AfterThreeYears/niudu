@@ -1,7 +1,6 @@
 const Router = require('koa-router');
 const { getUsers } = require('../controllers/users');
 const { getNotes } = require('../controllers/notes');
-const { getItem } = require('../controllers/item');
 const { getProduct } = require('../controllers/product');
 const {
   getTopicAll,
@@ -41,8 +40,6 @@ router.get('/users', getUsers);
 router.get('/notes', getNotes);
 
 router.get('/product/search', getProduct);
-
-router.get('/item/:id', getItem);
 
 router.get('/topic', getTopicAll);
 
