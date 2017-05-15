@@ -13,6 +13,5 @@ const initialState = window.__INITIAL_STATE__; // eslint-disable-line no-undersc
 if (initialState) {
   store.replaceState(initialState);
 }
-
 // this assumes App.vue template root element has id="app"
 app.$mount('#app');

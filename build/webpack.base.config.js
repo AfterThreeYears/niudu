@@ -7,7 +7,7 @@ const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin');
 const isProd = process.env.NODE_ENV === 'production';
 
 module.exports = {
-  devtool: isProd ? false : '#source-map',
+  devtool: isProd ? false : 'source-map',
   output: {
     path: path.resolve(__dirname, '../dist'),
     publicPath: '/dist/',
