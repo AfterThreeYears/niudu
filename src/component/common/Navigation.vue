@@ -13,14 +13,14 @@
       :class="{ 'Navigation-selectedItem': selectedIndex === idx }"
       class="Navigation-item"
     >
-      <span @click="handleSelect(idx, item.id)">
-        <router-link :to="item.url">{{item.title}}</router-link>
-      </span>
+      <span @click="handleSelect(idx, item)">{{item.title}}</span>
     </swipe-item>
   </swipe-wrapper>
 </template>
 
 <script>
+import Vue from 'vue';
+import { mapMutations } from 'vuex';
 import cookie from 'js-cookie';
 import { SwipeWrapper, SwipeItem } from '@/component/common/Swipe';
 import { NAVIGATION_STORAGE_KEY } from '@/constants';
@@ -60,16 +60,24 @@ export default {
   },
 
   methods: {
-    handleSelect(index) {
+    ...mapMutations({
+      resetSubNavIndex: 'header/resetSubNavIndex',
+      csetTab: 'cnode/setTab',
+      resetPage: 'cnode/resetPage',
+      vsetTab: 'v2exList/setTab',
+    }),
+    handleSelect(index, item) {
       if (this.selectedIndex === index) return; // 当前 tab，跳过
-
-      this.abortRequest();
       this.selectedIndex = index;
-
+      this.resetPage();
+      this.abortRequest();
+      this.csetTab('all');
+      this.vsetTab('all');
+      this.resetSubNavIndex();
       // 防止游标游走卡顿
-      // Vue.nextTick(() => {
-      //   this.$emit('change', id);
-      // });
+      Vue.nextTick(() => {
+        this.$emit('change', item);
+      });
     },
 
     abortRequest() {

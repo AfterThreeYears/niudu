@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import debounce from 'lodash.debounce';
 import { isNumber, isArray } from '@/helpers/lang';
-import logger from '@/helpers/logger';
+// import logger from '@/helpers/logger';
 
 const originalAttr = 'data-original-src';
 const viewportDistance = 888;
@@ -49,7 +49,7 @@ const setLazyNodesImageUrl = (nodes, url) => {
 };
 
 const traverseImages = () => {
-  logger.debug('Begin Traverse Image', lazyNodes.length);
+  // logger.debug('Begin Traverse Image', lazyNodes.length);
   for (let i = 0; i < lazyNodes.length; i += 1) {
     const lazyNode = lazyNodes[i];
     if (!inViewport(lazyNode)) continue; // eslint-disable-line no-continue
@@ -58,14 +58,14 @@ const traverseImages = () => {
 
     // loaded, skip
     if (loadedImageUrls[url]) {
-      logger.debug('Hit Cache: ', url);
+      // logger.debug('Hit Cache: ', url);
       setLazyNodesImageUrl(lazyNode, url);
       continue; // eslint-disable-line no-continue
     }
 
     // loading, add handler
     if (loadingImageUrls[url]) {
-      logger.debug('Hit Repeat: ', loadingImageUrls[url].length);
+      // logger.debug('Hit Repeat: ', loadingImageUrls[url].length);
       loadingImageUrls[url].push(lazyNode);
       continue; // eslint-disable-line no-continue
     }
@@ -75,7 +75,7 @@ const traverseImages = () => {
 
     preloadImage(url).then(() => {
       setLazyNodesImageUrl(loadingImageUrls[url], url);
-      logger.debug('Load original Success: ', url);
+      // logger.debug('Load original Success: ', url);
 
       // flag current url loaded
       loadedImageUrls[url] = true;
@@ -84,7 +84,7 @@ const traverseImages = () => {
     }).catch(() => {
       // delete current url loading
       delete loadingImageUrls[url];
-      logger.debug('Load original Error: ', url);
+      // logger.debug('Load original Error: ', url);
       // retry once
       // TODO: retry
     });

@@ -15,11 +15,16 @@ export default {
   components: {
     MyHead,
   },
-  mounted() {
-    lazyload();
-  },
   updated() {
     lazyload();
+    // console.error('*******************updated*********************');
+  },
+  created() {
+    // console.error('*******************created*********************');
+  },
+  mounted() {
+    lazyload();
+    // console.error('*******************mounted*********************');
   },
   computed: {
     ...mapState({

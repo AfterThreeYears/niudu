@@ -5,7 +5,7 @@ const loadMore = {
   data() {
     return {
       isGlobalEventListened: false,
-      viewportDistance: 888,
+      viewportDistance: 2000,
       debounceInterval: 100,
       isLoading: false,
     };
@@ -22,12 +22,22 @@ const loadMore = {
         });
       }
     };
-    const debounceLoadMore = debounce(checkHeight, this.debounceInterval);
-    debounceLoadMore();
+    this.debounceLoadMore = debounce(checkHeight, this.debounceInterval);
+    this.debounceLoadMore();
     if (!this.isGlobalEventListened) {
-      window.addEventListener('scroll', debounceLoadMore, false);
+      window.addEventListener('scroll', this.debounceLoadMore, false);
       this.isGlobalEventListened = true;
     }
+  },
+  methods: {
+    destroy() {
+      this.isGlobalEventListened = false;
+      window.removeEventListener('scroll', this.debounceLoadMore, false);
+    },
+  },
+  beforeRouteLeave(to, from, next) {
+    this.destroy();
+    next();
   },
 };
 

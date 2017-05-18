@@ -1,7 +1,7 @@
 <template>
   <div id="CNode">
     <ul>
-      <li class="CNode-List" v-for="topic in topics">
+      <li class="CNode-List" v-for="topic in cnodeTopics">
         <router-link :to="{ name: 'CNodeDetail', params: { id: topic.id }}">
           <h6 class="text-line-clamp2v CNode-title">{{topic.title}}</h6>
           <div class="CNode-detail">
@@ -36,12 +36,13 @@ import { mapState, mapActions, mapMutations } from 'vuex';
 import LazyImg from '@/component/common/LazyImg';
 import titleMixin from '@/mixins/title';
 import loadMore from '@/mixins/loadMore';
+import { cnodeTagArr } from '@/config/tabs';
 import './CNode.css';
 
 export default {
   name: 'CNode',
   asyncData({ store }) {
-    return store.dispatch('fetchTopics');
+    return store.dispatch('cnode/fetchTopics');
   },
   mixins: [titleMixin, loadMore],
   title() {
@@ -52,26 +53,33 @@ export default {
   },
   computed: {
     ...mapState({
-      topics(state) {
+      cnodeTopics(state) {
         return state.cnode.entities;
       },
     }),
   },
+  beforeRouteEnter (to, from, next) {
+    next(vm => {
+      if (from.name) vm['cnode/fetchTopics']();
+    });
+  },
   created() {
-    this.allShow();
+    this['header/allShow']();
+    this['header/setTagArrs'](cnodeTagArr);
   },
   methods: {
     ...mapActions([
-      'fetchTopics',
+      'cnode/fetchTopics',
     ]),
     ...mapMutations([
-      'setPage',
-      'allShow',
+      'cnode/increasePage',
+      'header/allShow',
+      'header/setTagArrs',
     ]),
     handleFetchTopics() {
       return new Promise((resolve) => {
-        this.setPage();
-        this.fetchTopics().then(() => {
+        this['cnode/increasePage']();
+        this['cnode/fetchTopics']().then(() => {
           resolve();
         });
       });

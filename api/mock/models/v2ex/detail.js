@@ -1,6 +1,8 @@
 const cheerio = require('cheerio');
 
-function getTechData(text) {
+const getId = str => (/\/t\/(\d+)#reply/.exec(str) || [])[1];
+
+function getListData(text) {
   const $ = cheerio.load(text);
   const list = $('div.cell.item');
   const result = [];
@@ -9,6 +11,7 @@ function getTechData(text) {
     const count = $(item).find('.count_livid').text();
     const replier = count ? $(item).find('.small').last().text() : '';
     const title = $(item).find('.item_title').text();
+    const id = getId($(item).find('.item_title a').attr('href'));
     const obj = {};
     replier.split('•').forEach((reply, idx) => {
       const rep = (reply || '').trim();
@@ -18,6 +21,7 @@ function getTechData(text) {
       if (idx === 3) obj.last_reply = rep;
     });
     result.push(Object.assign({
+      id,
       avatar,
       title,
       count,
@@ -26,4 +30,4 @@ function getTechData(text) {
   return result;
 }
 
-module.exports = getTechData;
+module.exports = getListData;

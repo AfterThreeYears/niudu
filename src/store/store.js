@@ -2,6 +2,8 @@ import { Store } from 'vuex';
 import createLogger from 'vuex/dist/logger';
 import header from './modules/header';
 import cnode from './modules/cnode';
+import cNodeDetail from './modules/cNodeDetail';
+import v2exList from './modules/v2exList';
 import shared from './modules/shared';
 
 export default function createStore() {
@@ -19,6 +21,8 @@ export default function createStore() {
     modules: {
       header,
       cnode,
+      cNodeDetail,
+      v2exList,
       shared,
     },
   });

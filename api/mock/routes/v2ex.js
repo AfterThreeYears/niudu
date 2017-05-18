@@ -1,10 +1,13 @@
 const Router = require('koa-router');
-const { getTech } = require('../controllers/v2ex/tech');
+const { getList } = require('../controllers/v2ex/list');
+const { getDetail } = require('../controllers/v2ex/detail');
 
 const router = new Router({
   prefix: '/v2ex',
 });
 
-router.get('/tech', getTech);
+router.get('/list/:type', getList);
+
+router.get('/detail/:id', getDetail);
 
 module.exports = router;

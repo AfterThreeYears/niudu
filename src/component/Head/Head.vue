@@ -1,14 +1,21 @@
 <template>
   <header v-show="showHead" id="header">
-    <Navigation v-show="showNav" :data="navs" />
-    <tab-navigation v-show="showTab" :data="cnodeTagArrs" />
+    <Navigation
+      v-show="showNav"
+      :data="navs"
+      :index="index"
+      @change="handleNavigationSelect"
+    />
+    <tab-navigation
+      v-show="showTab"
+      :data="tagArrs"
+    />
   </header>
 </template>
 
 <script>
 import { mapState } from 'vuex';
 import nav from '@/config/nav';
-import { cnodeTagArr } from '@/config/tabs';
 import Navigation from '@/component/common/Navigation';
 import TabNavigation from '@/component/common/TabNavigation';
 
@@ -17,12 +24,21 @@ export default {
   data() {
     return {
       navs: nav,
-      cnodeTagArrs: cnodeTagArr,
     };
   },
   components: {
     Navigation,
     TabNavigation,
+  },
+  methods: {
+    handleNavigationSelect({url, id}) {
+      this.$router.push({
+        path: url,
+        query: {
+          id,
+        },
+      });
+    }
   },
   computed: {
     ...mapState({
@@ -35,7 +51,13 @@ export default {
       showHead(state) {
         return state.header.showHead;
       },
+      tagArrs(state) {
+        return state.header.tagArrs;
+      },
     }),
+    index() {
+      return +this.$route.query.id || 0;
+    }
   },
 };
 </script>
