@@ -26,9 +26,9 @@ export default {
   actions: {
     fetchTopics({ commit, state }) {
       const { tab } = state;
-      console.log(`get****http://localhost:9092/v2ex/list/${tab}`);
+      console.log(`GET------/v2ex/list/${tab}`);
       return axios
-        .get(`http://localhost:9092/v2ex/list/${tab}`)
+        .get(`/v2ex/list/${tab}`)
         .then(({ data }) => commit('setTopics', { data }));
     },
   },
