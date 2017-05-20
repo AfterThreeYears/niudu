@@ -1,11 +1,11 @@
 import Vue from 'vue';
-import debounce from 'lodash.debounce';
+import throttle from 'lodash.throttle';
 import { isNumber, isArray } from '@/helpers/lang';
 // import logger from '@/helpers/logger';
 
 const originalAttr = 'data-original-src';
 const viewportDistance = 888;
-const debounceInterval = 100;
+const throttleInterval = 100;
 
 let lazyNodes = [];
 let isGlobalEventListened = false;
@@ -91,7 +91,7 @@ const traverseImages = () => {
   }
 };
 
-const debounceTraverseImages = debounce(traverseImages, debounceInterval);
+const throttleTraverseImages = throttle(traverseImages, throttleInterval);
 
 export const addImg = (elements = []) => {
   if (!isArray(elements)) {
@@ -107,11 +107,11 @@ export const isImageLoaded = url => loadedImageUrls[url];
 const doLazyload = () => {
   lazyNodes = [].slice.call(document.querySelectorAll(`[${originalAttr}]`));
 
-  debounceTraverseImages();
+  throttleTraverseImages();
 
   if (!isGlobalEventListened) {
-    window.addEventListener('scroll', debounceTraverseImages, false);
-    document.addEventListener('touchmove', debounceTraverseImages, false);
+    window.addEventListener('scroll', throttleTraverseImages, false);
+    document.addEventListener('touchmove', throttleTraverseImages, false);
     isGlobalEventListened = true;
   }
 };

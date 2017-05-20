@@ -1,4 +1,4 @@
-import debounce from 'lodash.debounce';
+import throttle from 'lodash.throttle';
 import lazyload from '@/libs/lazyload';
 
 const loadMore = {
@@ -6,7 +6,7 @@ const loadMore = {
     return {
       isGlobalEventListened: false,
       viewportDistance: 2000,
-      debounceInterval: 100,
+      throttleInterval: 100,
       isLoading: false,
     };
   },
@@ -14,6 +14,7 @@ const loadMore = {
     const hasLoad = () => document.body.scrollTop +
      window.innerHeight + this.viewportDistance >= document.body.clientHeight;
     const checkHeight = () => {
+      console.error('run');
       if (hasLoad() && !this.isLoading) {
         this.isLoading = true;
         this.handleFetchTopics().then(() => {
@@ -22,22 +23,21 @@ const loadMore = {
         });
       }
     };
-    this.debounceLoadMore = debounce(checkHeight, this.debounceInterval);
-    this.debounceLoadMore();
+    this.throttleLoadMore = throttle(checkHeight, this.throttleInterval);
+    this.throttleLoadMore();
     if (!this.isGlobalEventListened) {
-      window.addEventListener('scroll', this.debounceLoadMore, false);
+      window.addEventListener('scroll', this.throttleLoadMore, false);
       this.isGlobalEventListened = true;
     }
   },
   methods: {
     destroy() {
       this.isGlobalEventListened = false;
-      window.removeEventListener('scroll', this.debounceLoadMore, false);
+      window.removeEventListener('scroll', this.throttleLoadMore, false);
     },
   },
-  beforeRouteLeave(to, from, next) {
+  beforeDestroy() {
     this.destroy();
-    next();
   },
 };
 
