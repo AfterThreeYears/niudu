@@ -14,7 +14,6 @@ const loadMore = {
     const hasLoad = () => document.body.scrollTop +
      window.innerHeight + this.viewportDistance >= document.body.clientHeight;
     const checkHeight = () => {
-      console.error('run');
       if (hasLoad() && !this.isLoading) {
         this.isLoading = true;
         this.handleFetchTopics().then(() => {

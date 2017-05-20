@@ -1,5 +1,4 @@
 .TabNavigation {
-  font-size: 50px;
   position: fixed;
   top: .82rem;
   z-index: 1001;
@@ -20,7 +19,7 @@
 }
 
 .TabNavigation-item {
-  font-size: .28rem;
+  font-size: .38rem;
   line-height: .83rem;
   color: #333;
   padding: 0 .27rem;

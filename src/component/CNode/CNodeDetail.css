@@ -3,27 +3,27 @@
 }
 
 .CNodeDetail-title {
-  font-size: 0.32rem;
+  font-size: 0.42rem;
 }
 
 .CNodeDetail-info {
-  font-size: 0.24rem;
+  font-size: 0.34rem;
 }
 
 .CNodeDetail-content {
-  font-size: 0.24rem;
+  font-size: 0.34rem;
 }
 
 .CNodeDetail-replies {
-  font-size: 0.24rem;
+  font-size: 0.34rem;
 }
 
 .CNodeDetail-replyList {
-  font-size: 0.24rem;
+  font-size: 0.34rem;
 }
 
 .CNodeDetail-reply_name {
-  font-size: 0.24rem;
+  font-size: 0.34rem;
 }
 
 .CNodeDetail-headPic-wrap {
@@ -40,7 +40,7 @@
 }
 
 .markdown-text {
-  font-size: 0.3rem;
+  font-size: 0.4rem;
 }
 
 .markdown-text img {
@@ -66,7 +66,7 @@
 }
 
 .markdown-text li,.preview li {
-    font-size: 14px;
+    font-size: 0.2rem;
     line-height: 2em
 }
 
@@ -91,7 +91,7 @@
 
 .preview {
     padding: .5em;
-    font-size: 15px;
+    font-size: 0.2rem;
     min-height: 200px;
     word-break: break-all
 }

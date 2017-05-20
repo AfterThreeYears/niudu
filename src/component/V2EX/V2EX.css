@@ -1,12 +1,12 @@
 .V2EX-List {
-  font-size: 0.3rem;
+  font-size: 0.4rem;
   border-bottom: 1px solid #ccc;
   padding-bottom: 0.1rem;
   margin: 0.2rem 0.2rem 0;
 }
 
 .V2EX-title {
-  font-size: 0.3rem;
+  font-size: 0.4rem;
   margin-bottom: 0.1rem;
 }
 
@@ -32,12 +32,12 @@
 
 .V2EX-detail-loginname {
   color: #111;
-  font-size: .3rem;
+  font-size: .4rem;
   margin-top: 0.15rem;
 }
 
 .V2EX-detail-last_reply_at {
-  font-size: 0.28rem;
+  font-size: 0.38rem;
   color: #7e7e7e;
   margin-top: 0.15rem;
 }
@@ -54,7 +54,7 @@
   padding: 0.05rem;
   border-radius: 10px;
   margin: 0.1rem 0 0.15rem;
-  font-size: 0.24rem;
+  font-size: 0.34rem;
 }
 
 .V2EX-detail-count {
@@ -63,7 +63,7 @@
 }
 
 .V2EX-detail-text {
-  font-size: 0.24rem;
+  font-size: 0.34rem;
 }
 
 .V2EX-detail-reply_count {
