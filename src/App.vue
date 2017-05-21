@@ -1,9 +1,13 @@
 <template>
   <div id="app">
     <my-head v-show="showHead" />
-    <div :class="classObject">
-      <router-view></router-view>
+    <div class="window-isLoading" v-if="isLoading">
+      <img src="~public/images/common/loading.gif" class="window-loadingImage" />
     </div>
+    <div :class="classObject" v-else>
+      <router-view />
+    </div>
+
   </div>
 </template>
 <script>
@@ -37,6 +41,9 @@ export default {
       showHead(state) {
         return state.header.showHead;
       },
+      isLoading(state) {
+        return state.header.isLoading;
+      },
     }),
     classObject() {
       const { showHead, showTab, showNav } = this;
@@ -57,4 +64,19 @@ export default {
   .main-wrap-body-showNav {
     padding-top: 0.83rem;
   }
+  .window-isLoading {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #fff;
+  }
+
+  .window-loadingImage {
+    width: .78rem;
+    height: .78rem;
+  }
+
 </style>

@@ -1,8 +1,9 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 import CNode from '@/component/CNode/CNode';
-import CNodeDetail from '@/component/CNode/CNodeDetail';
+import CNodeDetail from '@/component/CNodeDetail/CNodeDetail';
 import V2ex from '@/component/V2EX/V2EX';
+import v2exDetail from '@/component/V2EXDetail/V2EXDetail';
 import Test from '@/component/Test';
 
 Vue.use(Router);
@@ -25,8 +26,8 @@ export function createRouter() {
       {
         path: '/',
         redirect: {
-          component: CNode,
-          name: 'cnode',
+          component: V2ex,
+          name: 'v2ex',
         },
       },
       {
@@ -43,6 +44,11 @@ export function createRouter() {
         path: '/v2ex',
         component: V2ex,
         name: 'v2ex',
+      },
+      {
+        path: '/v2ex/:id',
+        component: v2exDetail,
+        name: 'v2exDetail',
       },
     ],
   });

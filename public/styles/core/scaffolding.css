@@ -22,3 +22,7 @@ a {
   text-decoration: none;
   transition: color .35s;
 }
+
+li {
+  list-style-type: none;
+}

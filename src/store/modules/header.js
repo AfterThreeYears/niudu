@@ -7,6 +7,7 @@ export default {
     tagArrs: [],
     // 子导航的索引
     subNavIndex: 0,
+    isLoading: false,
   },
 
   mutations: {
@@ -32,6 +33,9 @@ export default {
     },
     setSubNavIndex(state, index) {
       state.subNavIndex = index;
+    },
+    setLoading(state, type) {
+      state.isLoading = type;
     },
   },
 };

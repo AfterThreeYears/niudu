@@ -8,7 +8,7 @@ function getListData(text) {
   const result = [];
   list.each((index, item) => {
     const avatar = $(item).find('img.avatar').attr('src');
-    const count = $(item).find('.count_livid').text();
+    const count = $(item).find('.count_livid').text() || 0;
     const replier = count ? $(item).find('.small').last().text() : '';
     const title = $(item).find('.item_title').text();
     const id = getId($(item).find('.item_title a').attr('href'));

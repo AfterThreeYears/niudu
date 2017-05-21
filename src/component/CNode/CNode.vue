@@ -60,26 +60,32 @@ export default {
   },
   beforeRouteEnter (to, from, next) {
     next(vm => {
-      if (from.name) vm['cnode/fetchTopics']();
+      if (from.name) {
+        vm.setLoading(true);
+        vm.fetchTopics().then(() => {
+          vm.setLoading(false);
+        });
+      }
     });
   },
   created() {
-    this['header/allShow']();
-    this['header/setTagArrs'](cnodeTagArr);
+    this.allShow();
+    this.setTagArrs(cnodeTagArr);
   },
   methods: {
-    ...mapActions([
-      'cnode/fetchTopics',
-    ]),
-    ...mapMutations([
-      'cnode/increasePage',
-      'header/allShow',
-      'header/setTagArrs',
-    ]),
+    ...mapActions({
+      fetchTopics: 'cnode/fetchTopics',
+    }),
+    ...mapMutations({
+      increasePage: 'cnode/increasePage',
+      allShow: 'header/allShow',
+      setTagArrs: 'header/setTagArrs',
+      setLoading: 'header/setLoading',
+    }),
     handleFetchTopics() {
       return new Promise((resolve) => {
-        this['cnode/increasePage']();
-        this['cnode/fetchTopics']().then(() => {
+        this.increasePage();
+        this.fetchTopics().then(() => {
           resolve();
         });
       });

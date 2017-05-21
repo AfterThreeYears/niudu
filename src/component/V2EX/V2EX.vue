@@ -2,28 +2,29 @@
   <div id="V2EX">
     <ul>
       <li class="V2EX-List" v-for="topic in v2exTopics">
-        <h6 class="text-line-clamp2v V2EX-title">{{topic.title}}</h6>
-        <div class="V2EX-detail">
+        <router-link :to="{ name: 'v2exDetail', params: { id: topic.id }}">
+          <section class="clearfix V2EX-detail-imgWrap">
+            <lazy-img
+              :src="topic.avatar"
+              :alt="topic.avatar"
+              class="V2EX-detail-info-img"
+            />
+          </section>
           <div class="clearfix V2EX-detail-info">
-            <section class="clearfix V2EX-detail-imgWrap">
-              <lazy-img
-                :src="topic.avatar"
-                :alt="topic.avatar"
-                class="V2EX-detail-info-img"
-              />
-            </section>
-            <p class="text-ellipsis V2EX-detail-loginname">{{topic.author}}</p>
-            <p class="text-ellipsis V2EX-detail-last_reply_at">{{topic.last_time}}</p>
-          </div>
-          <div class="V2EX-detail-params">
+          <div class="V2EX-detail-tab-info">
             <p class="V2EX-detail-tab">{{topic.node}}</p>
-            <div class="V2EX-detail-count">
-              <span class="V2EX-detail-text">
-                <span class="V2EX-detail-reply_count">{{topic.count}}</span>
-              </span>
-            </div>
+            <p class="text-ellipsis V2EX-detail-loginname">{{topic.author}}</p>
+          </div>
+          <div class="V2EX-title-wrap">
+            <h6 class="text-line-clamp2v V2EX-title">{{topic.title}}</h6>
+            <span class="V2EX-detail-reply_count">{{topic.count}}</span>
+          </div>
+          <div class="V2EX-last_reply_at-wrap">
+            <p class="text-ellipsis V2EX-detail-last_reply_at">{{topic.last_time}}</p>
+            <p>{{topic.last_reply}}</p>
           </div>
         </div>
+        </router-link>
       </li>
     </ul>
   </div>
@@ -51,7 +52,10 @@ export default {
   beforeRouteEnter (to, from, next) {
     next(vm => {
       if (from.name) {
-        vm.fetchTopics();
+        vm.setLoading(true);
+        vm.fetchTopics().then(() => {
+          vm.setLoading(false);
+        });
       }
     });
   },
@@ -66,6 +70,7 @@ export default {
     ...mapMutations({
       allShow: 'header/allShow',
       setTagArrs: 'header/setTagArrs',
+      setLoading: 'header/setLoading',
     }),
   },
   computed: {

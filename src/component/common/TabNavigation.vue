@@ -41,18 +41,20 @@ export default {
     }),
   },
   methods: {
-    ...mapActions([
-      'cnode/fetchTopics',
-      'v2exList/fetchTopics',
-    ]),
+    ...mapActions({
+      cfetchTopics: 'cnode/fetchTopics',
+      vfetchTopics: 'v2exList/fetchTopics',
+    }),
     ...mapMutations({
       setSubNavIndex: 'header/setSubNavIndex',
+      setLoading: 'header/setLoading',
       resetPage: 'cnode/resetPage',
       csetTab: 'cnode/setTab',
       vsetTab: 'v2exList/setTab',
     }),
-    handleSelect(index, tab, type) {
+    async handleSelect(index, tab, type) {
       if (this.selectedIndex === index) return; // 当前 tab，跳过
+      this.setLoading(true);
       this.abortRequest();
       // set index
       this.setSubNavIndex(index);
@@ -60,11 +62,12 @@ export default {
       this.resetPage();
       if (type === 'cnode') {
         this.csetTab(tab);
-        this['cnode/fetchTopics']();
+        await this.cfetchTopics();
       } else if (type === 'v2ex') {
         this.vsetTab(tab);
-        this['v2exList/fetchTopics']();
+        await this.vfetchTopics();
       }
+      this.setLoading(false);
     },
     abortRequest() {
       // TODO 停止请求

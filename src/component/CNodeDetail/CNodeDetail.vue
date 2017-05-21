@@ -72,7 +72,7 @@ export default {
     }),
   },
   created() {
-    this['header/setHead']({
+    this.setHead({
       status: false,
     });
   },
@@ -80,22 +80,25 @@ export default {
     // 进入页面之前把store里面的detail清空
     next((vm) => {
       if (from.name) {
+        vm.setLoading(true);
         const id = to.params.id;
-        vm['cNodeDetail/setTopicsDetail']({});
-        vm['cNodeDetail/fetchTopicsDetail']({
+        vm.setTopicsDetail({});
+        vm.fetchTopicsDetail({
           id,
         });
+        vm.setLoading(false);
       }
     });
   },
   methods: {
-    ...mapMutations([
-      'header/setHead',
-      'cNodeDetail/setTopicsDetail',
-    ]),
-    ...mapActions([
-      'cNodeDetail/fetchTopicsDetail',
-    ]),
+    ...mapMutations({
+      setHead: 'header/setHead',
+      setTopicsDetail: 'cNodeDetail/setTopicsDetail',
+      setLoading: 'header/setLoading',
+    }),
+    ...mapActions({
+      fetchTopicsDetail: 'cNodeDetail/fetchTopicsDetail',
+    }),
   },
 };
 </script>

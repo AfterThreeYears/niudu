@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { convert2Map } from '@/helpers/data';
 import { dateDiff } from '@/helpers/time';
 import { cnodeTag } from '@/helpers/tag';
 import moment from 'moment';
@@ -20,10 +19,7 @@ export default {
         item.last_reply_at_str = dateDiff(+new Date(item.last_reply_at));
         item.tabStr = cnodeTag(item);
       });
-      state.entities = {
-        ...state.entities,
-        ...convert2Map(topics, 'id'),
-      };
+      state.entities = [...topics];
     },
     increasePage(state) {
       state.page += 1;
@@ -33,7 +29,7 @@ export default {
     },
     setTab(state, tab) {
       state.tab = tab;
-      state.entities = {};
+      state.entities = [];
     },
   },
 

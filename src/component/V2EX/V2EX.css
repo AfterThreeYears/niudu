@@ -3,69 +3,77 @@
   border-bottom: 1px solid #ccc;
   padding-bottom: 0.1rem;
   margin: 0.2rem 0.2rem 0;
+  overflow: hidden;
+}
+
+.V2EX-title-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .V2EX-title {
   font-size: 0.4rem;
-  margin-bottom: 0.1rem;
+  margin: 0.2rem 0.2rem 0.2rem 0;
+  line-height: 0.5rem;
 }
 
 .V2EX-detail-info {
   float: left;
-  width: 70%;
+  width: calc(100% - 0.9rem);
 }
 
 .V2EX-detail-imgWrap {
   float: left;
-  height: 1rem;
-  width: 1rem;
+  height: 0.7rem;
+  width: 0.7rem;
   margin-right: 0.2rem;
-  display: inline-block;
 }
 
 .V2EX-detail-info-img {
   height: 100%;
   width: 100%;
-  border-radius: 100%;
+  border-radius: 10px;
   border: 1px solid #eee;
 }
 
 .V2EX-detail-loginname {
-  color: #111;
-  font-size: .4rem;
-  margin-top: 0.15rem;
+  color: #778087;
+  word-break: break-all;
+  font-size: 0.35rem;
+}
+
+.V2EX-last_reply_at-wrap {
+  display: flex;
+  align-items: center;
+  font-size: 0.3rem;
 }
 
 .V2EX-detail-last_reply_at {
-  font-size: 0.38rem;
-  color: #7e7e7e;
-  margin-top: 0.15rem;
+  color: #ccc;
+  margin-right: 0.2rem;
 }
 
-.V2EX-detail-params {
-  text-align: right;
-  height: 1rem;
+.V2EX-detail-tab-info {
+  display: flex;
+  align-items: center;
 }
 
 .V2EX-detail-tab {
-  background: #999;
-  color: #fff;
-  display: inline-block;
-  padding: 0.05rem;
-  border-radius: 10px;
-  margin: 0.1rem 0 0.15rem;
-  font-size: 0.34rem;
-}
-
-.V2EX-detail-count {
-  display: flex;
- justify-content: flex-end;
-}
-
-.V2EX-detail-text {
-  font-size: 0.34rem;
+  margin-right: 0.2rem;
+  background-color: #f5f5f5;
+  font-size: 0.35rem;
+  padding: 4px 4px 4px 4px;
+  border-radius: 2px;
+  color: #999;
 }
 
 .V2EX-detail-reply_count {
-  color: #7e7e7e;
+  background-color: #aab0c6;
+  word-break: keep-all;
+  font-weight: bold;
+  color: white;
+  display: inline-block;
+  padding: 2px 10px 2px 10px;
+  border-radius: 12px;
 }
