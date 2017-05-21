@@ -23,7 +23,6 @@ const loadMore = {
       }
     };
     this.throttleLoadMore = throttle(checkHeight, this.throttleInterval);
-    this.throttleLoadMore();
     if (!this.isGlobalEventListened) {
       window.addEventListener('scroll', this.throttleLoadMore, false);
       this.isGlobalEventListened = true;

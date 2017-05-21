@@ -10,6 +10,10 @@
   margin-bottom: 0.1rem;
 }
 
+.CNode-detail {
+  overflow: hidden;
+}
+
 .CNode-detail-info {
   float: left;
   width: 70%;

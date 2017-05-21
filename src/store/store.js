@@ -4,6 +4,7 @@ import header from './modules/header';
 import cnode from './modules/cnode';
 import cNodeDetail from './modules/cNodeDetail';
 import v2exList from './modules/v2exList';
+import v2exDetail from './modules/v2exDetail';
 import shared from './modules/shared';
 
 export default function createStore() {
@@ -23,6 +24,7 @@ export default function createStore() {
       cnode,
       cNodeDetail,
       v2exList,
+      v2exDetail,
       shared,
     },
   });

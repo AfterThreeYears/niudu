@@ -56,6 +56,9 @@ export default {
       cnodeTopics(state) {
         return state.cnode.entities;
       },
+      limit(state) {
+        return state.cnode.limit;
+      },
     }),
   },
   beforeRouteEnter (to, from, next) {
@@ -83,11 +86,14 @@ export default {
       setLoading: 'header/setLoading',
     }),
     handleFetchTopics() {
-      return new Promise((resolve) => {
+      return new Promise(async (resolve) => {
         this.increasePage();
-        this.fetchTopics().then(() => {
+        const list = await this.fetchTopics();
+        if (list >= this.limit) {
           resolve();
-        });
+        } else {
+          // 到底部了
+        }
       });
     },
   },

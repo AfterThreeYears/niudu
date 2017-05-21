@@ -1,32 +1,28 @@
 const cheerio = require('cheerio');
 
-const getId = str => (/\/t\/(\d+)#reply/.exec(str) || [])[1];
-
 function getListData(text) {
-  const $ = cheerio.load(text);
-  const list = $('div.cell.item');
-  const result = [];
-  list.each((index, item) => {
-    const avatar = $(item).find('img.avatar').attr('src');
-    const count = $(item).find('.count_livid').text();
-    const replier = count ? $(item).find('.small').last().text() : '';
-    const title = $(item).find('.item_title').text();
-    const id = getId($(item).find('.item_title a').attr('href'));
-    const obj = {};
-    replier.split('•').forEach((reply, idx) => {
-      const rep = (reply || '').trim();
-      if (idx === 0) obj.node = rep;
-      if (idx === 1) obj.author = rep;
-      if (idx === 2) obj.last_time = rep;
-      if (idx === 3) obj.last_reply = rep;
-    });
-    result.push(Object.assign({
-      id,
-      avatar,
-      title,
-      count,
-    }, obj));
+  const $ = cheerio.load(text, { decodeEntities: false });
+  const title = $('h1').html();
+  const lastReply = $('.header .gray').html();
+  const markdown = $('.topic_content').html();
+  const table = $('.box').eq(1).find('table');
+  const replier = [].slice.call(table).map((item) => {
+    const $table = $(item);
+    return {
+      avatar: $table.find('.avatar').attr('src'),
+      dark: $table.find('.dark').html(),
+      small: $table.find('.small').html(),
+      replyContent: $table.find('.reply_content').html(),
+    };
   });
+  const result = {
+    content: {
+      title,
+      lastReply,
+      markdown,
+    },
+    replier,
+  };
   return result;
 }
 

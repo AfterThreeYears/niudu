@@ -19,7 +19,7 @@ export default {
         item.last_reply_at_str = dateDiff(+new Date(item.last_reply_at));
         item.tabStr = cnodeTag(item);
       });
-      state.entities = [...topics];
+      state.entities = [...state.entities, ...topics];
     },
     increasePage(state) {
       state.page += 1;
@@ -44,7 +44,10 @@ export default {
             limit,
           },
         })
-        .then(({ data }) => commit('setTopics', { data }));
+        .then(({ data }) => {
+          commit('setTopics', { data });
+          return (data || '').length;
+        });
     },
   },
 };

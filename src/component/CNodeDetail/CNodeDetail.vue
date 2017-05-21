@@ -78,12 +78,11 @@ export default {
   },
   beforeRouteEnter(to, from, next) {
     // 进入页面之前把store里面的detail清空
-    next((vm) => {
+    next(async (vm) => {
       if (from.name) {
         vm.setLoading(true);
         const id = to.params.id;
-        vm.setTopicsDetail({});
-        vm.fetchTopicsDetail({
+        await vm.fetchTopicsDetail({
           id,
         });
         vm.setLoading(false);
