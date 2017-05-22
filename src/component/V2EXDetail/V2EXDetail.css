@@ -1,110 +1,51 @@
-#CNodeDetail {
+#v2exDetail {
   padding: 0.3rem;
 }
 
-.CNodeDetail-title {
+.v2exDetail-title {
   font-size: 0.42rem;
 }
 
-.CNodeDetail-info {
+.v2exDetail-info {
   font-size: 0.34rem;
 }
 
-.CNodeDetail-content {
+.v2exDetail-content {
   font-size: 0.34rem;
 }
 
-.CNodeDetail-replies {
-  font-size: 0.34rem;
+
+.v2exDetail-list {
+  padding: .3rem 0;
+  line-height: 1.3;
+  border-bottom: 1px solid #ccc;
 }
 
-.CNodeDetail-replyList {
-  font-size: 0.34rem;
-}
-
-.CNodeDetail-reply_name {
-  font-size: 0.34rem;
-}
-
-.CNodeDetail-headPic-wrap {
+.v2exDetail-headPic-wrap {
   height: 0.8rem;
   width: 0.8rem;
   display: inline-block;
+  float: left;
+  margin-right: 0.3rem;
 }
 
-.CNodeDetail-headPic {
+.v2exDetail-headPic {
   height: 0.8rem;
   width: 0.8rem;
   border-radius: 100%;
   border: 1px solid #eee;
 }
 
-.markdown-text {
-  font-size: 0.4rem;
+.v2exDetail-detail{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
-.markdown-text img {
+.v2exDetail-detail-left{
+  width: 85%;
+}
+
+.markdown-body img {
   width: 100%;
-}
-
-.markdown-text p,.preview p {
-    white-space: pre-wrap;
-    white-space: -moz-pre-wrap;
-    white-space: -pre-wrap;
-    white-space: -o-pre-wrap;
-    word-wrap: break-word;
-    line-height: 2em;
-    margin: 1em 0
-}
-
-.markdown-text>:last-child,.preview>:last-child,textarea#title {
-    margin-bottom: 1em
-}
-
-.markdown-text>:first-child,.preview>:first-child {
-    margin-top: 0
-}
-
-.markdown-text li,.preview li {
-    font-size: 0.2rem;
-    line-height: 2em
-}
-
-.markdown-text li code,.markdown-text p code,.preview li code,.preview p code {
-    color: #000;
-    background-color: #fcfafa;
-    padding: 4px 6px
-}
-
-.markdown-text img {
-    cursor: pointer
-}
-
-.markdown-text h1 code,.markdown-text h2 code,.markdown-text h3 code,.markdown-text h4 code,.markdown-text h5 code,.markdown-text h6 code {
-    font-size: inherit;
-    color: inherit
-}
-
-.panel .markdown-text a {
-    color: #08c
-}
-
-.preview {
-    padding: .5em;
-    font-size: 0.2rem;
-    min-height: 200px;
-    word-break: break-all
-}
-
-.preview p>img {
-    display: block;
-    box-shadow: 0 0 4px rgba(0,0,0,.6)
-}
-
-.markdown_editor .markdown_in_editor,.markdown_editor .markdown_in_preview {
-    display: none
-}
-
-.markdown_editor.in_editor .markdown_in_editor,.markdown_editor.in_preview .markdown_in_preview {
-    display: block
 }

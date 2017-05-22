@@ -4,8 +4,10 @@ import Router from 'vue-router';
 const CNode = resolve => require(['./component/CNode/CNode'], resolve);
 const CNodeDetail = resolve => require(['./component/CNodeDetail/CNodeDetail'], resolve);
 const V2ex = resolve => require(['./component/V2ex/V2ex'], resolve);
-const v2exDetail = resolve => require(['./component/v2exDetail/v2exDetail'], resolve);
+const V2EXDetail = resolve => require(['./component/V2EXDetail/V2EXDetail'], resolve);
 const Test = resolve => require(['./component/Test'], resolve);
+
+// import v2exDetail from '@/component/V2EXDetail'
 
 Vue.use(Router);
 
@@ -48,7 +50,7 @@ export function createRouter() {
       },
       {
         path: '/v2ex/:id',
-        component: v2exDetail,
+        component: V2EXDetail,
         name: 'v2exDetail',
       },
     ],

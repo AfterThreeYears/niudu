@@ -4,22 +4,42 @@
     <br>
     <hr />
     <br>
-    <h5 v-once v-html="detail.content.lastReply" />
-    <p v-once v-html="detail.content.markdown" />
+    <div
+      class="markdown-body v2exDetail-content"
+      v-once
+      v-html="detail.content.markdown"
+    />
+    <br>
+    <hr />
+    <br>
+    <h5
+      v-once
+      v-html="detail.content.lastReply"
+      class="v2exDetail-info"
+    />
     <ul>
       <li
-        v-for="(reply, index) in detail.replier"
-        :key="index"
+        class="v2exDetail-list"
+        v-for="(reply, idx) in detail.replier"
+        :key="idx"
       >
-        <div class="v2exDetail-headPic-wrap">
+
+        <div class="clearfix v2exDetail-headPic-wrap">
           <lazy-img
             :src="reply.avatar"
             :alt="reply.avatar"
             class="v2exDetail-headPic"
           />
         </div>
-        <p>{{reply.dark}} {{reply.small}}</p>
-        <p v-html="reply.replyContent" />
+        <div class="v2exDetail-detail">
+          <div class="v2exDetail-detail-left">
+            <p>{{reply.dark}} {{reply.small}}</p>
+            <p v-html="reply.replyContent" />
+          </div>
+          <div class="v2exDetail-detail-right">
+            <span>{{+idx + 1}}楼</span>
+          </div>
+        </div>
       </li>
     </ul>
     <LoadMore

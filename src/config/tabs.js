@@ -38,26 +38,49 @@ export const v2exTagArr = [
   {
     title: '全部',
     tab: 'all',
-    type: 'v2ex',
   },
   {
     title: '技术',
     tab: 'tech',
-    type: 'v2ex',
   },
   {
     title: '创意',
     tab: 'creative',
-    type: 'v2ex',
   },
   {
     title: '好玩',
     tab: 'play',
-    type: 'v2ex',
   },
   {
     title: 'Apple',
     tab: 'apple',
-    type: 'v2ex',
+  },
+  {
+    title: '酷工作',
+    tab: 'jobs',
+  },
+  {
+    title: '交易',
+    tab: 'deals',
+  },
+  {
+    title: '城市',
+    tab: 'city',
+  },
+  {
+    title: '问与答',
+    tab: 'qna',
+  },
+  {
+    title: '最热',
+    tab: 'hot',
+  },
+  {
+    title: 'R2',
+    tab: 'r2',
   },
 ];
+
+v2exTagArr.forEach((item) => {
+  item.type = 'v2ex';
+});

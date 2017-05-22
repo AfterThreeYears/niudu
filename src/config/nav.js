@@ -1,13 +1,13 @@
 const nav = [
   {
-    title: 'cnodejs',
+    title: 'v2ex',
     id: 0,
-    url: 'cnode',
+    url: 'v2ex',
   },
   {
-    title: 'v2ex',
+    title: 'cnodejs',
     id: 1,
-    url: 'v2ex',
+    url: 'cnode',
   },
 ];
 

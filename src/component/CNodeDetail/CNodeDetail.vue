@@ -11,7 +11,7 @@
       <span>来自 {{detail.tab}}</span>
     </div>
     <br>
-    <section v-html="detail.content" class="CNodeDetail-content" />
+    <section v-html="detail.content" class="CNodeDetail-content markdown-body" />
     <br>
     <p class="CNodeDetail-replies">{{detailReplyLength}}回复</p>
     <br>

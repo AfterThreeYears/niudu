@@ -2,7 +2,6 @@
   <div id="app">
     <my-head v-show="showHead" />
     <div class="window-isLoading" v-if="isLoading">
-      <!-- <img src="~public/images/common/loading.gif" class="window-loadingImage" /> -->
       <div class="ball-clip-rotate"><div></div></div>
     </div>
     <div :class="classObject" v-else>
@@ -74,11 +73,6 @@ export default {
     align-items: center;
     background: #fff;
   }
-
-  /*.window-loadingImage {
-    width: .78rem;
-    height: .78rem;
-  }*/
 
   .ball-clip-rotate > div {
     border-radius: 100%;

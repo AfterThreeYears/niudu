@@ -1,8 +1,8 @@
 import 'es6-promise/auto';
 import 'normalize.css';
+import 'github-markdown-css';
 import '../public/styles/mobile.css';
 import { createApp } from './app';
-
 
 // client-specific bootstrapping logic...
 const { app, store } = createApp();
