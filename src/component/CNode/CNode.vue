@@ -70,12 +70,14 @@ export default {
     }),
   },
   beforeRouteEnter (to, from, next) {
-    next(vm => {
+    next(async vm => {
+      vm.isEnd =  vm.cnodeTopics.length < vm.limit;
       if (from.name) {
         vm.setLoading(true);
-        vm.fetchTopics().then(() => {
-          vm.setLoading(false);
-        });
+        try {
+          await vm.fetchTopics();
+        } catch (e) {}
+        vm.setLoading(false);
       }
     });
   },
@@ -109,7 +111,6 @@ export default {
           //出现错误了
           reject();
         }
-
       });
     },
   },

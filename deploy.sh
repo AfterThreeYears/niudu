@@ -1,15 +1,13 @@
 #!/bin/bash
-ls | egrep -v node_modules|$($1)
+buildName="$(echo $(date) | sed s/[[:space:]]//g).tar.gz"
 
-# buildName="$(echo $(date) | sed s/[[:space:]]//g).tar.gz"
-#
-# tar --exclude=node_modules --exclude=.git --exclude=$buildName -czvf $buildName .
-#
-# scp ./$buildName root@118.193.167.237:/data/niudu_version
-#
-# rm -rf ./$buildName
-#
-# ssh -t root@118.193.167.237 "/data/deploy/niudu.sh $buildName"
+tar --exclude=node_modules --exclude=.git --exclude=$buildName -czvf $buildName .
+
+scp ./$buildName root@118.193.167.237:/data/niudu_version
+
+rm -rf ./$buildName
+
+ssh -t root@118.193.167.237 "/data/deploy/niudu.sh $buildName"
 
 #!/bin/bash
 # 跑服务器的脚本 并且传入包名
@@ -20,7 +18,7 @@ ls | egrep -v node_modules|$($1)
 # echo 当前的包名是 $1
 # cp -f $1 /data/niudu
 # cd /data/niudu
-# rm -rf `ls | egrep -v node_modules`
+# rm -rf `ls | egrep -v (node_modules|$1)`
 # echo $(ls)
 # echo '开始解压缩'
 # tar -xzvf $1

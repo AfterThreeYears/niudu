@@ -34,7 +34,7 @@
         <div class="v2exDetail-detail">
           <div class="v2exDetail-detail-left">
             <p>{{reply.dark}} {{reply.small}}</p>
-            <p v-html="reply.replyContent" />
+            <p class="v2exDetail-replyContent" v-html="reply.replyContent" />
           </div>
           <div class="v2exDetail-detail-right">
             <span>{{+idx + 1}}楼</span>
@@ -100,8 +100,9 @@ export default {
   },
   beforeRouteEnter(to, from, next) {
     next(async (vm) => {
+      vm.isEnd =  vm.detail.replier.length < vm.limit;
+      vm.reset();
       if (from.name) {
-        vm.reset();
         vm.setLoading(true);
         const id = to.params.id;
         const pageIndex = 1;

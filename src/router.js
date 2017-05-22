@@ -3,7 +3,7 @@ import Router from 'vue-router';
 
 const CNode = resolve => require(['./component/CNode/CNode'], resolve);
 const CNodeDetail = resolve => require(['./component/CNodeDetail/CNodeDetail'], resolve);
-const V2ex = resolve => require(['./component/V2ex/V2ex'], resolve);
+const V2EX = resolve => require(['./component/V2EX/V2EX'], resolve);
 const V2EXDetail = resolve => require(['./component/V2EXDetail/V2EXDetail'], resolve);
 const Test = resolve => require(['./component/Test'], resolve);
 
@@ -29,7 +29,7 @@ export function createRouter() {
       {
         path: '/',
         redirect: {
-          component: V2ex,
+          component: V2EX,
           name: 'v2ex',
         },
       },
@@ -45,7 +45,7 @@ export function createRouter() {
       },
       {
         path: '/v2ex',
-        component: V2ex,
+        component: V2EX,
         name: 'v2ex',
       },
       {

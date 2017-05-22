@@ -22,7 +22,6 @@
         :key="index"
         class="CNodeDetail-replyList"
       >
-        <p class="CNodeDetail-loginname">{{reply.author.loginname}}</p>
         <div class="CNodeDetail-headPic-wrap">
           <lazy-img
             :src="reply.author.avatar_url"
@@ -30,11 +29,20 @@
             class="CNodeDetail-headPic"
           />
         </div>
-        <span v-html="reply.content"></span>
-        {{reply.create_atStr}}
-        <span class="CNodeDetail-reply_name">
-          <template v-if="reply.reply_name">@</template>{{reply.reply_name}}
-        </span>
+        <section class="CNodeDetail-section">
+          <div class="CNodeDetail-section-content">
+            <p class="CNodeDetail-loginname">{{reply.author.loginname}}</p>
+            <div v-html="reply.content"></div>
+            <div>
+              <span>{{reply.create_atStr}}</span>
+              <span class="CNodeDetail-reply_name">
+                <template v-if="reply.reply_name">@</template>{{reply.reply_name}}
+              </span>
+            </div>
+          </div>
+          <p>{{+index + 1}}楼</p>
+        </section>
+
       </li>
     </ul>
   </div>

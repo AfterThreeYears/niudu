@@ -76,7 +76,7 @@ export default {
 
   .ball-clip-rotate > div {
     border-radius: 100%;
-    border: 4px solid red;
+    border: 1px solid #ff2859;
     border-bottom-color: transparent;
     height: 0.6rem;
     width: 0.6rem;

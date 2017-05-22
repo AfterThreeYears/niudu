@@ -2,6 +2,10 @@
   padding: 0.3rem;
 }
 
+#v2exDetail a {
+  color: #0366d6;
+}
+
 .v2exDetail-title {
   font-size: 0.42rem;
 }
@@ -44,6 +48,14 @@
 
 .v2exDetail-detail-left{
   width: 85%;
+}
+
+.v2exDetail-replyContent img {
+  width: 100%;
+}
+
+.v2exDetail-replyContent a{
+  word-break: break-all;
 }
 
 .markdown-body img {
