@@ -4,9 +4,9 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "cross-env nodemon server.js",
+    "dev": "cross-env node server.js",
     "dev:all": "concurrently -k -n \"http-server,mock-server\"  \"npm run dev\" \"npm run mock\"",
-    "prod": "cross-env NODE_ENV=production nodemon server.js",
+    "prod": "cross-env NODE_ENV=production node server.js",
     "build:all": "concurrently -k -n \"http-server,mock-server\" \"npm run build && npm run prod\" \"npm run mock\"",
     "build": "rimraf dist && npm run build:client && npm run build:server",
     "build:client": "cross-env NODE_ENV=production webpack --config build/webpack.client.config.js --progress --hide-modules",
