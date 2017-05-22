@@ -2,18 +2,19 @@
   <div id="app">
     <my-head v-show="showHead" />
     <div class="window-isLoading" v-if="isLoading">
-      <img src="~public/images/common/loading.gif" class="window-loadingImage" />
+      <!-- <img src="~public/images/common/loading.gif" class="window-loadingImage" /> -->
+      <div class="ball-clip-rotate"><div></div></div>
     </div>
     <div :class="classObject" v-else>
       <router-view />
     </div>
-
   </div>
 </template>
 <script>
 import { mapState } from 'vuex';
-import MyHead from '@/component/Head/Head';
 import lazyload from '@/libs/lazyload';
+
+const MyHead = r => require.ensure([], () => r(require('./component/Head/Head')), 'Head');
 
 export default {
   components: {
@@ -74,9 +75,31 @@ export default {
     background: #fff;
   }
 
-  .window-loadingImage {
+  /*.window-loadingImage {
     width: .78rem;
     height: .78rem;
+  }*/
+
+  .ball-clip-rotate > div {
+    border-radius: 100%;
+    border: 4px solid red;
+    border-bottom-color: transparent;
+    height: 0.6rem;
+    width: 0.6rem;
+    display: inline-block;
+    animation: rotate .75s 0s linear infinite;
+  }
+  @keyframes rotate {
+      0% {
+          transform: rotate(0);
+      }
+      50% {
+          transform: rotate(180deg);
+      }
+
+      100% {
+          transform: rotate(360deg);
+      }
   }
 
 </style>

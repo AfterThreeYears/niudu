@@ -28,12 +28,19 @@
         </router-link>
       </li>
     </ul>
+    <LoadMore
+      :is-loading="isLoading"
+      :load-err="loadErr"
+      :is-end="isEnd"
+      @fetch="autoFetch"
+    />
   </div>
 </template>
 
 <script>
 import { mapState, mapActions, mapMutations } from 'vuex';
 import LazyImg from '@/component/common/LazyImg';
+import LoadMore from '@/component/common/LoadMore';
 import titleMixin from '@/mixins/title';
 import loadMore from '@/mixins/loadMore';
 import { cnodeTagArr } from '@/config/tabs';
@@ -50,6 +57,7 @@ export default {
   },
   components: {
     LazyImg,
+    LoadMore,
   },
   computed: {
     ...mapState({
@@ -85,15 +93,23 @@ export default {
       setTagArrs: 'header/setTagArrs',
       setLoading: 'header/setLoading',
     }),
-    handleFetchTopics() {
-      return new Promise(async (resolve) => {
-        this.increasePage();
-        const list = await this.fetchTopics();
-        if (list >= this.limit) {
-          resolve();
-        } else {
-          // 到底部了
+    handleFetchTopics(reload) {
+      return new Promise(async (resolve, reject) => {
+        // 重载不增加页数
+        if (!reload) this.increasePage();
+        try {
+          const list = await this.fetchTopics();
+          if (list >= this.limit) {
+            resolve(false);
+          } else {
+            // 到底部了
+            resolve(true);
+          }
+        } catch (e) {
+          //出现错误了
+          reject();
         }
+
       });
     },
   },

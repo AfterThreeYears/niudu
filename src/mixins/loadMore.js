@@ -8,18 +8,16 @@ const loadMore = {
       viewportDistance: 2000,
       throttleInterval: 100,
       isLoading: false,
+      isEnd: false,
+      loadErr: false,
     };
   },
   mounted() {
     const hasLoad = () => document.body.scrollTop +
      window.innerHeight + this.viewportDistance >= document.body.clientHeight;
     const checkHeight = () => {
-      if (hasLoad() && !this.isLoading) {
-        this.isLoading = true;
-        this.handleFetchTopics().then(() => {
-          lazyload();
-          this.isLoading = false;
-        });
+      if (hasLoad() && !this.isLoading && !this.isEnd) {
+        this.autoFetch(false);
       }
     };
     this.throttleLoadMore = throttle(checkHeight, this.throttleInterval);
@@ -32,6 +30,18 @@ const loadMore = {
     destroy() {
       this.isGlobalEventListened = false;
       window.removeEventListener('scroll', this.throttleLoadMore, false);
+    },
+    async autoFetch(reload) {
+      this.isLoading = true;
+      this.loadErr = false;
+      try {
+        this.isEnd = await this.handleFetchTopics(reload);
+        console.log(`this.isEnd是${this.isEnd}`);
+        this.isLoading = false;
+        lazyload();
+      } catch (e) {
+        this.loadErr = true;
+      }
     },
   },
   beforeDestroy() {

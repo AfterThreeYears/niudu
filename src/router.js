@@ -1,10 +1,11 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import CNode from '@/component/CNode/CNode';
-import CNodeDetail from '@/component/CNodeDetail/CNodeDetail';
-import V2ex from '@/component/V2EX/V2EX';
-import v2exDetail from '@/component/V2EXDetail/V2EXDetail';
-import Test from '@/component/Test';
+
+const CNode = resolve => require(['./component/CNode/CNode'], resolve);
+const CNodeDetail = resolve => require(['./component/CNodeDetail/CNodeDetail'], resolve);
+const V2ex = resolve => require(['./component/V2ex/V2ex'], resolve);
+const v2exDetail = resolve => require(['./component/v2exDetail/v2exDetail'], resolve);
+const Test = resolve => require(['./component/Test'], resolve);
 
 Vue.use(Router);
 

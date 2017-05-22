@@ -4,8 +4,8 @@
     <br>
     <hr />
     <br>
-    <h6>{{detail.content.lastReply}}</h6>
-    <p>{{detail.content.markdown}}</p>
+    <h5 v-once v-html="detail.content.lastReply" />
+    <p v-once v-html="detail.content.markdown" />
     <ul>
       <li
         v-for="(reply, index) in detail.replier"
@@ -19,17 +19,24 @@
           />
         </div>
         <p>{{reply.dark}} {{reply.small}}</p>
-        <p>{{reply.replyContent}}</p>
+        <p v-html="reply.replyContent" />
       </li>
     </ul>
+    <LoadMore
+      :is-loading="isLoading"
+      :load-err="loadErr"
+      :is-end="isEnd"
+      @fetch="autoFetch"
+    />
   </div>
 </template>
 
 <script>
 import { mapMutations, mapState, mapActions } from 'vuex';
+import LoadMore from '@/component/common/LoadMore';
 import LazyImg from '@/component/common/LazyImg';
 import titleMixin from '@/mixins/title';
-import loadMore from '@/mixins/loadMore';
+import loadMoreFn from '@/mixins/loadMore';
 import './V2EXDetail.css';
 
 export default {
@@ -42,12 +49,13 @@ export default {
       id, pageIndex,
     });
   },
-  mixins: [titleMixin, loadMore],
+  mixins: [titleMixin, loadMoreFn],
   title() {
     return this.detail.content.title;
   },
   components: {
     LazyImg,
+    LoadMore,
   },
   computed: {
     ...mapState({
@@ -74,11 +82,12 @@ export default {
   beforeRouteEnter(to, from, next) {
     next(async (vm) => {
       if (from.name) {
+        vm.reset();
         vm.setLoading(true);
         const id = to.params.id;
-        const pageIndex = vm.$route.query.pageIndex;
+        const pageIndex = 1;
         await vm.fetchDetail({
-          id,
+          id, pageIndex
         });
         vm.setLoading(false);
       }
@@ -90,22 +99,32 @@ export default {
       setDetail: 'v2exDetail/setDetail',
       setLoading: 'header/setLoading',
       increasePage: 'v2exDetail/increasePage',
+      reset: 'v2exDetail/reset',
     }),
     ...mapActions({
       fetchDetail: 'v2exDetail/fetchDetail',
     }),
-    handleFetchTopics() {
-      return new Promise(async (resolve) => {
-        this.increasePage();
-        const {id, pageIndex, limit} = this;
-        const replyList = await this.fetchDetail({
-          id, pageIndex
-        });
-        if (replyList === limit) {
-          resolve();
-        } else {
-          // 到底部了
+    handleFetchTopics(reload) {
+      return new Promise(async (resolve, reject) => {
+        // 重载不增加页数
+        if (!reload) this.increasePage();
+        try {
+          const {id, pageIndex, limit} = this;
+          const replyList = await this.fetchDetail({
+            id, pageIndex
+          });
+          console.log(`************replyList是${replyList}-------limit是${limit}`);
+          if (replyList >= limit) {
+            resolve(false);
+          } else {
+            // 到底部了
+            resolve(true);
+          }
+        } catch (e) {
+          //出现错误了
+          reject();
         }
+
       });
     },
   },

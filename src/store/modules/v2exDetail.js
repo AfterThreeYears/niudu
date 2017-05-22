@@ -16,6 +16,12 @@ export default {
       state.detail.content = { ...data.content };
       state.detail.replier = [...state.detail.replier, ...data.replier];
     },
+    reset(state) {
+      state.detail = {
+        content: {},
+        replier: [],
+      };
+    },
     increasePage(state) {
       state.pageIndex += 1;
     },
@@ -31,7 +37,7 @@ export default {
         .get(`/v2ex/detail/${id}?pageIndex=${pageIndex}`)
         .then(({ data }) => {
           commit('setDetail', { data });
-          return (data.detail || { replier: '' }).replier.length;
+          return (data || { replier: '' }).replier.length;
         });
     },
   },

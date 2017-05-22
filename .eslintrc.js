@@ -43,5 +43,6 @@ module.exports = {
     'import/prefer-default-export': 0,
     'global-require': 0,
     'array-callback-return': 0,
+    'import/no-dynamic-require': 0,
   }
 }

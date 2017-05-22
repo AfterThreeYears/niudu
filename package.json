@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "cross-env node server.js",
+    "dev": "cross-env nodemon server.js",
     "dev:all": "concurrently -k -n \"http-server,mock-server\"  \"npm run dev\" \"npm run mock\"",
     "prod": "cross-env NODE_ENV=production nodemon server.js",
     "build:all": "concurrently -k -n \"http-server,mock-server\" \"npm run build && npm run prod\" \"npm run mock\"",

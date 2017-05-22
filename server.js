@@ -26,7 +26,7 @@ if (isProd) {
 
 const app = express();
 const template = fs.readFileSync(resolve('./src/index.template.html'), 'utf-8');
-
+const errorHtml = fs.readFileSync(path.resolve(__dirname, './src/error.html'));
 function createRenderer(bundle, options) {
   // console.log(bundle);
   // https://github.com/vuejs/vue/blob/dev/packages/vue-server-renderer/README.md#why-use-bundlerenderer
@@ -98,10 +98,10 @@ function render(req, res) {
 
   const handleError = (err) => {
     if (err && err.code === 404) {
-      res.status(404).end('404 | Page Not Found');
+      res.status(404).end(errorHtml);
     } else {
       // Render Error Page or Redirect
-      res.status(500).end('500 | Internal Server Error');
+      res.status(500).end(isProd ? errorHtml : `<pre>${err.stack}</pre>`);
       console.error(`error during render : ${req.url}`);
       console.error(err.stack);
     }
