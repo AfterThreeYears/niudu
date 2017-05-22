@@ -1,7 +1,5 @@
 <template>
-  <div class="">
-    <p style="font-size: 300px">Test</p>
-  </div>
+  <p>Test</p>
 </template>
 
 <script>

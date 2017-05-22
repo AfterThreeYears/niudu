@@ -44,7 +44,6 @@ export default {
   asyncData({ store, route }) {
     const id = route.params.id;
     const pageIndex = 1;
-    console.log(id, pageIndex);
     return store.dispatch('v2exDetail/fetchDetail', {
       id, pageIndex,
     });
@@ -113,7 +112,6 @@ export default {
           const replyList = await this.fetchDetail({
             id, pageIndex
           });
-          console.log(`************replyList是${replyList}-------limit是${limit}`);
           if (replyList >= limit) {
             resolve(false);
           } else {

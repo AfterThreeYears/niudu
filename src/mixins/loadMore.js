@@ -36,7 +36,6 @@ const loadMore = {
       this.loadErr = false;
       try {
         this.isEnd = await this.handleFetchTopics(reload);
-        console.log(`this.isEnd是${this.isEnd}`);
         this.isLoading = false;
         lazyload();
       } catch (e) {
