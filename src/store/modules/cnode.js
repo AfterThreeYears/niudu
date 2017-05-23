@@ -14,7 +14,6 @@ export default {
   },
   mutations: {
     setTopics(state, { data: topics }) {
-      state.limit = 20;
       (topics || []).map((item) => {
         item.last_reply_at_str = dateDiff(+new Date(item.last_reply_at));
         item.tabStr = cnodeTag(item);

@@ -32,7 +32,7 @@
       :is-loading="isLoading"
       :load-err="loadErr"
       :is-end="isEnd"
-      @fetch="autoFetch"
+      @load="handleFetchTopics"
     />
   </div>
 </template>
@@ -42,16 +42,22 @@ import { mapState, mapActions, mapMutations } from 'vuex';
 import LazyImg from '@/component/common/LazyImg';
 import LoadMore from '@/component/common/LoadMore';
 import titleMixin from '@/mixins/title';
-import loadMore from '@/mixins/loadMore';
 import { cnodeTagArr } from '@/config/tabs';
 import './CNode.css';
 
 export default {
   name: 'CNode',
+  data() {
+    return {
+      isLoading: false,
+      isEnd: false,
+      loadErr: false,
+    }
+  },
   asyncData({ store }) {
     return store.dispatch('cnode/fetchTopics');
   },
-  mixins: [titleMixin, loadMore],
+  mixins: [titleMixin],
   title() {
     return 'CNode';
   },
@@ -71,8 +77,7 @@ export default {
   },
   beforeRouteEnter (to, from, next) {
     next(async vm => {
-      vm.isEnd =  vm.cnodeTopics.length < vm.limit;
-      if (from.name) {
+      if (from.name && !vm.cnodeTopics.length) {
         vm.setLoading(true);
         try {
           await vm.fetchTopics();
@@ -81,9 +86,10 @@ export default {
       }
     });
   },
-  created() {
+  mounted() {
     this.allShow();
     this.setTagArrs(cnodeTagArr);
+    this.isEnd =  this.cnodeTopics.length < this.limit;
   },
   methods: {
     ...mapActions({
@@ -97,19 +103,24 @@ export default {
     }),
     handleFetchTopics(reload) {
       return new Promise(async (resolve, reject) => {
+        this.isLoading = true;
         // 重载不增加页数
         if (!reload) this.increasePage();
         try {
           const list = await this.fetchTopics();
+          this.isLoading = false;
+          this.loadErr = false;
+          resolve();
           if (list >= this.limit) {
-            resolve(false);
+            this.isEnd = false;
           } else {
             // 到底部了
-            resolve(true);
+            this.isEnd = true;
           }
         } catch (e) {
           //出现错误了
           reject();
+          this.loadErr = true;
         }
       });
     },

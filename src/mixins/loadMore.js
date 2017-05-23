@@ -7,9 +7,6 @@ const loadMore = {
       isGlobalEventListened: false,
       viewportDistance: 2000,
       throttleInterval: 100,
-      isLoading: false,
-      isEnd: false,
-      loadErr: false,
     };
   },
   mounted() {
@@ -32,14 +29,11 @@ const loadMore = {
       window.removeEventListener('scroll', this.throttleLoadMore, false);
     },
     async autoFetch(reload) {
-      this.isLoading = true;
-      this.loadErr = false;
       try {
-        this.isEnd = await this.handleFetchTopics(reload);
-        this.isLoading = false;
+        await this.handleFetch(reload);
         lazyload();
       } catch (e) {
-        this.loadErr = true;
+        console.log(e);
       }
     },
   },

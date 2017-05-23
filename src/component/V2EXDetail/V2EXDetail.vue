@@ -6,14 +6,12 @@
     <br>
     <div
       class="markdown-body v2exDetail-content"
-      v-once
       v-html="detail.content.markdown"
     />
     <br>
     <hr />
     <br>
     <h5
-      v-once
       v-html="detail.content.lastReply"
       class="v2exDetail-info"
     />
@@ -46,7 +44,7 @@
       :is-loading="isLoading"
       :load-err="loadErr"
       :is-end="isEnd"
-      @fetch="autoFetch"
+      @load="handleFetchTopics"
     />
   </div>
 </template>
@@ -56,11 +54,17 @@ import { mapMutations, mapState, mapActions } from 'vuex';
 import LoadMore from '@/component/common/LoadMore';
 import LazyImg from '@/component/common/LazyImg';
 import titleMixin from '@/mixins/title';
-import loadMoreFn from '@/mixins/loadMore';
 import './V2EXDetail.css';
 
 export default {
   name: 'v2ex-detail',
+  data() {
+    return {
+      isLoading: false,
+      isEnd: false,
+      loadErr: false,
+    }
+  },
   asyncData({ store, route }) {
     const id = route.params.id;
     const pageIndex = 1;
@@ -68,7 +72,7 @@ export default {
       id, pageIndex,
     });
   },
-  mixins: [titleMixin, loadMoreFn],
+  mixins: [titleMixin],
   title() {
     return this.detail.content.title;
   },
@@ -93,24 +97,25 @@ export default {
     },
 
   },
-  created() {
+  mounted() {
     this.setHead({
       status: false,
     });
+    this.resetPage();
+    this.isEnd =  this.detail.replier.length < this.limit;
   },
   beforeRouteEnter(to, from, next) {
     next(async (vm) => {
-      vm.isEnd =  vm.detail.replier.length < vm.limit;
-      vm.reset();
+      vm.setLoading(true);
       if (from.name) {
-        vm.setLoading(true);
+        vm.reset();
         const id = to.params.id;
         const pageIndex = 1;
         await vm.fetchDetail({
           id, pageIndex
         });
-        vm.setLoading(false);
       }
+      vm.setLoading(false);
     });
   },
   methods: {
@@ -120,12 +125,14 @@ export default {
       setLoading: 'header/setLoading',
       increasePage: 'v2exDetail/increasePage',
       reset: 'v2exDetail/reset',
+      resetPage: 'v2exDetail/resetPage',
     }),
     ...mapActions({
       fetchDetail: 'v2exDetail/fetchDetail',
     }),
     handleFetchTopics(reload) {
       return new Promise(async (resolve, reject) => {
+        this.isLoading = true;
         // 重载不增加页数
         if (!reload) this.increasePage();
         try {
@@ -133,17 +140,20 @@ export default {
           const replyList = await this.fetchDetail({
             id, pageIndex
           });
+          this.isLoading = false;
+          this.loadErr = false;
+          resolve();
           if (replyList >= limit) {
-            resolve(false);
+            this.isEnd = false;
           } else {
             // 到底部了
-            resolve(true);
+            this.isEnd = true;
           }
         } catch (e) {
           //出现错误了
           reject();
+          this.loadErr = true;
         }
-
       });
     },
   },

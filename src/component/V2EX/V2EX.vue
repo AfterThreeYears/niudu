@@ -51,7 +51,7 @@ export default {
   },
   beforeRouteEnter (to, from, next) {
     next(vm => {
-      if (from.name) {
+      if (from.name && !vm.v2exTopics.length) {
         vm.setLoading(true);
         vm.fetchTopics().then(() => {
           vm.setLoading(false);

@@ -10,9 +10,11 @@
 </template>
 <script>
 import './LoadMore.css';
+import loadMoreFn from '@/mixins/loadMore';
 
 export default {
   name: 'load-more',
+  mixins: [loadMoreFn],
   props: {
     isLoading: {
       type: Boolean,
@@ -29,7 +31,10 @@ export default {
   },
   methods: {
     handleReload() {
-      this.$emit('fetch', [true]);
+      this.autoFetch(true);
+    },
+    handleFetch(reload) {
+      this.$emit('load', reload);
     }
   },
 }
