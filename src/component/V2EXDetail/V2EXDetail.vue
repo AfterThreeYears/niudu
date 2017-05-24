@@ -40,7 +40,7 @@
         </div>
       </li>
     </ul>
-    <LoadMore
+    <infinite-scroll
       :is-loading="isLoading"
       :load-err="loadErr"
       :is-end="isEnd"
@@ -51,7 +51,7 @@
 
 <script>
 import { mapMutations, mapState, mapActions } from 'vuex';
-import LoadMore from '@/component/common/LoadMore';
+import InfiniteScroll from '@/component/common/InfiniteScroll';
 import LazyImg from '@/component/common/LazyImg';
 import titleMixin from '@/mixins/title';
 import './V2EXDetail.css';
@@ -78,7 +78,7 @@ export default {
   },
   components: {
     LazyImg,
-    LoadMore,
+    InfiniteScroll,
   },
   computed: {
     ...mapState({
@@ -97,7 +97,7 @@ export default {
     },
 
   },
-  mounted() {
+  created() {
     this.setHead({
       status: false,
     });

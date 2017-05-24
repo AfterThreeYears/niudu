@@ -41,6 +41,11 @@ function createRenderer(bundle, options) {
     basedir: resolve('./dist'),
     // recommended for performance
     runInNewContext: false,
+    // shouldPreload(file, type) {
+    //   if (type === 'style') {
+    //     return true;
+    //   }
+    // },
   }));
 }
 

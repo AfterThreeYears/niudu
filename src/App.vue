@@ -12,8 +12,9 @@
 <script>
 import { mapState } from 'vuex';
 import lazyload from '@/libs/lazyload';
+import MyHead from '@/component/Head/Head';
 
-const MyHead = r => require.ensure([], () => r(require('./component/Head/Head')), 'Head');
+// const MyHead = r => require.ensure([], () => r(require('./component/Head/Head')), 'Head');
 
 export default {
   components: {
@@ -95,5 +96,4 @@ export default {
           transform: rotate(360deg);
       }
   }
-
 </style>

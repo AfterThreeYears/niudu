@@ -1,9 +1,9 @@
-.LoadMore {
+.InfiniteScroll {
   height: 1rem;
   text-align: center;
   line-height: 1rem;
 }
 
-.LoadMore:active {
+.InfiniteScroll:active {
   background: #ccc;
 }

@@ -28,7 +28,7 @@
         </router-link>
       </li>
     </ul>
-    <LoadMore
+    <infinite-scroll
       :is-loading="isLoading"
       :load-err="loadErr"
       :is-end="isEnd"
@@ -40,7 +40,7 @@
 <script>
 import { mapState, mapActions, mapMutations } from 'vuex';
 import LazyImg from '@/component/common/LazyImg';
-import LoadMore from '@/component/common/LoadMore';
+import InfiniteScroll from '@/component/common/InfiniteScroll';
 import titleMixin from '@/mixins/title';
 import { cnodeTagArr } from '@/config/tabs';
 import './CNode.css';
@@ -63,7 +63,7 @@ export default {
   },
   components: {
     LazyImg,
-    LoadMore,
+    InfiniteScroll,
   },
   computed: {
     ...mapState({

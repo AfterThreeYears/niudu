@@ -1,7 +1,7 @@
 <template>
   <div
     v-if="isLoading || loadErr || isEnd"
-    class="LoadMore"
+    class="InfiniteScroll"
   >
     <p v-show="isLoading && !loadErr">😀正在加载中...</p>
     <p v-show="loadErr" @click="handleReload">😡网络有点问题,点击重新加载</p>
@@ -9,11 +9,11 @@
   </div>
 </template>
 <script>
-import './LoadMore.css';
+import './InfiniteScroll.css';
 import loadMoreFn from '@/mixins/loadMore';
 
 export default {
-  name: 'load-more',
+  name: 'infinite-scroll',
   mixins: [loadMoreFn],
   props: {
     isLoading: {
