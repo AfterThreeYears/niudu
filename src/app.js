@@ -23,3 +23,5 @@ export const createApp = () => {
   });
   return { app, router, store };
 };
+
+console.log('...1');

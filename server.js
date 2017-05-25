@@ -12,6 +12,7 @@ const { createBundleRenderer } = require('vue-server-renderer');
 
 const isProd = process.env.NODE_ENV === 'production';
 const useMicroCache = process.env.MICRO_CACHE !== 'false';
+
 // const serverInfo =
 //   `express/${require('express/package.json').version} ` +
 //   `vue-server-renderer/${require('vue-server-renderer/package.json').version}`;
@@ -70,23 +71,26 @@ if (isProd) {
   });
 }
 
-const serve = (paths, cache) => express.static(resolve(paths), {
-  maxAge: cache && isProd ? 60 * 60 * 24 * 30 : 60 * 60 * 24 * 30,
-});
-
+// 使用nginx的maxAge
+// const serve = (paths, cache) => express.static(resolve(paths), {
+//   maxAge: cache && isProd ? 60 * 60 * 24 * 30 : 0,
+// });
+const serve = paths => express.static(resolve(paths));
 app.use(compression({ threshold: 0 }));
 app.use(cookieParser());
 // app.use(favicon('./public/logo-48.png'))
-app.use('/dist', serve('./dist', true));
-app.use('/public', serve('./public', true));
+// app.use('/dist', serve('./dist', true));
+// app.use('/public', serve('./public', true));
+app.use('/dist', serve('./dist'));
+app.use('/public', serve('./public'));
 // app.use('/manifest.json', serve('./manifest.json', true));
 // app.use('/service-worker.js', serve('./dist/service-worker.js'))
 
-// 1-second microcache.
+// (1 * 60)-second microcache.
 // https://www.nginx.com/blog/benefits-of-microcaching-nginx/
 const microCache = LRU({
   max: 100,
-  maxAge: 1000,
+  maxAge: 1000 * 60,
 });
 
 // since this app has no user-specific content, every page is micro-cacheable.
@@ -113,11 +117,15 @@ function render(req, res) {
   };
 
   const cacheable = isCacheable(req);
+  console.log(`cacheable: ${cacheable}`);
   if (cacheable) {
+    // console.log(`req.url: ${req.url}
+    //   microCache.get(req.url): ${!!microCache.get(req.url)}`);
     const hit = microCache.get(req.url);
     if (hit) {
       if (!isProd) {
         console.log('cache hit!');
+        console.log(`cache request: ${Date.now() - s}ms`);
       }
       return res.end(hit);
     }

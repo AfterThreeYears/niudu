@@ -4,6 +4,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
+    "dev:test": "MICRO_CACHE=false cross-env node server.js",
     "dev": "cross-env node server.js",
     "dev:all": "concurrently -k -n \"http-server,mock-server\"  \"npm run dev\" \"npm run mock\"",
     "prod": "cross-env NODE_ENV=production node server.js",
