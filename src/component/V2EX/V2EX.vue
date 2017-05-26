@@ -1,7 +1,10 @@
 <template>
   <div id="V2EX">
     <ul>
-      <li class="V2EX-List" v-for="topic in v2exTopics">
+      <li
+        class="V2EX-List"
+        v-for="topic in v2exTopics"
+      >
         <router-link :to="{ name: 'v2exDetail', params: { id: topic.id }}">
           <section class="clearfix V2EX-detail-imgWrap">
             <lazy-img
