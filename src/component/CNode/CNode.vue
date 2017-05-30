@@ -55,7 +55,12 @@ export default {
     }
   },
   asyncData({ store }) {
-    return store.dispatch('cnode/fetchTopics');
+    store.commit('header/allShow');
+    store.commit('header/setTagArrs', cnodeTagArr);
+    store.commit('header/setLoading', true);
+    return store.dispatch('cnode/fetchTopics').then(() => {
+      store.commit('header/setLoading', false);
+    });
   },
   mixins: [titleMixin],
   title() {
@@ -75,20 +80,7 @@ export default {
       },
     }),
   },
-  beforeRouteEnter (to, from, next) {
-    next(async vm => {
-      if (from.name && !vm.cnodeTopics.length) {
-        vm.setLoading(true);
-        try {
-          await vm.fetchTopics();
-        } catch (e) {}
-        vm.setLoading(false);
-      }
-    });
-  },
   mounted() {
-    this.allShow();
-    this.setTagArrs(cnodeTagArr);
     this.isEnd =  this.cnodeTopics.length < this.limit;
   },
   methods: {

@@ -42,7 +42,6 @@
           </div>
           <p>{{+index + 1}}楼</p>
         </section>
-
       </li>
     </ul>
   </div>
@@ -57,9 +56,14 @@ import './CNodeDetail.css';
 export default {
   name: 'CNode-detail',
   asyncData({ store, route }) {
-    const id = route.params.id;
+    store.commit('header/setHead', {
+      status: false,
+    });
+    store.commit('header/setLoading', true);
     return store.dispatch('cNodeDetail/fetchTopicsDetail', {
-      id,
+      id: route.params.id,
+    }).then(() => {
+      store.commit('header/setLoading', false);
     });
   },
   mixins: [titleMixin],
@@ -79,28 +83,9 @@ export default {
       detailReplyLength: 'cNodeDetail/detailReplyLength',
     }),
   },
-  created() {
-    this.setHead({
-      status: false,
-    });
-  },
-  beforeRouteEnter(to, from, next) {
-    // 进入页面之前把store里面的detail清空
-    next(async (vm) => {
-      if (from.name) {
-        vm.setLoading(true);
-        const id = to.params.id;
-        await vm.fetchTopicsDetail({
-          id,
-        });
-        vm.setLoading(false);
-      }
-    });
-  },
   methods: {
     ...mapMutations({
       setHead: 'header/setHead',
-      setTopicsDetail: 'cNodeDetail/setTopicsDetail',
       setLoading: 'header/setLoading',
     }),
     ...mapActions({

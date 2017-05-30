@@ -5,3 +5,5 @@ npm-debug.log
 yarn-error.log
 .vscode
 .tern-project
+api/mock/data/db.js
+api/mock/index.js

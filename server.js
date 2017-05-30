@@ -81,16 +81,18 @@ app.use(cookieParser());
 // app.use(favicon('./public/logo-48.png'))
 // app.use('/dist', serve('./dist', true));
 // app.use('/public', serve('./public', true));
-app.use('/dist', serve('./dist'));
-app.use('/public', serve('./public'));
 // app.use('/manifest.json', serve('./manifest.json', true));
 // app.use('/service-worker.js', serve('./dist/service-worker.js'))
+app.use('/dist', serve('./dist'));
+app.use('/public', serve('./public'));
+app.use('/manifest.json', serve('./manifest.json'));
+app.use('/service-worker.js', serve('./dist/service-worker.js'));
 
-// (1 * 60)-second microcache.
+// (1)-second microcache.
 // https://www.nginx.com/blog/benefits-of-microcaching-nginx/
 const microCache = LRU({
   max: 100,
-  maxAge: 1000 * 60,
+  maxAge: isProd ? 1000 * 60 : 1000,
 });
 
 // since this app has no user-specific content, every page is micro-cacheable.
@@ -117,7 +119,6 @@ function render(req, res) {
   };
 
   const cacheable = isCacheable(req);
-  console.log(`cacheable: ${cacheable}`);
   if (cacheable) {
     // console.log(`req.url: ${req.url}
     //   microCache.get(req.url): ${!!microCache.get(req.url)}`);

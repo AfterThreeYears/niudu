@@ -17,7 +17,7 @@ export default function createStore() {
   }
 
   return new Store({
-    plugins,
+    // plugins,
     strict: process.env.NODE_ENV !== 'production',
     modules: {
       header,

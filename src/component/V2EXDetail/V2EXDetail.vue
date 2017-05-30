@@ -66,11 +66,20 @@ export default {
     }
   },
   asyncData({ store, route }) {
+    store.commit('header/setHead', {
+      status: false,
+    });
+    store.commit('v2exDetail/resetPage');
+    store.commit('header/setLoading', true);
+    // 进来之前把所有的数据先清空
+    store.commit('v2exDetail/reset');
     const id = route.params.id;
     const pageIndex = 1;
     return store.dispatch('v2exDetail/fetchDetail', {
       id, pageIndex,
-    });
+    }).then(() => {
+      store.commit('header/setLoading', false);
+    })
   },
   mixins: [titleMixin],
   title() {
@@ -95,28 +104,9 @@ export default {
     id() {
       return this.$route.params.id || 1;
     },
-
   },
-  created() {
-    this.setHead({
-      status: false,
-    });
-    this.resetPage();
-    this.isEnd =  this.detail.replier.length < this.limit;
-  },
-  beforeRouteEnter(to, from, next) {
-    next(async (vm) => {
-      vm.setLoading(true);
-      if (from.name) {
-        vm.reset();
-        const id = to.params.id;
-        const pageIndex = 1;
-        await vm.fetchDetail({
-          id, pageIndex
-        });
-      }
-      vm.setLoading(false);
-    });
+  mounted() {
+    this.isEnd = this.detail.replier.length < this.limit;
   },
   methods: {
     ...mapMutations({

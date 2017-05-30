@@ -43,7 +43,12 @@ import './V2EX.css';
 export default {
   name: 'V2EX',
   asyncData({ store }) {
-    return store.dispatch('v2exList/fetchTopics');
+    store.commit('header/allShow');
+    store.commit('header/setTagArrs', v2exTagArr);
+    store.commit('header/setLoading', true);
+    return store.dispatch('v2exList/fetchTopics').then(() => {
+      store.commit('header/setLoading', false);
+    });
   },
   mixins: [titleMixin],
   title() {
@@ -51,20 +56,6 @@ export default {
   },
   components: {
     LazyImg,
-  },
-  beforeRouteEnter (to, from, next) {
-    next(vm => {
-      if (from.name && !vm.v2exTopics.length) {
-        vm.setLoading(true);
-        vm.fetchTopics().then(() => {
-          vm.setLoading(false);
-        });
-      }
-    });
-  },
-  created() {
-    this.allShow();
-    this.setTagArrs(v2exTagArr);
   },
   methods: {
     ...mapActions({

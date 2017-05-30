@@ -1,11 +1,11 @@
 const nav = [
   {
-    title: 'v2ex',
+    title: 'V2EX',
     id: 0,
     url: 'v2ex',
   },
   {
-    title: 'cnodejs',
+    title: 'NodeJS',
     id: 1,
     url: 'cnode',
   },
