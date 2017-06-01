@@ -3,7 +3,7 @@ const path = require('path');
 const LRU = require('lru-cache');
 const express = require('express');
 const cookieParser = require('cookie-parser');
-// const favicon = require('serve-favicon')
+const favicon = require('serve-favicon');
 const compression = require('compression');
 const { NAVIGATION_STORAGE_KEY } = require('./src/constants');
 
@@ -78,7 +78,7 @@ if (isProd) {
 const serve = paths => express.static(resolve(paths));
 app.use(compression({ threshold: 0 }));
 app.use(cookieParser());
-// app.use(favicon('./public/logo-48.png'))
+app.use(favicon('./public/logo.ico'));
 // app.use('/dist', serve('./dist', true));
 // app.use('/public', serve('./public', true));
 // app.use('/manifest.json', serve('./manifest.json', true));

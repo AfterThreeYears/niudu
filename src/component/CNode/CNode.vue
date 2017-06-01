@@ -55,7 +55,6 @@ export default {
     }
   },
   asyncData({ store }) {
-    console.log('asyncData');
     store.commit('header/setLoading', true);
     return store.dispatch('cnode/fetchTopics').then(() => {
       store.commit('header/setLoading', false);

@@ -48,7 +48,7 @@
     "memory-fs": "^0.4.1",
     "moment": "^2.18.1",
     "normalize.css": "^7.0.0",
-    "serve-favicon": "^2.4.1",
+    "serve-favicon": "^2.4.3",
     "superagent": "^3.5.2",
     "sw-precache-webpack-plugin": "^0.9.2",
     "vue": "^2.3.2",
