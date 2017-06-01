@@ -1,7 +1,7 @@
 .CNode-List {
   font-size: 0.4rem;
   border-bottom: 1px solid #ccc;
-  padding-bottom: 0.1rem;
+  padding-bottom: 0.2rem;
   margin: 0.2rem 0.2rem 0;
 }
 
@@ -12,6 +12,7 @@
 
 .CNode-detail {
   overflow: hidden;
+  height: 1rem;
 }
 
 .CNode-detail-info {
@@ -37,7 +38,6 @@
 .CNode-detail-loginname {
   color: #111;
   font-size: .4rem;
-  margin-top: 0.15rem;
 }
 
 .CNode-detail-last_reply_at {
@@ -47,18 +47,11 @@
 }
 
 .CNode-detail-params {
-  text-align: right;
-  height: 1rem;
-}
-
-.CNode-detail-tab {
-  background: #999;
-  color: #fff;
-  display: inline-block;
-  padding: 0.05rem;
-  border-radius: 10px;
-  margin: 0.1rem 0 0.15rem;
-  font-size: 0.34rem;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  align-items: flex-end;
+  justify-content: space-between;
 }
 
 .CNode-detail-count {

@@ -104,6 +104,6 @@ export default {
     margin: 0 auto;
     display: block;
     margin-bottom: 0.3rem;
-    width: 4rem;
+    width: 2rem;
   }
 </style>

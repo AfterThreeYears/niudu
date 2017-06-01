@@ -67,13 +67,3 @@
   border-radius: 2px;
   color: #999;
 }
-
-.V2EX-detail-reply_count {
-  background-color: #aab0c6;
-  word-break: keep-all;
-  font-weight: bold;
-  color: white;
-  display: inline-block;
-  padding: 2px 10px 2px 10px;
-  border-radius: 12px;
-}

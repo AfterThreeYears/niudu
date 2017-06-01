@@ -21,7 +21,6 @@ import './TabNavigation.css';
 
 export default {
   name: 'tab-navigation',
-
   components: {
     SwipeWrapper,
     SwipeItem,

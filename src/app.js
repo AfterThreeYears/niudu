@@ -5,9 +5,12 @@ import { createRouter } from './router';
 import createStore from './store/store';
 import initAxios from './axios';
 import App from './App.vue';
+import badge from './ui/badge';
 
 initAxios();
 Vue.use(Vuex);
+
+Vue.component(badge.name, badge);
 
 const store = createStore();
 const router = createRouter();

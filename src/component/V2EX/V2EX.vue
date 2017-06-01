@@ -20,7 +20,7 @@
           </div>
           <div class="V2EX-title-wrap">
             <h6 class="text-line-clamp2v V2EX-title">{{topic.title}}</h6>
-            <span class="V2EX-detail-reply_count">{{topic.count}}</span>
+            <badge size="large" type="primary">{{topic.count}}</badge>
           </div>
           <div class="V2EX-last_reply_at-wrap">
             <p class="text-ellipsis V2EX-detail-last_reply_at">{{topic.last_time}}</p>

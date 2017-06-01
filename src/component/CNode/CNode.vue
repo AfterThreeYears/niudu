@@ -17,7 +17,7 @@
             <p class="text-ellipsis CNode-detail-last_reply_at">{{topic.last_reply_at_str}}</p>
           </div>
           <div class="CNode-detail-params">
-            <p class="CNode-detail-tab">{{topic.tabStr}}</p>
+            <badge size="large" type="primary">{{topic.tabStr}}</badge>
             <div class="CNode-detail-count">
               <span class="CNode-detail-text">
                 <span class="CNode-detail-reply_count">{{topic.reply_count}}</span>/{{topic.visit_count}}

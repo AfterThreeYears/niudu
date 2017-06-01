@@ -2,7 +2,7 @@ const webpack = require('webpack');
 const merge = require('webpack-merge');
 const baseConfig = require('./webpack.base.config.js');
 const VueSSRClientPlugin = require('vue-server-renderer/client-plugin');
-const SWPrecachePlugin = require('sw-precache-webpack-plugin')
+const SWPrecachePlugin = require('sw-precache-webpack-plugin');
 
 const isProd = process.env.NODE_ENV === 'production';
 module.exports = merge(baseConfig, {
@@ -56,7 +56,7 @@ if (isProd) {
     }),
     // auto generate service worker
     new SWPrecachePlugin({
-      cacheId: 'vue-hn',
+      cacheId: 'vue-niudu',
       filename: 'service-worker.js',
       dontCacheBustUrlsMatching: /./,
       staticFileGlobsIgnorePatterns: [/\.map$/, /\.json$/],

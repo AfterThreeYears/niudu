@@ -5,13 +5,12 @@ import Router from 'vue-router';
 // const CNodeDetail = resolve => require(['./component/CNodeDetail/CNodeDetail'], resolve);
 // const V2EX = resolve => require(['./component/V2EX/V2EX'], resolve);
 // const V2EXDetail = resolve => require(['./component/V2EXDetail/V2EXDetail'], resolve);
-// const Test = resolve => require(['./component/Test'], resolve);
-
 import CNode from '@/component/CNode/CNode';
 import CNodeDetail from '@/component/CNodeDetail/CNodeDetail';
 import V2EX from '@/component/V2EX/V2EX';
 import V2EXDetail from '@/component/V2EXDetail/V2EXDetail';
-import Test from '@/component/Test';
+// import Test from '@/component/Test';
+const Test = resolve => require(['./component/Test'], resolve);
 
 Vue.use(Router);
 
