@@ -2,6 +2,11 @@
   <div id="v2exDetail">
     <h2 class="v2exDetail-title">{{detail.content.title}}</h2>
     <br>
+    <h5
+      v-html="detail.content.lastReply"
+      class="v2exDetail-info"
+    />
+    <br>
     <hr />
     <br>
     <div
@@ -10,11 +15,6 @@
     />
     <br>
     <hr />
-    <br>
-    <h5
-      v-html="detail.content.lastReply"
-      class="v2exDetail-info"
-    />
     <ul>
       <li
         class="v2exDetail-list"
@@ -91,6 +91,9 @@ export default {
   },
   computed: {
     ...mapState({
+      v2exTopics(state) {
+        return state.v2exList.entities;
+      },
       detail(state) {
         return state.v2exDetail.detail;
       },
@@ -108,6 +111,16 @@ export default {
   mounted() {
     this.isEnd = this.detail.replier.length < this.limit;
   },
+  async beforeRouteLeave(to, from, next) {
+    if (!this.v2exTopics.length) {
+      this.setLoading(true);
+      await this.fetchTopics();
+      this.setLoading(false);
+      next();
+    } else {
+      next();
+    }
+  },
   methods: {
     ...mapMutations({
       setHead: 'header/setHead',
@@ -119,6 +132,7 @@ export default {
     }),
     ...mapActions({
       fetchDetail: 'v2exDetail/fetchDetail',
+      fetchTopics: 'v2exList/fetchTopics',
     }),
     handleFetchTopics(reload) {
       return new Promise(async (resolve, reject) => {

@@ -55,6 +55,7 @@ export default {
     }
   },
   asyncData({ store }) {
+    console.log('asyncData');
     store.commit('header/setLoading', true);
     return store.dispatch('cnode/fetchTopics').then(() => {
       store.commit('header/setLoading', false);
@@ -82,8 +83,10 @@ export default {
     this.allShow();
     this.setTagArrs(cnodeTagArr);
   },
-  mounted() {
-    this.isEnd =  this.cnodeTopics.length < this.limit;
+  watch: {
+    cnodeTopics() {
+      this.isEnd =  this.cnodeTopics.length < this.limit;
+    },
   },
   methods: {
     ...mapActions({

@@ -2,18 +2,18 @@
   <div id="CNodeDetail">
     <h2 class="CNodeDetail-title">{{detail.title}}</h2>
     <br>
-    <hr />
-    <br>
     <div class="CNodeDetail-info">
       <span>发布于 {{detail.create_atStr}}</span>
       <span v-if="detail.author">作者 {{detail.author.loginname}}</span>
       <span>{{detail.visit_count}} 次浏览</span>
-      <span>来自 {{detail.tab}}</span>
+      <span>来自 {{cnodeTagMap[detail.tab]}}</span>
     </div>
     <br>
-    <section v-html="detail.content" class="CNodeDetail-content markdown-body" />
-    <br>
     <p class="CNodeDetail-replies">{{detailReplyLength}}回复</p>
+    <br>
+    <hr />
+    <br>
+    <section v-html="detail.content" class="CNodeDetail-content markdown-body" />
     <br>
     <ul>
       <li
@@ -40,7 +40,7 @@
               </span>
             </div>
           </div>
-          <p>{{+index + 1}}楼</p>
+          <p class='CNodeDetail-floor'>{{+index + 1}}楼</p>
         </section>
       </li>
     </ul>
@@ -51,6 +51,7 @@
 import { mapMutations, mapState, mapActions, mapGetters } from 'vuex';
 import LazyImg from '@/component/common/LazyImg';
 import titleMixin from '@/mixins/title';
+import {cnodeTagMap} from '@/config/tabs';
 import './CNodeDetail.css';
 
 export default {
@@ -66,6 +67,21 @@ export default {
       store.commit('header/setLoading', false);
     });
   },
+  data() {
+    return {
+      cnodeTagMap,
+    };
+  },
+  async beforeRouteLeave(to, from, next) {
+    if (!this.cnodeTopics.length) {
+      this.setLoading(true);
+      await this.fetchTopics();
+      this.setLoading(false);
+      next();
+    } else {
+      next();
+    }
+  },
   mixins: [titleMixin],
   title() {
     return this.detail.title;
@@ -77,6 +93,9 @@ export default {
     ...mapState({
       detail(state) {
         return state.cNodeDetail.detail;
+      },
+      cnodeTopics(state) {
+        return state.cnode.entities;
       },
     }),
     ...mapGetters({
@@ -90,6 +109,7 @@ export default {
     }),
     ...mapActions({
       fetchTopicsDetail: 'cNodeDetail/fetchTopicsDetail',
+      fetchTopics: 'cnode/fetchTopics',
     }),
   },
 };

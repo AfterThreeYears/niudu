@@ -25,6 +25,10 @@
   border-bottom: 1px solid #ccc;
 }
 
+.v2exDetail-list:last-child {
+  border-bottom: 0;
+}
+
 .v2exDetail-headPic-wrap {
   height: 0.8rem;
   width: 0.8rem;

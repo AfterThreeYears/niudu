@@ -25,7 +25,8 @@ router.onReady(() => {
     const fromStatus = from.meta.load;
     const toStatus = to.meta.load;
     // console.log(`fromStatus ${fromStatus}--- toStatus ${toStatus}`);
-    if ((fromStatus && toStatus) || (fromStatus && !toStatus)) {
+    if ((fromStatus && toStatus) ||
+        (fromStatus && !toStatus)) {
       const matched = router.getMatchedComponents(to);
       const prevMatched = router.getMatchedComponents(from);
       let diffed = false;
