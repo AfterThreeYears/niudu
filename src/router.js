@@ -11,6 +11,7 @@ import V2EX from '@/component/V2EX/V2EX';
 import V2EXDetail from '@/component/V2EXDetail/V2EXDetail';
 // import Test from '@/component/Test';
 const Test = resolve => require(['./component/Test'], resolve);
+const Test1 = resolve => require(['./component/Test1'], resolve);
 
 Vue.use(Router);
 
@@ -19,6 +20,7 @@ export function createRouter() {
     base: process.env.NODE_ENV === 'production' ? '/' : '/',
     mode: 'history',
     scrollBehavior(to, from, savedPosition) {
+      // console.log(`savedPosition: ${JSON.stringify(savedPosition)}`);
       if (savedPosition) {
         return savedPosition;
       }
@@ -28,6 +30,12 @@ export function createRouter() {
       {
         path: '/test',
         component: Test,
+        name: 'test',
+      },
+      {
+        path: '/test1',
+        component: Test1,
+        name: 'test1',
       },
       {
         path: '/',
@@ -40,6 +48,7 @@ export function createRouter() {
         path: '/cnode',
         component: CNode,
         name: 'cnode',
+        meta: { load: true },
       },
       {
         path: '/cnode/:id',
@@ -50,6 +59,7 @@ export function createRouter() {
         path: '/v2ex',
         component: V2EX,
         name: 'v2ex',
+        meta: { load: true },
       },
       {
         path: '/v2ex/:id',

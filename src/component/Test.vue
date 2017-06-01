@@ -1,5 +1,11 @@
 <template>
   <div>
+    <ul>
+      <li v-for="item in 20">
+        <p>{{item}}</p>
+        <router-link :to="{ name: 'test1' }">test1</router-link>
+      </li>
+    </ul>
     <div>
       <badge size="large" type="primary">10</badge>
       <badge size="large" type="warning">10</badge>

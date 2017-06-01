@@ -43,8 +43,6 @@ import './V2EX.css';
 export default {
   name: 'V2EX',
   asyncData({ store }) {
-    store.commit('header/allShow');
-    store.commit('header/setTagArrs', v2exTagArr);
     store.commit('header/setLoading', true);
     return store.dispatch('v2exList/fetchTopics').then(() => {
       store.commit('header/setLoading', false);
@@ -66,6 +64,10 @@ export default {
       setTagArrs: 'header/setTagArrs',
       setLoading: 'header/setLoading',
     }),
+  },
+  created() {
+    this.allShow();
+    this.setTagArrs(v2exTagArr);
   },
   computed: {
     ...mapState({

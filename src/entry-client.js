@@ -21,24 +21,31 @@ router.onReady(() => {
   // the data that we already have. Using router.beforeResolve() so that all
   // async components are resolved.
   router.beforeResolve((to, from, next) => {
-    const matched = router.getMatchedComponents(to);
-    const prevMatched = router.getMatchedComponents(from);
-    let diffed = false;
-    const activated = matched.filter((c, i) => diffed || (diffed = (prevMatched[i] !== c)));
-    if (!activated.length) {
+    // 从详情返回列表页不用asyncData
+    const fromStatus = from.meta.load;
+    const toStatus = to.meta.load;
+    // console.log(`fromStatus ${fromStatus}--- toStatus ${toStatus}`);
+    if ((fromStatus && toStatus) || (fromStatus && !toStatus)) {
+      const matched = router.getMatchedComponents(to);
+      const prevMatched = router.getMatchedComponents(from);
+      let diffed = false;
+      const activated = matched.filter((c, i) => diffed || (diffed = (prevMatched[i] !== c)));
+      if (!activated.length) {
+        return next();
+      }
+      Promise.all(activated.map((c) => {
+        if (c.asyncData) c.asyncData({ store, route: to });
+      })).then(() => {
+        next();
+      }).catch(next);
+    } else {
       return next();
     }
-    Promise.all(activated.map((c) => {
-      if (c.asyncData) c.asyncData({ store, route: to });
-    })).then(() => {
-      next();
-    }).catch(next);
   });
 
   // actually mount to DOM
   app.$mount('#app');
 });
-
 // service worker
 if (process.env.NODE_ENV === 'production' && 'serviceWorker' in navigator) {
   navigator.serviceWorker.register('/service-worker.js');

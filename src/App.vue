@@ -1,11 +1,11 @@
 <template>
   <div id="app">
     <my-head v-show="showHead" />
-    <div class="window-isLoading" v-if="isLoading">
-      <div class="ball-clip-rotate"><div></div></div>
-    </div>
-    <div :class="classObject" v-else>
-      <router-view />
+    <div :class="classObject" >
+      <div class="window-isLoading" v-show="isLoading">
+        <div class="ball-clip-rotate"><div></div></div>
+      </div>
+      <router-view/>
     </div>
     <img
       class="ypy"
@@ -72,7 +72,7 @@ export default {
   .window-isLoading {
     width: 100%;
     height: 100%;
-    position: absolute;
+    position: fixed;
     display: flex;
     justify-content: center;
     align-items: center;

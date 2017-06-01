@@ -55,8 +55,6 @@ export default {
     }
   },
   asyncData({ store }) {
-    store.commit('header/allShow');
-    store.commit('header/setTagArrs', cnodeTagArr);
     store.commit('header/setLoading', true);
     return store.dispatch('cnode/fetchTopics').then(() => {
       store.commit('header/setLoading', false);
@@ -79,6 +77,10 @@ export default {
         return state.cnode.limit;
       },
     }),
+  },
+  created() {
+    this.allShow();
+    this.setTagArrs(cnodeTagArr);
   },
   mounted() {
     this.isEnd =  this.cnodeTopics.length < this.limit;
