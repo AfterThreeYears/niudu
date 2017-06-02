@@ -1,13 +1,11 @@
 import axios from 'axios';
 import { dateDiff } from '@/helpers/time';
 import { cnodeTag } from '@/helpers/tag';
-import moment from 'moment';
 
-moment.locale('zh-cn');
 export default {
   namespaced: true,
   state: {
-    entities: {},
+    entities: [],
     page: 1,
     limit: 10,
     tab: 'all',
@@ -19,6 +17,7 @@ export default {
         item.tabStr = cnodeTag(item);
       });
       state.entities = [...state.entities, ...topics];
+      // state.entities = [];
     },
     increasePage(state) {
       state.page += 1;

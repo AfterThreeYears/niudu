@@ -1,0 +1,87 @@
+.Icon-home {
+  width: .36rem;
+}
+
+.Icon-meipu-text {
+  width: .9rem;
+}
+
+.Icon-logo-flat {
+  width: .26rem;
+}
+
+.Icon-earth {
+  width: .26rem;
+}
+
+.Icon-thunder {
+  width: .26rem;
+}
+
+.Icon-house {
+  width: .24rem;
+}
+
+.Icon-left-arrow {
+  width: .34rem;
+}
+
+.Icon-mute {
+  width: .52rem;
+}
+
+.Icon-full-screen {
+  width: .52rem;
+}
+
+.Icon-voice {
+  width: .52rem;
+}
+
+.Icon-paper {
+  width: .28rem;
+}
+
+.Icon-location {
+  width: .28rem;
+}
+
+.Icon-wallet {
+  width: .32rem;
+}
+
+.Icon-headset {
+  width: .3rem;
+}
+
+.Icon-lock {
+  width: .3rem;
+}
+
+.Icon-introduce {
+  width: .32rem;
+}
+
+.Icon-circle-plus {
+  width: .34rem;
+}
+
+.Icon-alipay {
+  width: .46rem;
+  height: .46rem;
+  background: #00a9ed;
+  border-radius: 50%;
+}
+
+.Icon-wechat {
+  width: .46rem;
+  height: .46rem;
+}
+
+.Icon-rotate90 {
+  transform: rotate(-90deg);
+}
+
+.Icon-arrow-down {
+  width: .34rem;
+}

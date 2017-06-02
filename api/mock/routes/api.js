@@ -9,7 +9,6 @@ const {
   postTopic,
   putTopic,
 } = require('../controllers/topic');
-const os = require('os');
 
 const { getNavigations } = require('../controllers/navigation');
 const { getPage } = require('../controllers/page');
@@ -20,8 +19,14 @@ const router = new Router({
 
 router.get('/test', (ctx) => {
   ctx.body = {
-    os: os.networkInterfaces(),
     request: ctx.request,
+  };
+});
+
+router.post('/test1', (ctx) => {
+  ctx.body = {
+    request: ctx.request,
+    body: ctx.request.body,
   };
 });
 

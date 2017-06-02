@@ -1,5 +1,6 @@
 <template>
   <div>
+    <ui-icon name="alipay" />
     <ul>
       <li v-for="item in 20">
         <p>{{item}}</p>

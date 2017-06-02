@@ -6,11 +6,14 @@ import createStore from './store/store';
 import initAxios from './axios';
 import App from './App.vue';
 import badge from './ui/badge';
+import toolBar from './ui/toolBar';
+import Icon from './ui/icon/Icon';
 
 initAxios();
 Vue.use(Vuex);
-
 Vue.component(badge.name, badge);
+Vue.component(Icon.name, Icon);
+Vue.component(toolBar.name, toolBar);
 
 const store = createStore();
 const router = createRouter();

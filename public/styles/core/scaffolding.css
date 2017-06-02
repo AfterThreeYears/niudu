@@ -6,11 +6,15 @@
   box-sizing: border-box;
   -webkit-tap-highlight-color: transparent;
 }
+html {
+  height: 100%;
+}
 
 body {
   font-family: PingFangSC-Regular;
   font-size: 12px;
   background: #eee;
+  height: 100%;
 }
 
 @font-face {

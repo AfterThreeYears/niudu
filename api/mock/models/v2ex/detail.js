@@ -6,6 +6,7 @@ function getListData(text) {
   const lastReply = $('.header .gray').html();
   const markdown = $('.topic_content').html();
   const table = $('.box').eq(1).find('table');
+  const once = $('[name=once]').val();
   const replier = [].slice.call(table).map((item) => {
     const $table = $(item);
     return {
@@ -20,6 +21,7 @@ function getListData(text) {
       title,
       lastReply,
       markdown,
+      once,
     },
     replier,
   };

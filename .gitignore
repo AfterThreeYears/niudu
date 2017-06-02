@@ -8,3 +8,4 @@ yarn-error.log
 .tern-project
 api/mock/data/db.js
 api/mock/index.js
+api/mock/config/cookie.js

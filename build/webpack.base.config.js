@@ -35,7 +35,7 @@ module.exports = {
         exclude: /node_modules/,
       },
       {
-        test: /\.(png|jpg|gif|svg)$/,
+        test: /\.(png|jpg|gif)$/,
         loader: 'url-loader',
         options: {
           limit: 1024 * 30,
@@ -58,6 +58,10 @@ module.exports = {
            fallback: ['vue-style-loader'],
          }) :
         ['vue-style-loader', 'css-loader', 'postcss-loader'],
+      },
+      {
+        test: /\.svg/,
+        loader: 'svg-loader',
       },
     ],
   },

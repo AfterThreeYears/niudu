@@ -5,6 +5,9 @@
   margin: 0.2rem 0.2rem 0;
   overflow: hidden;
 }
+.V2EX-List:last-child {
+  border: 0;
+}
 
 .V2EX-title-wrap {
   display: flex;

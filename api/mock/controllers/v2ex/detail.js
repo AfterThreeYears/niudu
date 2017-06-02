@@ -1,5 +1,5 @@
 const request = require('superagent');
-const { v2exDetail } = require('../../config/url');
+const { v2exDetail, vv726Server } = require('../../config/url');
 const { v2exCookie } = require('../../config/cookie');
 const { mobileUa } = require('../../config/userAgent');
 const getListData = require('../../models/v2ex/detail');
@@ -9,14 +9,17 @@ const {
 } = require('../../helpers/controller');
 
 const fn = (ctx, { id, pageIndex }) => new Promise((resolve, reject) => {
-  request.get(`${v2exDetail}/${id}?p=${pageIndex}`)
+  const url = `${v2exDetail}/${id}?p=${pageIndex}`;
+  // const url = vv726Server;
+  request.get(url)
     .set('cookie', v2exCookie)
-    .set('userAgent', mobileUa)
+    .set('user-agent', mobileUa)
     .end((err, res) => {
       if (err) {
         reject(err);
         return;
       }
+      // resolve(JSON.parse(res.text));
       resolve(getListData(res.text));
     });
 });

@@ -92,7 +92,7 @@ app.use('/service-worker.js', serve('./dist/service-worker.js'));
 // https://www.nginx.com/blog/benefits-of-microcaching-nginx/
 const microCache = LRU({
   max: 100,
-  maxAge: isProd ? 1000 * 60 : 1000,
+  maxAge: 1000,
 });
 
 // since this app has no user-specific content, every page is micro-cacheable.

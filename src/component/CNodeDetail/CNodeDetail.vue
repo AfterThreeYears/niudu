@@ -1,10 +1,10 @@
 <template>
   <div id="CNodeDetail">
-    <h2 class="CNodeDetail-title">{{detail.title}}</h2>
+     <h2 class="CNodeDetail-title">{{detail.title}}</h2>
     <br>
     <div class="CNodeDetail-info">
       <span>发布于 {{detail.create_atStr}}</span>
-      <span v-if="detail.author">作者 {{detail.author.loginname}}</span>
+      <span>作者 {{detail.author.loginname}}</span>
       <span>{{detail.visit_count}} 次浏览</span>
       <span>来自 {{cnodeTagMap[detail.tab]}}</span>
     </div>
@@ -17,7 +17,6 @@
     <br>
     <ul>
       <li
-        v-if="detail.replies"
         v-for="(reply, index) in detail.replies"
         :key="index"
         class="CNodeDetail-replyList"
@@ -44,6 +43,9 @@
         </section>
       </li>
     </ul>
+    <tool-bar>
+      <ui-icon name="alipay" />
+    </tool-bar>
   </div>
 </template>
 

@@ -31,6 +31,7 @@ export default {
   },
   mounted() {
     lazyload();
+
     // console.error('*******************mounted*********************');
   },
   computed: {
@@ -64,7 +65,7 @@ export default {
     width: 10rem;
     margin: 0 auto;
     background: #fff;
-    height: 100%;
+    min-height: 100%;
   }
   .main-wrap-body-hide {
     padding-top: 0;
@@ -108,8 +109,8 @@ export default {
   .ypy {
     background: #ccc;
     margin: 0 auto;
-    display: block;
-    margin-bottom: 0.3rem;
     width: 2rem;
+    display: none;
   }
+
 </style>

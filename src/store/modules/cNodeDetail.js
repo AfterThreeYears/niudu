@@ -5,7 +5,9 @@ moment.locale('zh-cn');
 export default {
   namespaced: true,
   state: {
-    detail: {},
+    detail: {
+      author: {},
+    },
   },
 
   getters: {

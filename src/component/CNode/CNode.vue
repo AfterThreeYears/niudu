@@ -1,30 +1,31 @@
 <template>
   <div id="CNode">
+    <!-- <ui-icon name="alipay" />
     <ul>
-      <li class="CNode-List" v-for="topic in cnodeTopics">
+      <li class="CNode-List" v-for="(topic, $index) in cnodeTopics" :key="$index">
         <router-link :to="{ name: 'CNodeDetail', params: { id: topic.id }}">
           <h6 class="text-line-clamp2v CNode-title">{{topic.title}}</h6>
           <div class="CNode-detail">
-          <div class="clearfix CNode-detail-info">
-            <section class="clearfix CNode-detail-imgWrap">
-              <lazy-img
-                :src="topic.author.avatar_url"
-                :alt="topic.author.avatar_url"
-                class="CNode-detail-info-img"
-              />
-            </section>
-            <p class="text-ellipsis CNode-detail-loginname">{{topic.author.loginname}}</p>
-            <p class="text-ellipsis CNode-detail-last_reply_at">{{topic.last_reply_at_str}}</p>
-          </div>
-          <div class="CNode-detail-params">
-            <badge size="large" type="primary">{{topic.tabStr}}</badge>
-            <div class="CNode-detail-count">
-              <span class="CNode-detail-text">
-                <span class="CNode-detail-reply_count">{{topic.reply_count}}</span>/{{topic.visit_count}}
-              </span>
+            <div class="clearfix CNode-detail-info">
+              <section class="clearfix CNode-detail-imgWrap">
+                <lazy-img
+                  :src="topic.author.avatar_url"
+                  :alt="topic.author.avatar_url"
+                  class="CNode-detail-info-img"
+                />
+              </section>
+              <p class="text-ellipsis CNode-detail-loginname">{{topic.author.loginname}}</p>
+              <p class="text-ellipsis CNode-detail-last_reply_at">{{topic.last_reply_at_str}}</p>
+            </div>
+            <div class="CNode-detail-params">
+              <badge size="large" type="primary">{{topic.tabStr}}</badge>
+              <div class="CNode-detail-count">
+                <span class="CNode-detail-text">
+                  <span class="CNode-detail-reply_count">{{topic.reply_count}}</span>/{{topic.visit_count}}
+                </span>
+              </div>
             </div>
           </div>
-        </div>
         </router-link>
       </li>
     </ul>
@@ -33,7 +34,7 @@
       :load-err="loadErr"
       :is-end="isEnd"
       @load="handleFetchTopics"
-    />
+    /> -->
   </div>
 </template>
 
@@ -55,6 +56,9 @@ export default {
     }
   },
   asyncData({ store }) {
+      // this.allShow();
+    store.commit('header/allShow');
+    store.commit('header/setTagArrs', cnodeTagArr);
     store.commit('header/setLoading', true);
     return store.dispatch('cnode/fetchTopics').then(() => {
       store.commit('header/setLoading', false);
@@ -80,7 +84,7 @@ export default {
   },
   created() {
     this.allShow();
-    this.setTagArrs(cnodeTagArr);
+    // this.setTagArrs(cnodeTagArr);
   },
   watch: {
     cnodeTopics() {
