@@ -1,25 +1,9 @@
 {
-  "name": "Vue Hackernews 2.0",
-  "short_name": "Vue HN",
+  "name": "Vue niudu",
+  "short_name": "Vue ND",
   "icons": [{
-      "src": "/public/logo-120.png",
-      "sizes": "120x120",
-      "type": "image/png"
-    }, {
-      "src": "/public/logo-144.png",
+      "src": "/public/logo.ico",
       "sizes": "144x144",
-      "type": "image/png"
-    }, {
-      "src": "/public/logo-152.png",
-      "sizes": "152x152",
-      "type": "image/png"
-    }, {
-      "src": "/public/logo-192.png",
-      "sizes": "192x192",
-      "type": "image/png"
-    },{
-      "src": "/public/logo-384.png",
-      "sizes": "384x384",
       "type": "image/png"
     }],
   "start_url": "/",

@@ -1,0 +1,17 @@
+.LazyLoad-Img {
+  background-color: #f1f1f1;
+  pointer-events: none;
+}
+
+.LazyLoad-bg {
+  pointer-events: auto;
+}
+
+.LazyLoad-loadingImg {
+  transition: opacity .5s;
+  opacity: .1;
+}
+
+.LazyLoad-Img.LazyLoad-Loaded {
+  opacity: 1;
+}

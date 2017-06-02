@@ -2,7 +2,6 @@ import { hasOwnProperty } from '@/helpers/lang';
 import logger from '@/helpers/logger';
 
 export const getResponseErrorInterceptor = errorCallback => (error) => {
-  // console.log('1111111111')
   if (process.env.VUE_ENV === 'server') {
     logger.warn(`http error: ${error.message}`);
   } else {
@@ -50,7 +49,6 @@ export const getResponseSuccessInterceptor = errorCallback => (res) => {
 };
 
 export const getBaseURL = (remoteHost) => {
-  // console.log(33333333, remoteHost);
   if (process.env.NODE_ENV === 'production') {
     return remoteHost;
   }

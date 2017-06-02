@@ -1,0 +1,10 @@
+.InfiniteScroll {
+  height: 1rem;
+  text-align: center;
+  line-height: 1rem;
+  font-size: 0.2rem;
+}
+
+.InfiniteScroll:active {
+  background: #ccc;
+}

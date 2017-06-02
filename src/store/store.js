@@ -1,8 +1,11 @@
 import { Store } from 'vuex';
 import createLogger from 'vuex/dist/logger';
-import note from './modules/note';
-import number0 from './modules/number0';
-
+import header from './modules/header';
+import cnode from './modules/cnode';
+import cNodeDetail from './modules/cNodeDetail';
+import v2exList from './modules/v2exList';
+import v2exDetail from './modules/v2exDetail';
+import shared from './modules/shared';
 
 export default function createStore() {
   const plugins = [];
@@ -14,17 +17,15 @@ export default function createStore() {
   }
 
   return new Store({
-    plugins,
+    // plugins,
     strict: process.env.NODE_ENV !== 'production',
     modules: {
-      note,
-      number0,
+      header,
+      cnode,
+      cNodeDetail,
+      v2exList,
+      v2exDetail,
+      shared,
     },
   });
 }
-
-// const getters = {
-//   num:function (state) {
-//     return state.num += 0;
-//   }
-// }

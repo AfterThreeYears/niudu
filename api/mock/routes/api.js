@@ -1,8 +1,7 @@
 const Router = require('koa-router');
-const { getUsers } = require('../controllers/users');
 const { getNotes } = require('../controllers/notes');
-const { getItem } = require('../controllers/item');
 const { getProduct } = require('../controllers/product');
+const { getDetail } = require('../controllers/test/test');
 const {
   getTopicAll,
   getTopicOne,
@@ -10,6 +9,7 @@ const {
   postTopic,
   putTopic,
 } = require('../controllers/topic');
+const os = require('os');
 
 const { getNavigations } = require('../controllers/navigation');
 const { getPage } = require('../controllers/page');
@@ -18,13 +18,18 @@ const router = new Router({
   prefix: '/api',
 });
 
-router.get('/users', getUsers);
+router.get('/test', (ctx) => {
+  ctx.body = {
+    os: os.networkInterfaces(),
+    request: ctx.request,
+  };
+});
+
+router.get('/test1', getDetail);
 
 router.get('/notes', getNotes);
 
 router.get('/product/search', getProduct);
-
-router.get('/item/:id', getItem);
 
 router.get('/topic', getTopicAll);
 

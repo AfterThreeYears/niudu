@@ -4,3 +4,7 @@ dist/
 npm-debug.log
 yarn-error.log
 .tern-project
+.vscode
+.tern-project
+api/mock/data/db.js
+api/mock/index.js

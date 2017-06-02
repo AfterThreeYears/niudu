@@ -1,0 +1,99 @@
+#CNodeDetail {
+  padding: 0.3rem;
+}
+
+#CNodeDetail a {
+  color: #0366d6;
+  word-break: break-all;
+}
+
+.CNodeDetail-title {
+  font-size: 0.42rem;
+  line-height: 1.5;
+}
+
+.CNodeDetail-info {
+  font-size: 0.34rem;
+}
+
+.CNodeDetail-info span {
+  margin-right: 0.2rem;
+}
+
+.CNodeDetail-content {
+  font-size: 0.34rem;
+}
+
+.CNodeDetail-replyList {
+  font-size: 0.34rem;
+  padding: 0.3rem 0;
+  border-bottom: 1px solid #ccc;
+  display: flex;
+}
+
+.CNodeDetail-replyList:last-child {
+  border-bottom: 0;
+  padding: 0.3rem 0 0;
+}
+
+.CNodeDetail-reply_name {
+  font-size: 0.34rem;
+}
+
+.CNodeDetail-headPic-wrap {
+  height: 0.8rem;
+  width: 0.8rem;
+  display: inline-block;
+  margin-right: 0.3rem;
+}
+
+.CNodeDetail-headPic {
+  height: 0.8rem;
+  width: 0.8rem;
+  border-radius: 100%;
+  border: 1px solid #eee;
+}
+
+.CNodeDetail-section{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.CNodeDetail-section-content{
+  width: 90%;
+  line-height: 1.3;
+}
+
+.CNodeDetail-floor{
+  width: 1.2rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-align: right;
+}
+
+.panel .markdown-text a {
+    color: #08c
+}
+
+.preview {
+    padding: .5em;
+    font-size: 0.2rem;
+    min-height: 200px;
+    word-break: break-all
+}
+
+.preview p>img {
+    display: block;
+    box-shadow: 0 0 4px rgba(0,0,0,.6)
+}
+
+.markdown_editor .markdown_in_editor,.markdown_editor .markdown_in_preview {
+    display: none
+}
+
+.markdown_editor.in_editor .markdown_in_editor,.markdown_editor.in_preview .markdown_in_preview {
+    display: block
+}

@@ -7,7 +7,7 @@ const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin');
 const isProd = process.env.NODE_ENV === 'production';
 
 module.exports = {
-  devtool: isProd ? false : '#source-map',
+  devtool: isProd ? false : 'source-map',
   output: {
     path: path.resolve(__dirname, '../dist'),
     publicPath: '/dist/',
@@ -55,9 +55,9 @@ module.exports = {
         use: isProd ?
          ExtractTextPlugin.extract({
            use: 'css-loader?minimize',
-           fallback: 'vue-style-loader',
+           fallback: ['vue-style-loader'],
          }) :
-        ['vue-style-loader', 'css-loader'],
+        ['vue-style-loader', 'css-loader', 'postcss-loader'],
       },
     ],
   },

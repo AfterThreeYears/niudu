@@ -10,6 +10,7 @@
 body {
   font-family: PingFangSC-Regular;
   font-size: 12px;
+  background: #eee;
 }
 
 @font-face {
@@ -21,4 +22,8 @@ a {
   color: #454545;
   text-decoration: none;
   transition: color .35s;
+}
+
+li {
+  list-style-type: none;
 }

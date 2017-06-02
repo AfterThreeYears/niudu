@@ -1,13 +1,28 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
-    <title>{{ title }}</title>
     <meta charset="utf-8">
+    <title>{{ title }}</title>
     <meta name="mobile-web-app-capable" content="yes">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
-    <link rel="shortcut icon" sizes="48x48" href="/public/logo-48.png">
     <meta name="theme-color" content="#f60">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <link rel="apple-touch-icon" sizes="120x120" href="/public/logo.ico">
+    <link rel="shortcut icon" sizes="48x48" href="/public/logo.ico">
     <link rel="manifest" href="/manifest.json">
+    <meta http-equiv="x-dns-prefetch-control" content="on">
+    <link rel='dns-prefetch' href='http://v2ex.assets.uxengine.net'>
+    <link rel='dns-prefetch' href='https://avatars.githubusercontent.com'>
+    <link rel='dns-prefetch' href='https://avatars0.githubusercontent.com'>
+    <link rel='dns-prefetch' href='https://avatars1.githubusercontent.com'>
+    <link rel='dns-prefetch' href='https://avatars2.githubusercontent.com'>
+    <link rel='dns-prefetch' href='https://avatars3.githubusercontent.com'>
+    <script>
+    (function(e,c){function m(){var k=h.getBoundingClientRect().width;640<k/a&&(k=640*a);k/=10;h.style.fontSize=k+"px";l.rem=e.rem=k}var d=e.document,h=d.documentElement,f=d.querySelector('meta[name="viewport"]'),g=d.querySelector('meta[name="flexible"]'),a=0,b=0,n,l=c.flexible||(c.flexible={});if(f){if(console.warn("\u5c06\u6839\u636e\u5df2\u6709\u7684meta\u6807\u7b7e\u6765\u8bbe\u7f6e\u7f29\u653e\u6bd4\u4f8b"),c=f.getAttribute("content").match(/initial\-scale=([\d\.]+)/))b=parseFloat(c[1]),a=parseInt(1/
+b)}else g&&(g=g.getAttribute("content"))&&(c=g.match(/initial\-dpr=([\d\.]+)/),g=g.match(/maximum\-dpr=([\d\.]+)/),c&&(a=parseFloat(c[1]),b=parseFloat((1/a).toFixed(2))),g&&(a=parseFloat(g[1]),b=parseFloat((1/a).toFixed(2))));a||b||(e.navigator.appVersion.match(/android/gi),b=e.navigator.appVersion.match(/iphone/gi),c=e.devicePixelRatio,a=b?3<=c&&(!a||3<=a)?3:2<=c&&(!a||2<=a)?2:1:1,b=1/a);h.setAttribute("data-dpr",a);f||(f=d.createElement("meta"),f.setAttribute("name","viewport"),f.setAttribute("content",
+"initial-scale="+b+", maximum-scale="+b+", minimum-scale="+b+", user-scalable=no"),h.firstElementChild?h.firstElementChild.appendChild(f):(b=d.createElement("div"),b.appendChild(f),d.write(b.innerHTML)));e.addEventListener("resize",function(){clearTimeout(n);n=setTimeout(m,300)},!1);e.addEventListener("pageshow",function(a){a.persisted&&(clearTimeout(n),n=setTimeout(m,300))},!1);"complete"===d.readyState?d.body.style.fontSize=12*a+"px":d.addEventListener("DOMContentLoaded",function(b){d.body.style.fontSize=
+12*a+"px"},!1);m();l.dpr=e.dpr=a;l.refreshRem=m;l.rem2px=function(a){var b=parseFloat(a)*this.rem;"string"===typeof a&&a.match(/rem$/)&&(b+="px");return b};l.px2rem=function(a){var b=parseFloat(a)/this.rem;"string"===typeof a&&a.match(/px$/)&&(b+="rem");return b}})(window,window.lib||(window.lib={}));
+    </script>
   </head>
   <body>
     <!--vue-ssr-outlet-->
