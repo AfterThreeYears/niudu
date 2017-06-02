@@ -60,6 +60,12 @@ export default {
 };
 </script>
 <style>
+  #app {
+    width: 10rem;
+    margin: 0 auto;
+    background: #fff;
+    height: 100%;
+  }
   .main-wrap-body-hide {
     padding-top: 0;
   }
@@ -70,7 +76,7 @@ export default {
     padding: 0.83rem 0 0.3rem;
   }
   .window-isLoading {
-    width: 100%;
+    width: 10rem;
     height: 100%;
     position: fixed;
     display: flex;

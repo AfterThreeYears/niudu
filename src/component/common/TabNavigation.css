@@ -3,12 +3,12 @@
   top: .81rem;
   z-index: 1001;
   background: #fff;
-  width: 100%;
+  width: 10rem;
   transform: translate3d(0, 0, 0);
 
   &::after {
     content: '';
-    width: 100%;
+    width: 10rem;
     height: 1px;
     background: #f2f2f2;
     position: absolute;

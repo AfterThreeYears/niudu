@@ -44,5 +44,6 @@ module.exports = {
     'global-require': 0,
     'array-callback-return': 0,
     'import/no-dynamic-require': 0,
+    'camelcase': 0,
   }
 }

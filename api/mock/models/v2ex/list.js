@@ -9,23 +9,25 @@ function getListData(text) {
   list.each((index, item) => {
     const avatar = $(item).find('img.avatar').attr('src');
     const count = $(item).find('.count_livid').text() || 0;
-    const replier = count ? $(item).find('.small').last().text() : '';
     const title = $(item).find('.item_title').text();
     const id = getId($(item).find('.item_title a').attr('href'));
-    const obj = {};
-    replier.split('•').forEach((reply, idx) => {
-      const rep = (reply || '').trim();
-      if (idx === 0) obj.node = rep;
-      if (idx === 1) obj.author = rep;
-      if (idx === 2) obj.last_time = rep;
-      if (idx === 3) obj.last_reply = rep;
-    });
+    const node = $(item).find('.node').text();
+    const author = $(item).find('.node').next().find('a')
+                  .text();
+    const timeArr = (($(item).find('strong')[0].next || {}).data || '').split('•');
+    const last_time = (timeArr[1] || '无回复').trim();
+    const last_reply = $(item).find('strong').next('strong').find('a')
+                        .text() || '无人回复';
     result.push(Object.assign({
       id,
       avatar,
       title,
       count,
-    }, obj));
+      node,
+      author,
+      last_time,
+      last_reply,
+    }));
   });
   return result;
 }
