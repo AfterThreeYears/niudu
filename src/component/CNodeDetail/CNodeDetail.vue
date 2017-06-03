@@ -59,9 +59,9 @@ import './CNodeDetail.css';
 export default {
   name: 'CNode-detail',
   asyncData({ store, route }) {
-    store.commit('header/setHead', {
-      status: false,
-    });
+    // store.commit('header/setHead', {
+    //   status: false,
+    // });
     store.commit('header/setLoading', true);
     return store.dispatch('cNodeDetail/fetchTopicsDetail', {
       id: route.params.id,
@@ -97,7 +97,7 @@ export default {
         return state.cNodeDetail.detail;
       },
       cnodeTopics(state) {
-        return state.cnode.entities;
+        return state.cnode.list;
       },
     }),
     ...mapGetters({
@@ -106,7 +106,7 @@ export default {
   },
   methods: {
     ...mapMutations({
-      setHead: 'header/setHead',
+      // setHead: 'header/setHead',
       setLoading: 'header/setLoading',
     }),
     ...mapActions({

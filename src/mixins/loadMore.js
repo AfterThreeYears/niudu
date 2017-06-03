@@ -5,7 +5,7 @@ const loadMore = {
   data() {
     return {
       isGlobalEventListened: false,
-      viewportDistance: 2000,
+      viewportDistance: 300,
       throttleInterval: 100,
     };
   },

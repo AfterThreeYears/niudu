@@ -1,20 +1,20 @@
 <template>
   <div id="CNode">
-    <!-- <ui-icon name="alipay" />
+    <ui-icon name="alipay" />
     <ul>
-      <li class="CNode-List" v-for="(topic, $index) in cnodeTopics" :key="$index">
+      <li class="CNode-List" v-for="topic in cnodeTopics">
         <router-link :to="{ name: 'CNodeDetail', params: { id: topic.id }}">
           <h6 class="text-line-clamp2v CNode-title">{{topic.title}}</h6>
           <div class="CNode-detail">
             <div class="clearfix CNode-detail-info">
-              <section class="clearfix CNode-detail-imgWrap">
+              <!-- <section class="clearfix CNode-detail-imgWrap">
                 <lazy-img
                   :src="topic.author.avatar_url"
                   :alt="topic.author.avatar_url"
                   class="CNode-detail-info-img"
                 />
-              </section>
-              <p class="text-ellipsis CNode-detail-loginname">{{topic.author.loginname}}</p>
+              </section> -->
+              <!-- <p class="text-ellipsis CNode-detail-loginname">{{topic.author.loginname}}</p> -->
               <p class="text-ellipsis CNode-detail-last_reply_at">{{topic.last_reply_at_str}}</p>
             </div>
             <div class="CNode-detail-params">
@@ -34,7 +34,7 @@
       :load-err="loadErr"
       :is-end="isEnd"
       @load="handleFetchTopics"
-    /> -->
+    />
   </div>
 </template>
 
@@ -43,7 +43,7 @@ import { mapState, mapActions, mapMutations } from 'vuex';
 import LazyImg from '@/component/common/LazyImg';
 import InfiniteScroll from '@/component/common/InfiniteScroll';
 import titleMixin from '@/mixins/title';
-import { cnodeTagArr } from '@/config/tabs';
+// import { cnodeTagArr } from '@/config/tabs';
 import './CNode.css';
 
 export default {
@@ -57,8 +57,8 @@ export default {
   },
   asyncData({ store }) {
       // this.allShow();
-    store.commit('header/allShow');
-    store.commit('header/setTagArrs', cnodeTagArr);
+    // store.commit('header/allShow');
+    // store.commit('header/setTagArrs', cnodeTagArr);
     store.commit('header/setLoading', true);
     return store.dispatch('cnode/fetchTopics').then(() => {
       store.commit('header/setLoading', false);
@@ -75,7 +75,8 @@ export default {
   computed: {
     ...mapState({
       cnodeTopics(state) {
-        return state.cnode.entities;
+        console.log('computed');
+        return state.cnode.list;
       },
       limit(state) {
         return state.cnode.limit;
@@ -83,7 +84,7 @@ export default {
     }),
   },
   created() {
-    this.allShow();
+    // this.allShow();
     // this.setTagArrs(cnodeTagArr);
   },
   watch: {
@@ -97,8 +98,8 @@ export default {
     }),
     ...mapMutations({
       increasePage: 'cnode/increasePage',
-      allShow: 'header/allShow',
-      setTagArrs: 'header/setTagArrs',
+      // allShow: 'header/allShow',
+      // setTagArrs: 'header/setTagArrs',
       setLoading: 'header/setLoading',
     }),
     handleFetchTopics(reload) {

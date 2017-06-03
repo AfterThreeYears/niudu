@@ -66,9 +66,9 @@ export default {
     }
   },
   asyncData({ store, route }) {
-    store.commit('header/setHead', {
-      status: false,
-    });
+    // store.commit('header/setHead', {
+    //   status: false,
+    // });
     store.commit('v2exDetail/resetPage');
     store.commit('header/setLoading', true);
     // 进来之前把所有的数据先清空
@@ -123,7 +123,7 @@ export default {
   },
   methods: {
     ...mapMutations({
-      setHead: 'header/setHead',
+      // setHead: 'header/setHead',
       setDetail: 'v2exDetail/setDetail',
       setLoading: 'header/setLoading',
       increasePage: 'v2exDetail/increasePage',

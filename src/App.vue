@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <my-head v-show="showHead" />
+    <my-head />
     <div :class="classObject" >
       <div class="window-isLoading" v-show="isLoading">
         <div class="ball-clip-rotate"><div></div></div>
@@ -36,23 +36,25 @@ export default {
   },
   computed: {
     ...mapState({
-      showNav(state) {
-        return state.header.showNav;
-      },
-      showTab(state) {
-        return state.header.showTab;
-      },
-      showHead(state) {
-        return state.header.showHead;
-      },
+      // showNav(state) {
+      //   return state.header.showNav;
+      // },
+      // showTab(state) {
+      //   return state.header.showTab;
+      // },
+      // showHead(state) {
+      //   return state.header.showHead;
+      // },
       isLoading(state) {
         return state.header.isLoading;
       },
     }),
     classObject() {
-      const { showHead, showTab, showNav } = this;
-      if (!showHead) return { 'main-wrap-body-hide': true };
-      if (showNav && !showTab) return { 'main-wrap-body-showNav': true };
+      // const { showHead, showTab, showNav } = this;
+      const {name} = this.$route;
+      const array = ['v2ex', 'cnode', 'test'];
+      if (!array.includes(name)) return { 'main-wrap-body-hide': true };
+      // if (showNav && !showTab) return { 'main-wrap-body-showNav': true };
       return {
         'main-wrap-body-showTab': true,
       };

@@ -8,7 +8,6 @@
     />
     <tab-navigation
       v-show="showTab"
-      :data="tagArrs"
     />
   </header>
 </template>
@@ -24,11 +23,32 @@ export default {
   data() {
     return {
       navs: nav,
+      showHead: false,
+      showNav: false,
+      showTab: false,
     };
   },
   components: {
     Navigation,
     TabNavigation,
+  },
+  watch: {
+    $route(newVal) {
+      const {name} = newVal;
+      if (name === 'cnode' || name === 'v2ex' || name === 'test') {
+        this.showHead = this.showNav = this.showTab = true;
+      } else {
+        this.showHead = this.showNav = this.showTab = false;
+      }
+    },
+  },
+  mounted() {
+    const {name} = this.$route;
+    if (name === 'cnode' || name === 'v2ex' || name === 'test') {
+      this.showHead = this.showNav = this.showTab = true;
+    } else {
+      this.showHead = this.showNav = this.showTab = false;
+    }
   },
   methods: {
     handleNavigationSelect({url, id}) {
@@ -41,20 +61,14 @@ export default {
     }
   },
   computed: {
-    ...mapState({
-      showNav(state) {
-        return state.header.showNav;
-      },
-      showTab(state) {
-        return state.header.showTab;
-      },
-      showHead(state) {
-        return state.header.showHead;
-      },
-      tagArrs(state) {
-        return state.header.tagArrs;
-      },
-    }),
+    // ...mapState({
+    //   showNav(state) {
+    //     return state.header.showNav;
+    //   },
+    //   showTab(state) {
+    //     return state.header.showTab;
+    //   },
+    // }),
     index() {
       return +this.$route.query.id || 0;
     }

@@ -5,7 +5,7 @@ import { cnodeTag } from '@/helpers/tag';
 export default {
   namespaced: true,
   state: {
-    entities: [],
+    list: [],
     page: 1,
     limit: 10,
     tab: 'all',
@@ -16,8 +16,8 @@ export default {
         item.last_reply_at_str = dateDiff(+new Date(item.last_reply_at));
         item.tabStr = cnodeTag(item);
       });
-      state.entities = [...state.entities, ...topics];
-      // state.entities = [];
+      state.list = [...state.list, ...topics];
+      // state.list = [];
     },
     increasePage(state) {
       state.page += 1;
@@ -27,7 +27,7 @@ export default {
     },
     setTab(state, tab) {
       state.tab = tab;
-      state.entities = [];
+      state.list = [];
     },
   },
 
@@ -44,7 +44,7 @@ export default {
         })
         .then(({ data }) => {
           commit('setTopics', { data });
-          return (data || '').length;
+          // return (data || []).length;
         });
     },
   },

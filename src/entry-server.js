@@ -29,6 +29,7 @@ export default context => new Promise((resolve, reject) => {
     // console.log('matchedComponents', matchedComponents);
     // call asyncData() on all matched route components
     Promise.all(matchedComponents.map((Component) => {
+      // console.log(Component);
       if (Component.asyncData) {
         return Component.asyncData({
           store,
@@ -41,6 +42,7 @@ export default context => new Promise((resolve, reject) => {
       // When we attach the state to the context, and the `template` option
       // is used for the renderer, the state will automatically be
       // serialized and injected into the HTML as window.__INITIAL_STATE__.
+      console.log(store.state);
       context.state = store.state;
       resolve(app);
     }).catch(reject);

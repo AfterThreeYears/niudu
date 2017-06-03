@@ -1,7 +1,7 @@
 <template>
   <swipe-wrapper class="TabNavigation">
     <swipe-item
-      v-for="(item, idx) in data"
+      v-for="(item, idx) in tags"
       :key="idx"
       :class="{ 'TabNavigation-selectedItem': selectedIndex === idx }"
       class="TabNavigation-item"
@@ -17,6 +17,7 @@
 import { mapMutations, mapActions, mapState } from 'vuex';
 import lazyload from '@/libs/lazyload';
 import { SwipeWrapper, SwipeItem } from '@/component/common/Swipe';
+import { cnodeTagArr, v2exTagArr } from '@/config/tabs';
 import './TabNavigation.css';
 
 export default {
@@ -25,12 +26,33 @@ export default {
     SwipeWrapper,
     SwipeItem,
   },
-
-  props: {
-    data: {
-      type: Array,
-      default() { return []; },
-    },
+  watch: {
+    $route(newVal, oldVal) {
+      if (newVal.name === 'cnode') {
+        this.tags = [...cnodeTagArr];
+      } else if ( newVal.name === 'v2ex' ) {
+        this.tags = [...v2exTagArr];
+      }
+    }
+  },
+  mounted() {
+    const name = this.$route.name;
+    if (name === 'cnode') {
+      this.tags = [...cnodeTagArr];
+    } else if (name === 'v2ex') {
+      this.tags = [...v2exTagArr];
+    }
+  },
+  // props: {
+  //   data: {
+  //     type: Array,
+  //     default() { return []; },
+  //   },
+  // },
+  data() {
+    return {
+      tags: [],
+    };
   },
   computed: {
     ...mapState({
