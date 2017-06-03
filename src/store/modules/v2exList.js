@@ -1,7 +1,5 @@
 import axios from 'axios';
-import moment from 'moment';
 
-moment.locale('zh-cn');
 export default {
   namespaced: true,
   state: {

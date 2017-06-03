@@ -27,28 +27,14 @@ export default {
     SwipeItem,
   },
   watch: {
-    $route(newVal, oldVal) {
-      if (newVal.name === 'cnode') {
-        this.tags = [...cnodeTagArr];
-      } else if ( newVal.name === 'v2ex' ) {
-        this.tags = [...v2exTagArr];
-      }
-    }
+    $route({name}) {
+      this.setTag(name);
+    },
   },
   mounted() {
     const name = this.$route.name;
-    if (name === 'cnode') {
-      this.tags = [...cnodeTagArr];
-    } else if (name === 'v2ex') {
-      this.tags = [...v2exTagArr];
-    }
+    this.setTag(name);
   },
-  // props: {
-  //   data: {
-  //     type: Array,
-  //     default() { return []; },
-  //   },
-  // },
   data() {
     return {
       tags: [],
@@ -92,6 +78,13 @@ export default {
     },
     abortRequest() {
       // TODO 停止请求
+    },
+    setTag(name) {
+      if (name === 'cnode') {
+        this.tags = [...cnodeTagArr];
+      } else if (name === 'v2ex') {
+        this.tags = [...v2exTagArr];
+      }
     },
   },
 };

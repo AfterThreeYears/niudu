@@ -1,10 +1,12 @@
 import { createApp } from './app';
 import { env } from './helpers/ua';
 
+const isDev = process.env.NODE_ENV !== 'production';
 // since there could potentially be asynchronous route hooks or components,
 // we will be returning a Promise so that the server can wait until
 // everything is ready before rendering.
 export default context => new Promise((resolve, reject) => {
+  const s = isDev && Date.now();
   const { app, router, store } = createApp();
 
   // set server-side router's location
@@ -37,12 +39,13 @@ export default context => new Promise((resolve, reject) => {
         });
       }
     })).then(() => {
+      if (isDev) console.log(`data pre-fetch: ${Date.now() - s}ms`);
       // After all preFetch hooks are resolved, our store is now
       // filled with the state needed to render the app.
       // When we attach the state to the context, and the `template` option
       // is used for the renderer, the state will automatically be
       // serialized and injected into the HTML as window.__INITIAL_STATE__.
-      console.log(store.state);
+      // console.log(store.state);
       context.state = store.state;
       resolve(app);
     }).catch(reject);

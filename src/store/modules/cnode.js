@@ -17,7 +17,6 @@ export default {
         item.tabStr = cnodeTag(item);
       });
       state.list = [...state.list, ...topics];
-      // state.list = [];
     },
     increasePage(state) {
       state.page += 1;
@@ -44,7 +43,7 @@ export default {
         })
         .then(({ data }) => {
           commit('setTopics', { data });
-          // return (data || []).length;
+          return (data || []).length;
         });
     },
   },

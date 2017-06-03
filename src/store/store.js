@@ -6,6 +6,7 @@ import cNodeDetail from './modules/cNodeDetail';
 import v2exList from './modules/v2exList';
 import v2exDetail from './modules/v2exDetail';
 import shared from './modules/shared';
+import test from './modules/test';
 
 export default function createStore() {
   const plugins = [];
@@ -17,7 +18,7 @@ export default function createStore() {
   }
 
   return new Store({
-    // plugins,
+    plugins,
     strict: process.env.NODE_ENV !== 'production',
     modules: {
       header,
@@ -26,6 +27,7 @@ export default function createStore() {
       v2exList,
       v2exDetail,
       shared,
+      test,
     },
   });
 }

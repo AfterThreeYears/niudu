@@ -37,7 +37,6 @@
 import { mapState, mapActions, mapMutations } from 'vuex';
 import LazyImg from '@/component/common/LazyImg';
 import titleMixin from '@/mixins/title';
-// import { v2exTagArr } from '@/config/tabs';
 import './V2EX.css';
 
 export default {
@@ -60,14 +59,8 @@ export default {
       fetchTopics: 'v2exList/fetchTopics',
     }),
     ...mapMutations({
-      // allShow: 'header/allShow',
-      // setTagArrs: 'header/setTagArrs',
       setLoading: 'header/setLoading',
     }),
-  },
-  created() {
-    // this.allShow();
-    // this.setTagArrs(v2exTagArr);
   },
   computed: {
     ...mapState({

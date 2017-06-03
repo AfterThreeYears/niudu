@@ -33,22 +33,14 @@ export default {
     TabNavigation,
   },
   watch: {
-    $route(newVal) {
-      const {name} = newVal;
-      if (name === 'cnode' || name === 'v2ex' || name === 'test') {
-        this.showHead = this.showNav = this.showTab = true;
-      } else {
-        this.showHead = this.showNav = this.showTab = false;
-      }
+    $route({name}) {
+      // TODO 回头优化一把
+      this.setDisPlay(name);
     },
   },
   mounted() {
     const {name} = this.$route;
-    if (name === 'cnode' || name === 'v2ex' || name === 'test') {
-      this.showHead = this.showNav = this.showTab = true;
-    } else {
-      this.showHead = this.showNav = this.showTab = false;
-    }
+    this.setDisPlay(name);
   },
   methods: {
     handleNavigationSelect({url, id}) {
@@ -58,17 +50,17 @@ export default {
           id,
         },
       });
-    }
+    },
+    setDisPlay(name) {
+      const tagArr = ['cnode', 'v2ex', 'test'];
+      if (tagArr.includes(name)) {
+        this.showHead = this.showNav = this.showTab = true;
+      } else {
+        this.showHead = this.showNav = this.showTab = false;
+      }
+    },
   },
   computed: {
-    // ...mapState({
-    //   showNav(state) {
-    //     return state.header.showNav;
-    //   },
-    //   showTab(state) {
-    //     return state.header.showTab;
-    //   },
-    // }),
     index() {
       return +this.$route.query.id || 0;
     }
