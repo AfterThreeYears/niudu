@@ -48,6 +48,8 @@
     "memory-fs": "^0.4.1",
     "moment": "^2.18.1",
     "normalize.css": "^7.0.0",
+    "reset-css": "^2.2.0",
+    "reset.css": "^2.0.2",
     "serve-favicon": "^2.4.3",
     "superagent": "^3.5.2",
     "superagent-proxy": "^1.0.2",

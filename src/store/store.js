@@ -5,6 +5,7 @@ import cnode from './modules/cnode';
 import cNodeDetail from './modules/cNodeDetail';
 import v2exList from './modules/v2exList';
 import v2exDetail from './modules/v2exDetail';
+import zhihu from './modules/zhihu';
 import shared from './modules/shared';
 import test from './modules/test';
 
@@ -26,6 +27,7 @@ export default function createStore() {
       cNodeDetail,
       v2exList,
       v2exDetail,
+      zhihu,
       shared,
       test,
     },

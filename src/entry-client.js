@@ -1,5 +1,5 @@
 import 'es6-promise/auto';
-import 'normalize.css';
+import 'reset.css';
 import 'github-markdown-css';
 import '../public/styles/mobile.css';
 import { createApp } from './app';

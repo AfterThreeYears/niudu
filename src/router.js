@@ -9,6 +9,7 @@ import CNode from '@/component/CNode/CNode';
 import CNodeDetail from '@/component/CNodeDetail/CNodeDetail';
 import V2EX from '@/component/V2EX/V2EX';
 import V2EXDetail from '@/component/V2EXDetail/V2EXDetail';
+import Zhihu from '@/component/Zhihu/Zhihu';
 // import Test from '@/component/Test';
 const Test = resolve => require(['./component/Test'], resolve);
 const Test1 = resolve => require(['./component/Test1'], resolve);
@@ -27,16 +28,6 @@ export function createRouter() {
       return { x: 0, y: 0 };
     },
     routes: [
-      {
-        path: '/test',
-        component: Test,
-        name: 'test',
-      },
-      {
-        path: '/test1',
-        component: Test1,
-        name: 'test1',
-      },
       {
         path: '/',
         redirect: {
@@ -65,6 +56,22 @@ export function createRouter() {
         path: '/v2ex/:id',
         component: V2EXDetail,
         name: 'v2exDetail',
+      },
+      {
+        path: '/zhihu',
+        component: Zhihu,
+        name: 'zhihu',
+        meta: { load: true },
+      },
+      {
+        path: '/test',
+        component: Test,
+        name: 'test',
+      },
+      {
+        path: '/test1',
+        component: Test1,
+        name: 'test1',
       },
     ],
   });

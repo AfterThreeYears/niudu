@@ -52,3 +52,13 @@ export const dateDiff = (hisTime, nowTime) => {
   if (resultMin >= 1) return `${parseInt(resultMin, 10)}分钟前`;
   return '刚刚';
 };
+
+// return 20170605
+export const formatDate = (now) => {
+  const d = new Date(now || Date.now());
+  const month = d.getMonth() + 1;
+  const monthStr = `${month}`.length === 1 ? `0${month}` : month;
+  const date = d.getDate();
+  const dateStr = `${date}`.length === 1 ? `0${date}` : date;
+  return `${d.getFullYear()}${monthStr}${dateStr}`;
+};

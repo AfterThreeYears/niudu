@@ -10,6 +10,11 @@ const base = [
     id: 1,
     url: 'cnode',
   },
+  {
+    title: '知乎日报',
+    id: 2,
+    url: 'zhihu',
+  },
 ];
 
 const test = [
