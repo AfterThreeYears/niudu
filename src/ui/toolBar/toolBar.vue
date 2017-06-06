@@ -54,7 +54,6 @@ export default {
     },
   },
   beforeDestroy() {
-    console.log(1);
     removeEventListener('scroll', this.throttleTraverseImages);
   },
 }

@@ -68,6 +68,15 @@ app.use(proxy('/mobile', {
   changeOrigin: true,
 }));
 
+app.use(proxy('/zhihu', {
+  target: 'http://news-at.zhihu.com',
+  rewrite(url) {
+    return url.replace(/^\/zhihu/, '');
+  },
+  logs: true,
+  changeOrigin: true,
+}));
+
 app.use(bodyParser());
 
 app.use(async (ctx, next) => {

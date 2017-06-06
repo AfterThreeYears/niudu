@@ -13,6 +13,7 @@ module.exports = merge(baseConfig, {
       'vue-router',
       'vuex',
       'vuex-router-sync',
+      'zepto',
     ],
   },
   plugins: [
@@ -58,6 +59,7 @@ if (isProd) {
     new SWPrecachePlugin({
       cacheId: 'vue-niudu',
       filename: 'service-worker.js',
+      minify: true,
       dontCacheBustUrlsMatching: /./,
       staticFileGlobsIgnorePatterns: [/\.map$/, /\.json$/],
       runtimeCaching: [

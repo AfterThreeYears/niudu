@@ -4,23 +4,20 @@ import { formatDate } from '@/helpers/time';
 export default {
   namespaced: true,
   state: {
-    news: {},
-    now: Date.now(),
+    news: [],
+    date: Date.now(),
   },
 
   mutations: {
     setNews(state, { date, stories }) {
-      state.news = {
-        ...state.news,
-        [date]: stories,
-      };
+      state.date -= 24 * 60 * 60 * 1000;
+      state.news.push([date, stories]);
     },
   },
 
   actions: {
     fetchNews({ commit, state }) {
-      const { date } = state;
-      const url = `http://news-at.zhihu.com/api/4/news/before/${formatDate(date)}`;
+      const url = `http://localhost:9092/zhihu/api/4/news/before/${formatDate(state.date)}`;
       console.log(`GET------${url}`);
       return axios
         .get(url)

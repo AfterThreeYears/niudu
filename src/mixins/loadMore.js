@@ -11,7 +11,7 @@ const loadMore = {
   },
   mounted() {
     const hasLoad = () => document.body.scrollTop +
-     window.innerHeight + this.viewportDistance >= document.body.clientHeight;
+     window.innerHeight + this.viewportDistance >= document.body.scrollHeight;
     const checkHeight = () => {
       if (hasLoad() && !this.isLoading && !this.isEnd) {
         this.autoFetch(false);
