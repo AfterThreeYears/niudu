@@ -12,7 +12,32 @@ export default {
         let index = 0;
         if (this.location > document.body.scrollTop) {
           // 往上
-
+          Array.from(fixedEl).forEach((item, idx) => {
+            if (item.style.position === 'fixed') return;
+            const absTop = item.getBoundingClientRect().top;
+            console.log(absTop);
+            if (absTop < 80) {
+              item.style.position = 'absolute';
+              console.log('top是', document.body.scrollTop + absTop,
+               `document.body.scrollTop是${document.body.scrollTop}`,
+               `absTop是${absTop}`,
+             );
+              item.style.top = `${document.body.scrollTop + absTop}px`;
+              const prev = $(item).parents('li').prev();
+              if (prev.length) {
+                prev.find('.zhihu-fixed')[0].style.top = `${-80 + absTop}px`;
+              }
+            }
+            if (absTop < 0) {
+              item.style.position = 'fixed';
+              item.style.top = '0';
+              // $(item).next('.zhihu-fixed-bottom').css('margin-bottom', '80px');
+            }
+            if (this.top > absTop) {
+              this.top = absTop;
+              index = idx;
+            }
+          });
         } else {
           // 往下
           // console.log(Array.from(fixedEl));
@@ -20,17 +45,22 @@ export default {
             if (item.style.position === 'fixed') return;
             const absTop = item.getBoundingClientRect().top;
             console.log(absTop);
-            if (absTop < 36) {
+            if (absTop < 80) {
               item.style.position = 'absolute';
-              console.log(document.body.scrollTop + absTop, 'top');
+              console.log('top是', document.body.scrollTop + absTop,
+               `document.body.scrollTop是${document.body.scrollTop}`,
+               `absTop是${absTop}`,
+             );
               item.style.top = `${document.body.scrollTop + absTop}px`;
-              // item.parentNode.previousElementSibling.firstElementChild.style.position = 'absolute';
-              // item.parentNode.previousElementSibling.firstElementChild.style.top = 'absolute';
+              const prev = $(item).parents('li').prev();
+              if (prev.length) {
+                prev.find('.zhihu-fixed')[0].style.top = `${-80 + absTop}px`;
+              }
             }
             if (absTop < 0) {
               item.style.position = 'fixed';
               item.style.top = '0';
-              window.$(item).next('.zhihu-fixed-bottom').css('margin-bottom', '36px');
+              // $(item).next('.zhihu-fixed-bottom').css('margin-bottom', '80px');
             }
             if (this.top > absTop) {
               this.top = absTop;

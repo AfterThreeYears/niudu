@@ -41,6 +41,9 @@ module.exports = merge(baseConfig, {
       name: 'manifest',
     }),
     new VueSSRClientPlugin(),
+    new webpack.ProvidePlugin({
+      $: 'zepto',
+    }),
   ],
 });
 

@@ -63,6 +63,10 @@ module.exports = {
         test: /\.svg/,
         loader: 'svg-loader',
       },
+      {
+        test: require.resolve('zepto'),
+        loader: 'exports-loader?window.Zepto!script-loader',
+      },
     ],
   },
   performance: {
