@@ -1,17 +1,25 @@
 <template>
-  <div>
-    test1
-    <span ref="span"></span>
-  </div>
+  <fixed :lists="lists" />
 </template>
 <script>
-  import ReferrerKiller from '@/libs/referrer-killer';
+  import fixed from '@/ui/fixed';
 
   export default {
     data() {
       return {
-        html: 123,
+        lists: [
+            ["A", [{name: '安徽'}, {name: '安徽'}, {name: '安徽'}, {name: '安徽'}, {name: '安徽'}, {name: '安徽'}, {name: '安徽'}]],
+            ["B", [{name: '部署'}, {name: '部署'}, {name: '部署'}, {name: '部署'}, {name: '部署'}, {name: '部署'}]],
+            ["C", [{name: '测试'}, {name: '测试'}, {name: '测试'}, {name: '测试'}, {name: '测试'}, {name: '测试'},]],
+            ["D", [{name: '地区'}, {name: '地区'}, {name: '地区'}, {name: '地区'}, {name: '地区'}, {name: '地区'}, {name: '地区'}, {name: '地区'}, {name: '地区'}]],
+            ["E", [{name: '饿了么'}, {name: '饿了么'}, {name: '饿了么'}, {name: '饿了么'}, {name: '饿了么'}, {name: '饿了么'}, {name: '饿了么'}, {name: '饿了么'}]],
+            ["F", [{name: '伐木'}, {name: '伐木'}, {name: '伐木'}, {name: '伐木'}, {name: '伐木'}, {name: '伐木'}, {name: '伐木'}, {name: '伐木'}]],
+            ["G", [{name: '胳肢'}, {name: '胳肢'}, {name: '胳肢'}, {name: '胳肢'}, {name: '胳肢'}, {name: '胳肢'}, {name: '胳肢'}, {name: '胳肢'}, {name: '胳肢'}, {name: '胳肢'}]],
+        ]
       };
+    },
+    components: {
+      fixed,
     },
     mounted() {
       // this.$refs.span.innerHTML = this.html;

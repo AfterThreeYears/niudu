@@ -50,16 +50,19 @@ export default {
               console.log('top是', document.body.scrollTop + absTop,
                `document.body.scrollTop是${document.body.scrollTop}`,
                `absTop是${absTop}`,
-             );
+              );
               item.style.top = `${document.body.scrollTop + absTop}px`;
               const prev = $(item).parents('li').prev();
               if (prev.length) {
                 prev.find('.zhihu-fixed')[0].style.top = `${-80 + absTop}px`;
               }
             }
-            if (absTop < 0) {
+            if (absTop <= 0) {
               item.style.position = 'fixed';
               item.style.top = '0';
+              const siblings = $(item).parents('li').siblings();
+              console.log(item, siblings);
+              siblings.find('.zhihu-fixed')[0].style.position = 'initial';
               // $(item).next('.zhihu-fixed-bottom').css('margin-bottom', '80px');
             }
             if (this.top > absTop) {
