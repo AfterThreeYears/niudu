@@ -1,7 +1,6 @@
 import axios from 'axios';
-import moment from 'moment';
+import { dateDiff } from '@/helpers/time';
 
-moment.locale('zh-cn');
 export default {
   namespaced: true,
   state: {
@@ -17,12 +16,12 @@ export default {
   mutations: {
     setTopicsDetail(state, { data: detail }) {
       state.detail = {};
-      detail.create_atStr = moment(detail.create_at).fromNow();
+      detail.create_atStr = dateDiff(new Date(detail.create_at));
       // 把所有回复的人取出来
       const obj = {};
       (detail.replies || []).map((item) => {
         obj[item.id] = item.author.loginname;
-        item.create_atStr = moment(item.create_at).fromNow();
+        item.create_atStr = dateDiff(new Date(item.create_at));
       });
       // 回复列表
       // 把列表里面所有的id和name先存到map里，然后第二次循环就可以取到所有回复的人了

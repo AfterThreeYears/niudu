@@ -14,8 +14,12 @@
 
 .CNodeDetail-info {
   font-size: 0.34rem;
+  line-height: 1.2;
 }
 
+.CNodeDetail-replies {
+    font-size: 0.32rem;
+}
 .CNodeDetail-info span {
   margin-right: 0.2rem;
 }
@@ -96,4 +100,40 @@
 
 .markdown_editor.in_editor .markdown_in_editor,.markdown_editor.in_preview .markdown_in_preview {
     display: block
+}
+pre {
+    background: #fee9cc;
+    border: 1px dashed #ccc;
+    line-height: 22px
+}
+
+code {
+    padding: 0;
+    border: none
+}
+
+p code {
+    background: 0 0;
+    color: #7f7f7f;
+    margin: 0 1px;
+    padding: 1px 4px;
+    border-radius: 1px
+}
+
+div pre.prettyprint {
+    font-size: 14px;
+    padding: 0 15px;
+    border: none;
+    margin: 20px -10px;
+    background: #f7f7f7;
+    white-space: pre-wrap;
+    tab-size: 4;
+}
+
+form,textarea {
+    margin-bottom: 0
+}
+
+input,textarea {
+    background: hsla(0,0%,0%,0)
 }

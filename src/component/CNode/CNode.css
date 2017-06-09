@@ -38,6 +38,7 @@
 .CNode-detail-loginname {
   color: #111;
   font-size: .4rem;
+  padding: 0 0 0.03rem;
 }
 
 .CNode-detail-last_reply_at {

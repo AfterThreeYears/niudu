@@ -52,16 +52,19 @@
 
 .v2exDetail-detail-left{
   width: 85%;
-}
-
-.v2exDetail-replyContent img {
-  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .v2exDetail-replyContent a{
   word-break: break-all;
 }
 
+.v2exDetail-replyContent img {
+  max-width: 100%;
+}
+
 .markdown-body img {
-  width: 100%;
+  max-width: 100%;
 }

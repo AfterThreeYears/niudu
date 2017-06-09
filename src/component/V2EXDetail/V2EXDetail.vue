@@ -17,12 +17,12 @@
     <hr />
     <ul>
       <li
-        class="v2exDetail-list"
+        class="v2exDetail-list clearfix"
         v-for="(reply, idx) in detail.replier"
         :key="idx"
       >
 
-        <div class="clearfix v2exDetail-headPic-wrap">
+        <div class="v2exDetail-headPic-wrap">
           <lazy-img
             :src="reply.avatar"
             :alt="reply.avatar"
