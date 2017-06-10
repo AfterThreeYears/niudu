@@ -112,6 +112,7 @@ export default {
     background: #ccc;
     margin: 0 auto;
     width: 2rem;
+    display: block;
   }
 
 </style>

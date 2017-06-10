@@ -38,13 +38,13 @@
 .CNode-detail-loginname {
   color: #111;
   font-size: .4rem;
-  padding: 0 0 0.03rem;
+  padding-bottom: 0.03rem;
 }
 
 .CNode-detail-last_reply_at {
   font-size: 0.38rem;
   color: #7e7e7e;
-  margin-top: 0.15rem;
+  margin-top: 0.1rem;
 }
 
 .CNode-detail-params {

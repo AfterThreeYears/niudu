@@ -46,11 +46,13 @@
       :is-end="isEnd"
       @load="handleFetchTopics"
     />
+    <bottom-tool />
   </div>
 </template>
 
 <script>
 import { mapMutations, mapState, mapActions } from 'vuex';
+import BottomTool from '@/component/common/BottomTool';
 import InfiniteScroll from '@/component/common/InfiniteScroll';
 import LazyImg from '@/component/common/LazyImg';
 import titleMixin from '@/mixins/title';
@@ -85,6 +87,7 @@ export default {
   components: {
     LazyImg,
     InfiniteScroll,
+    'bottom-tool': BottomTool,
   },
   computed: {
     ...mapState({

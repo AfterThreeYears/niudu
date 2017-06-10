@@ -43,18 +43,19 @@
         </section>
       </li>
     </ul>
-    <tool-bar>
-      <ui-icon name="alipay" />
-    </tool-bar>
+    <bottom-tool />
   </div>
 </template>
 
 <script>
 import { mapMutations, mapState, mapActions, mapGetters } from 'vuex';
+import BottomTool from '@/component/common/BottomTool';
 import LazyImg from '@/component/common/LazyImg';
 import titleMixin from '@/mixins/title';
 import {cnodeTagMap} from '@/config/tabs';
 import './CNodeDetail.css';
+
+console.log(BottomTool);
 
 export default {
   name: 'CNode-detail',
@@ -87,6 +88,7 @@ export default {
   },
   components: {
     LazyImg,
+    'bottom-tool': BottomTool,
   },
   computed: {
     ...mapState({

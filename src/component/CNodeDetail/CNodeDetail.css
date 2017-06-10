@@ -35,6 +35,10 @@
   display: flex;
 }
 
+.CNodeDetail-replyList img {
+  max-width: 100%;
+}
+
 .CNodeDetail-replyList:last-child {
   border-bottom: 0;
   padding: 0.3rem 0 0;
@@ -78,24 +82,28 @@
   text-align: right;
 }
 
-.panel .markdown-text a {
-    color: #08c
+.markdown-text a {
+    color: #08c;
+}
+
+.markdown-text img {
+    max-width: 100%;
 }
 
 .preview {
     padding: .5em;
     font-size: 0.2rem;
     min-height: 200px;
-    word-break: break-all
+    word-break: break-all;
 }
 
 .preview p>img {
     display: block;
-    box-shadow: 0 0 4px rgba(0,0,0,.6)
+    box-shadow: 0 0 4px rgba(0,0,0,.6);
 }
 
 .markdown_editor .markdown_in_editor,.markdown_editor .markdown_in_preview {
-    display: none
+    display: none;
 }
 
 .markdown_editor.in_editor .markdown_in_editor,.markdown_editor.in_preview .markdown_in_preview {

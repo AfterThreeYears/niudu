@@ -1,5 +1,5 @@
 <template>
-  <div class="ui-toolBar" :style="{bottom: bottom + 'px'}" ref="toolBar">
+  <div class="ui-toolBar" :style="{transform: Y}" ref="toolBar">
     <slot></slot>
   </div>
 </template>
@@ -22,6 +22,11 @@ export default {
     this.initData();
     this.initEvent();
   },
+  computed: {
+    Y() {
+      return `translate3d(0, ${-this.bottom}px, 0)`;
+    }
+  },
   methods: {
     initEvent() {
       this.throttleTraverseImages = throttle(this.initBar, this.throttleInterval);
@@ -37,17 +42,17 @@ export default {
       // console.log(`this.location: ${this.location}, document.body.scrollTop: ${document.body.scrollTop}`);
       if (this.location - document.body.scrollTop > 0) {
         //  往上 显示
-        if ( this.bottom < 0 ) {
+        if ( this.bottom < this.fontSize ) {
           this.bottom = this.bottom + (this.location - document.body.scrollTop);
         } else {
-          this.bottom = 0;
+          this.bottom = this.fontSize;
         }
       } else if (document.body.scrollTop - this.location > 0) {
         // 往下
-        if (this.bottom > this.fontSize) {
+        if (this.bottom > this.fontSize * 2) {
           this.bottom = this.bottom - (document.body.scrollTop - this.location);
         } else {
-          this.bottom = this.fontSize;
+          this.bottom = this.fontSize * 2;
         }
       }
       this.location = document.body.scrollTop;
@@ -60,9 +65,19 @@ export default {
 </script>
 <style>
 .ui-toolBar {
-  width: 10rem;
+  width: 100%;
   height: 1rem;
-  background: red;
+  background: #fff;
+  border-top: 1px solid rgb(204, 204, 204);
   position: fixed;
+  left: 0;
+  bottom: 1rem;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.ui-toolBar *:active {
+  background: #ccc;
 }
 </style>
