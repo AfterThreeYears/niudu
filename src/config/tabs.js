@@ -32,6 +32,11 @@ export const cnodeTagArr = [
     tab: 'good',
     type: 'cnode',
   },
+  {
+    title: '测试',
+    tab: 'dev',
+    type: 'cnode',
+  },
 ];
 
 export const v2exTagArr = [

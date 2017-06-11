@@ -1,6 +1,8 @@
 import axios from 'axios';
 import { dateDiff } from '@/helpers/time';
 
+const baseUrl = 'https://cnodejs.org/api/v1';
+
 export default {
   namespaced: true,
   state: {
@@ -36,8 +38,22 @@ export default {
   actions: {
     fetchTopicsDetail({ commit }, { id }) {
       return axios
-        .get(`https://cnodejs.org/api/v1/topic/${id}`)
+        .get(`${baseUrl}/topic/${id}`)
         .then(({ data }) => commit('setTopicsDetail', { data }));
+    },
+    fetchComment({ commit }, body) {
+      body.content = `${body.content}
+      来自[web版牛读](https://github.com/AfterThreeYears/niudu)`;
+      return axios
+        .post(`${baseUrl}/topic/${body.id}/replies`, body)
+        .then(({ data }) => data);
+    },
+    validateLogined({ commit }, accesstoken) {
+      return axios
+        .post(`${baseUrl}/accesstoken`, {
+          accesstoken,
+        })
+        .then(res => res.data);
     },
   },
 };

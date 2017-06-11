@@ -2,7 +2,7 @@
   <div id="CNode">
     <ul>
       <li class="CNode-List" v-for="topic in cnodeTopics">
-        <router-link :to="{ name: 'CNodeDetail', params: { id: topic.id }}">
+        <router-link :to='"/cnode/" + topic.id + "#bottom"' >
           <h6 class="text-line-clamp2v CNode-title">{{topic.title}}</h6>
           <div class="CNode-detail">
             <div class="clearfix CNode-detail-info">

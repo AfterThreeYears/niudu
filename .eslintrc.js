@@ -45,5 +45,6 @@ module.exports = {
     'array-callback-return': 0,
     'import/no-dynamic-require': 0,
     'camelcase': 0,
+    "import/newline-after-import": 0,
   }
 }

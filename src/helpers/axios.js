@@ -8,12 +8,11 @@ export const getResponseErrorInterceptor = errorCallback => (error) => {
     logger.log(error);
     errorCallback(error.message);
   }
-
+  // return Promise.resolve(error.response.data);
   throw error;
 };
 
 export const getResponseSuccessInterceptor = errorCallback => (res) => {
-  // console.log('2222222222')
   if (!res.headers || res.config.skipResponseInterceptor) return res;
 
   try {

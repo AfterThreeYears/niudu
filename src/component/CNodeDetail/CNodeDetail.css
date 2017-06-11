@@ -82,8 +82,12 @@
   text-align: right;
 }
 
+.markdown-text {
+  word-break: break-word;
+}
+
 .markdown-text a {
-    color: #08c;
+  color: #08c;
 }
 
 .markdown-text img {

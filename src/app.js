@@ -8,12 +8,14 @@ import App from './App.vue';
 import badge from './ui/badge';
 import toolBar from './ui/toolBar';
 import Icon from './ui/icon/Icon';
+import mask from './ui/mask';
 
 initAxios();
 Vue.use(Vuex);
-Vue.component(badge.name, badge);
-Vue.component(Icon.name, Icon);
-Vue.component(toolBar.name, toolBar);
+
+[badge, toolBar, Icon, mask].forEach((item) => {
+  Vue.component(item.name, item);
+});
 
 const store = createStore();
 const router = createRouter();

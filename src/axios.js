@@ -1,10 +1,10 @@
 import axios from 'axios';
 import {
-  // getResponseErrorInterceptor,
+  getResponseErrorInterceptor,
   getResponseSuccessInterceptor,
   getBaseURL,
 } from '@/helpers/axios';
-// import logger from '@/helpers/logger';
+import logger from '@/helpers/logger';
 
 function init() {
   axios.defaults.baseURL = getBaseURL('https://api.vv726.top');
@@ -12,7 +12,7 @@ function init() {
 
   axios.interceptors.response.use(
     getResponseSuccessInterceptor(),
-    // getResponseErrorInterceptor(logger.error),
+    getResponseErrorInterceptor(logger.error),
   );
 }
 

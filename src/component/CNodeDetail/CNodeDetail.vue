@@ -20,6 +20,7 @@
         v-for="(reply, index) in detail.replies"
         :key="index"
         class="CNodeDetail-replyList"
+        @click="edit(true, translate(reply.author.loginname))"
       >
         <div class="CNodeDetail-headPic-wrap">
           <lazy-img
@@ -43,7 +44,10 @@
         </section>
       </li>
     </ul>
-    <bottom-tool />
+    <bottom-tool @edit="edit"/>
+    <ui-mask :mask-state="maskState" @closeCallback="edit">
+      <cnode-operate ref="operate" :reply_id="reply_id" />
+    </ui-mask>
   </div>
 </template>
 
@@ -51,11 +55,10 @@
 import { mapMutations, mapState, mapActions, mapGetters } from 'vuex';
 import BottomTool from '@/component/common/BottomTool';
 import LazyImg from '@/component/common/LazyImg';
+import CnodeOperate from '@/component/CnodeOperate';
 import titleMixin from '@/mixins/title';
 import {cnodeTagMap} from '@/config/tabs';
 import './CNodeDetail.css';
-
-console.log(BottomTool);
 
 export default {
   name: 'CNode-detail',
@@ -70,6 +73,8 @@ export default {
   data() {
     return {
       cnodeTagMap,
+      maskState: false,
+      reply_id: '',
     };
   },
   async beforeRouteLeave(to, from, next) {
@@ -89,6 +94,7 @@ export default {
   components: {
     LazyImg,
     'bottom-tool': BottomTool,
+    'cnode-operate': CnodeOperate,
   },
   computed: {
     ...mapState({
@@ -111,6 +117,16 @@ export default {
       fetchTopicsDetail: 'cNodeDetail/fetchTopicsDetail',
       fetchTopics: 'cnode/fetchTopics',
     }),
+    edit(status, text) {
+      this.maskState = status;
+      this.$refs.operate.setContent(text);
+      if (!status) {
+        this.reply_id = '';
+      }
+    },
+    translate(name) {
+      return `@${name} `;
+    },
   },
 };
 </script>

@@ -6,7 +6,7 @@
     <div class="bottom-tool" @click="backTop">
       <ui-icon name="left-arrow" class="rotate90" />
     </div>
-    <div class="bottom-tool">
+    <div class="bottom-tool" @click="edit" >
       <ui-icon name="edit" />
     </div>
     <div class="bottom-tool">
@@ -39,7 +39,10 @@ export default {
     },
     backTop() {
       this.requestAnimationFrame = requestAnimationFrame(this.scroll);
-    }
+    },
+    edit() {
+      this.$emit('edit', true);
+    },
   },
 };
 </script>
