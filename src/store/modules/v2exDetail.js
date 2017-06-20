@@ -1,4 +1,5 @@
 import axios from 'axios';
+const Cookies = require('js-cookie');
 
 export default {
   namespaced: true,
@@ -28,6 +29,18 @@ export default {
     resetPage(state) {
       state.pageIndex = 1;
     },
+    setCookie(state, cookie = []) {
+      // console.log(cookie);
+      cookie.forEach(({ name, value, secure }) => {
+        Cookies.set(
+          name,
+          value,
+          { path: '/v2ex',
+            expires: 365,
+            secure,
+          });
+      });
+    },
   },
 
   actions: {
@@ -38,6 +51,22 @@ export default {
         .then(({ data }) => {
           commit('setDetail', { data });
           return (data || { replier: '' }).replier.length;
+        });
+    },
+    fetchSignin({ commit }, body) {
+      console.log('/v2ex/signin');
+      return axios
+        .post('/v2ex/signin', body)
+        .then(({ data }) => {
+          commit('setCookie', data);
+        });
+    },
+    fetchComment({ commit }, body) {
+      console.log('/v2ex/reply');
+      return axios
+        .post('/v2ex/reply', body)
+        .then(({ data }) => {
+          return data.success;
         });
     },
   },

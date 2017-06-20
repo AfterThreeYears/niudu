@@ -46,7 +46,10 @@
       :is-end="isEnd"
       @load="handleFetchTopics"
     />
-    <bottom-tool />
+    <bottom-tool @edit="edit"/>
+    <ui-mask :mask-state="maskState" @closeCallback="edit">
+      <v2ex-operate ref="v2ex" :reply_id="reply_id" />
+    </ui-mask>
   </div>
 </template>
 
@@ -54,6 +57,7 @@
 import { mapMutations, mapState, mapActions } from 'vuex';
 import BottomTool from '@/component/common/BottomTool';
 import InfiniteScroll from '@/component/common/InfiniteScroll';
+import V2EXOperate from '@/component/V2EXOperate';
 import LazyImg from '@/component/common/LazyImg';
 import titleMixin from '@/mixins/title';
 import './V2EXDetail.css';
@@ -65,6 +69,8 @@ export default {
       isLoading: false,
       isEnd: false,
       loadErr: false,
+      reply_id: '',
+      maskState: false,
     }
   },
   asyncData({ store, route }) {
@@ -88,6 +94,7 @@ export default {
     LazyImg,
     InfiniteScroll,
     'bottom-tool': BottomTool,
+    'v2ex-operate': V2EXOperate,
   },
   computed: {
     ...mapState({
@@ -158,6 +165,13 @@ export default {
           this.loadErr = true;
         }
       });
+    },
+    edit(status, text) {
+      this.maskState = status;
+      this.$refs.v2ex.setContent(text);
+      if (!status) {
+        this.reply_id = '';
+      }
     },
   },
 };

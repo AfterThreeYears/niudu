@@ -46,5 +46,9 @@ module.exports = {
     'import/no-dynamic-require': 0,
     'camelcase': 0,
     "import/newline-after-import": 0,
+    'arrow-body-style': 0,
+    'prefer-arrow-callback': 0,
+    'func-names': 0,
+    'space-before-function-paren': 0,
   }
 }

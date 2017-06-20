@@ -6,6 +6,7 @@ const compress = require('koa-compress');
 const mount = require('koa-mount');
 const router = require('./routes/index');
 const proxy = require('./helpers/proxy');
+
 const { MOCK_PORT } = require('../../config.js');
 
 const app = new Koa();

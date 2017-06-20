@@ -8,7 +8,7 @@ import logger from '@/helpers/logger';
 
 function init() {
   axios.defaults.baseURL = getBaseURL('https://api.vv726.top');
-  // axios.defaults.withCredentials = true;
+  axios.defaults.withCredentials = true;
 
   axios.interceptors.response.use(
     getResponseSuccessInterceptor(),

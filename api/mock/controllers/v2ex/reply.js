@@ -1,39 +1,29 @@
-const request = require('superagent');
-const { v2exDetail, postServer } = require('../../config/url');
-const { v2exCookie } = require('../../config/cookie');
-const { httpHeader } = require('../../config/header');
-const getListData = require('../../models/v2ex/detail');
+const cookie = require('cookie');
 const {
   sendSuccess,
   sendFailure,
 } = require('../../helpers/controller');
+const reply = require('../../models/v2ex/reply');
+const { translateCookie } = require('../../config/unit');
 
-const fn = (ctx, { id, once, content }) => new Promise((resolve, reject) => {
-  const url = `${v2exDetail}/${id}`;
-  // const url = postServer;
-  request.post(url)
-    .set(httpHeader)
-    .set('path', `/t/${id}`)
-    .set('cookie', v2exCookie)
-    .set('referer', url)
-    .type('form')
-    .send({ once, content })
-    .end((err, res) => {
-      if (err) {
-        reject(err);
-        return;
-      }
-      resolve(res.text);
-    });
-});
+const main = async (ctx, body) => {
+  try {
+    console.log(body);
+    return await reply(body);
+  } catch (e) {
+    console.log(e);
+    return {};
+  }
+};
 
 async function setReply(ctx) {
   try {
-    const { once, content } = ctx.request.body;
-    const result = await fn(ctx, {
-      id: ctx.params.id,
-      once,
+    const { content, id } = ctx.request.body;
+    const cookies = translateCookie(cookie.parse(ctx.request.header.cookie));
+    const result = await main(ctx, {
+      id,
       content,
+      cookies,
     });
     sendSuccess(ctx, result);
   } catch (e) {
@@ -41,6 +31,4 @@ async function setReply(ctx) {
   }
 }
 
-module.exports = {
-  setReply,
-};
+module.exports = setReply;
