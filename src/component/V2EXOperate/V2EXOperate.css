@@ -1,3 +1,30 @@
 .V2EXOperate {
   color: #fff;
 }
+.V2EXOperate-section {
+  background: #ddd;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem 1rem 0;
+  position: relative;
+  height: 5rem;
+}
+
+.V2EXOperate-title {
+  font-size: 0.3rem;
+}
+
+.V2EXOperate-textarea {
+  border: 0;
+  margin-top: 1rem;
+  color: #fff;
+  font-size: 0.3rem;
+}
+
+.V2EXOperate-reply {
+  margin: 1rem 0;
+  display: inline-block;
+  background: #ccc;
+  border: 0;
+  font-size: 0.3rem;
+}

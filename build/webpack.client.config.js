@@ -2,7 +2,7 @@ const webpack = require('webpack');
 const merge = require('webpack-merge');
 const baseConfig = require('./webpack.base.config.js');
 const VueSSRClientPlugin = require('vue-server-renderer/client-plugin');
-const SWPrecachePlugin = require('sw-precache-webpack-plugin');
+// const SWPrecachePlugin = require('sw-precache-webpack-plugin');
 
 const isProd = process.env.NODE_ENV === 'production';
 module.exports = merge(baseConfig, {
@@ -59,30 +59,30 @@ if (isProd) {
       minimize: true,
     }),
     // auto generate service worker
-    new SWPrecachePlugin({
-      cacheId: 'vue-niudu',
-      filename: 'service-worker.js',
-      minify: true,
-      dontCacheBustUrlsMatching: /./,
-      staticFileGlobsIgnorePatterns: [/\.map$/, /\.json$/],
-      runtimeCaching: [
-        {
-          urlPattern: '/',
-          handler: 'networkFirst',
-        },
-        {
-          urlPattern: /\/(v2ex|cnode)/,
-          handler: 'networkFirst',
-        },
-        {
-          urlPattern: '/v2ex/:id',
-          handler: 'networkFirst',
-        },
-        {
-          urlPattern: '/cnode/:id',
-          handler: 'networkFirst',
-        },
-      ],
-    }),
+    // new SWPrecachePlugin({
+    //   cacheId: 'vue-niudu',
+    //   filename: 'service-worker.js',
+    //   minify: true,
+    //   dontCacheBustUrlsMatching: /./,
+    //   staticFileGlobsIgnorePatterns: [/\.map$/, /\.json$/],
+    //   runtimeCaching: [
+    //     {
+    //       urlPattern: '/',
+    //       handler: 'networkFirst',
+    //     },
+    //     {
+    //       urlPattern: /\/(v2ex|cnode)/,
+    //       handler: 'networkFirst',
+    //     },
+    //     {
+    //       urlPattern: '/v2ex/:id',
+    //       handler: 'networkFirst',
+    //     },
+    //     {
+    //       urlPattern: '/cnode/:id',
+    //       handler: 'networkFirst',
+    //     },
+    //   ],
+    // }),
   ]);
 }

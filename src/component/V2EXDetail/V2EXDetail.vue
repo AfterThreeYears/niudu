@@ -48,8 +48,15 @@
     />
     <bottom-tool @edit="edit"/>
     <ui-mask :mask-state="maskState" @closeCallback="edit">
-      <v2ex-operate ref="v2ex" :reply_id="reply_id" />
+      <transition name="node">
+        <div class="test" v-show="maskState">
+          <v2ex-operate ref="v2ex" :reply_id="reply_id" />
+        </div>
+      </transition>
     </ui-mask>
+    <!--<popup-bottom v-show="maskState" @closeCallback="edit">
+      
+    </popup-bottom>-->
   </div>
 </template>
 
@@ -70,8 +77,8 @@ export default {
       isEnd: false,
       loadErr: false,
       reply_id: '',
-      maskState: false,
-    }
+      maskState: true,
+    };
   },
   asyncData({ store, route }) {
     store.commit('v2exDetail/resetPage');
@@ -84,7 +91,7 @@ export default {
       id, pageIndex,
     }).then(() => {
       store.commit('header/setLoading', false);
-    })
+    });
   },
   mixins: [titleMixin],
   title() {

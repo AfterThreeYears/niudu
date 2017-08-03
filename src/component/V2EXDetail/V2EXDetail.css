@@ -68,3 +68,15 @@
 .markdown-body img {
   max-width: 100%;
 }
+
+.test {
+  position: relative;
+  top: 0;
+}
+
+.node-enter-active, .node-leave-active {
+  transition: all .5s;
+}
+.node-enter, .node-leave-to {
+  top: -5rem;
+}
