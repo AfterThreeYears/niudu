@@ -1,12 +1,12 @@
 const isProd = process.env.NODE_ENV === 'production';
 const base = [
   {
-    title: 'V2EX',
+    title: 'V2EX-666666666666',
     id: 0,
     url: 'v2ex',
   },
   {
-    title: 'NodeJS',
+    title: 'NodeJS-FUCKFUCKFUCKFUCKFUCK',
     id: 1,
     url: 'cnode',
   },
