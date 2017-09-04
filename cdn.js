@@ -36,9 +36,10 @@ readDir(dirname).then((data) => {
     readFile(filename).then((data) => {
       return client.putFile(filename, data)
     }).then((data) => {
-      console.log(`上传成功: ${filename}`);
+      console.log(`success: ${filename}`);
     }).catch(err => {
-      console.log(`上传失败: ${filename}`);
+      console.log(err);
+      console.log(`fail: ${filename}`);
     });
   }
 }).catch(err => {
