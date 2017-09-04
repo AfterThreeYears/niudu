@@ -9,3 +9,4 @@ yarn-error.log
 api/mock/data/db.js
 api/mock/index.js
 api/mock/config/cookie.js
+password.js

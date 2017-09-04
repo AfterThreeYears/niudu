@@ -10,7 +10,7 @@ module.exports = {
   devtool: isProd ? false : 'source-map',
   output: {
     path: path.resolve(__dirname, '../dist'),
-    publicPath: '/dist/',
+    publicPath: isProd ? 'http://niudu1.b0.upaiyun.com/' : '/dist/',
     filename: '[name].[chunkhash].js',
   },
   resolve: {

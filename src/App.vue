@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <img src="~public/images/common/rx.png" width="10" height="10" alt="" />
     <my-head />
     <div :class="classObject" >
       <div class="window-isLoading" v-show="isLoading">
