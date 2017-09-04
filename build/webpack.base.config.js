@@ -39,6 +39,7 @@ module.exports = {
         loader: 'url-loader',
         options: {
           limit: 1024 * 30,
+
           name: '[name].[ext]?[hash]',
         },
       },
@@ -47,6 +48,7 @@ module.exports = {
         loader: 'url-loader',
         query: {
           limit: 1024 * 100,
+          
           name: 'fonts/[name].[hash:7].[ext]',
         },
       },
