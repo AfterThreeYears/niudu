@@ -8,40 +8,42 @@ const client = new upyun.Client(service);
 
 const dirname = 'dist';
 
-const readFile = (name) => {
+const readFile = (filename) => {
   return new Promise((resolve, reject) => {
-    fs.readFile(path.join(__dirname, dirname, name), (err, data) => {
+    fs.readFile(path.join(__dirname, dirname, filename), (err, buffer) => {
       if (err) {
         return reject(err);
       }
-      return resolve(data);
+      return resolve({buffer, filename});
     });
   });
 };
 
-const readDir = (name) => {
+const readDir = (dist) => {
   return new Promise((resolve, reject) => {
-    fs.readdir(path.join(__dirname, name), (err, data) => {
+    fs.readdir(path.join(__dirname, dist), (err, list) => {
       if (err) {
         return reject(err);
       }
-      return resolve(data);
+      return resolve(list);
     });
   });
 }
 
 readDir(dirname).then((data) => {
-  for(let i = 0; i < data.length; i++) {
-    const filename = data[i];
-    readFile(filename).then((data) => {
-      return client.putFile(filename, data)
-    }).then((data) => {
-      console.log(`success: ${filename}`);
+  return Promise.all(data.map((item) => {
+    return readFile(item);
+  }));
+}).then((list) => {
+  list.forEach(({filename, buffer}) => {
+    client.putFile(filename, buffer)
+    .then((data) => {
+      console.log(`success-${filename}`);
     }).catch(err => {
       console.log(err);
-      console.log(`fail: ${filename}`);
-    });
-  }
+      console.log(`error-${filename}`);
+    })
+  });
 }).catch(err => {
   console.log(err);
 });
