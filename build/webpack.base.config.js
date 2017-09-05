@@ -10,7 +10,7 @@ module.exports = {
   devtool: isProd ? false : 'source-map',
   output: {
     path: path.resolve(__dirname, '../dist'),
-    publicPath: isProd ? 'http://niudu1.b0.upaiyun.com/' : '/dist/',
+    publicPath: isProd ? '//niudu1.b0.upaiyun.com/' : '/dist/',
     filename: '[name].[chunkhash].js',
   },
   resolve: {
@@ -48,7 +48,7 @@ module.exports = {
         loader: 'url-loader',
         query: {
           limit: 1024 * 100,
-          
+
           name: 'fonts/[name].[hash:7].[ext]',
         },
       },
