@@ -22,7 +22,7 @@ module.exports = {
 
     // Second application
     {
-      name: 'mock',
+      name: 'ssr-api',
       script: 'api/mock/index.js',
       // watch: true,
       // instances: 4,
