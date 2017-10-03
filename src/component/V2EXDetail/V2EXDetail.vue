@@ -77,7 +77,7 @@ export default {
       isEnd: false,
       loadErr: false,
       reply_id: '',
-      maskState: true,
+      maskState: false,
     };
   },
   asyncData({ store, route }) {
@@ -125,20 +125,20 @@ export default {
   mounted() {
     this.isEnd = this.detail.replier.length < this.limit;
   },
-  async beforeRouteLeave(to, from, next) {
-    if (!this.v2exTopics.length) {
-      this.setLoading(true);
-      await this.fetchTopics();
-      this.setLoading(false);
-      next();
-    } else {
-      next();
-    }
-  },
+  // async beforeRouteLeave(to, from, next) {
+  //   if (!this.v2exTopics.length) {
+  //     this.setLoading(true);
+  //     await this.fetchTopics();
+  //     this.setLoading(false);
+  //     next();
+  //   } else {
+  //     next();
+  //   }
+  // },
   methods: {
     ...mapMutations({
       setDetail: 'v2exDetail/setDetail',
-      setLoading: 'header/setLoading',
+      // setLoading: 'header/setLoading',
       increasePage: 'v2exDetail/increasePage',
       reset: 'v2exDetail/reset',
       resetPage: 'v2exDetail/resetPage',

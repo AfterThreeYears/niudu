@@ -49,7 +49,9 @@ export default {
       return axios
         .get(`/v2ex/detail/${id}?pageIndex=${pageIndex}`)
         .then(({ data }) => {
-          commit('setDetail', { data });
+          if (data) {
+            commit('setDetail', { data });
+          }
           return (data || { replier: '' }).replier.length;
         });
     },

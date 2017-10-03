@@ -19,7 +19,7 @@ const fn = (ctx, { id, pageIndex }) => new Promise((resolve, reject) => {
         reject(err);
         return;
       }
-      // resolve(JSON.parse(res.text));
+      // console.log(resolve(JSON.parse(res.text)));
       resolve(getListData(res.text));
     });
 });

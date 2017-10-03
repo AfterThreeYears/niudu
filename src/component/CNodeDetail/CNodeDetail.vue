@@ -77,16 +77,16 @@ export default {
       reply_id: '',
     };
   },
-  async beforeRouteLeave(to, from, next) {
-    if (!this.cnodeTopics.length) {
-      this.setLoading(true);
-      await this.fetchTopics();
-      this.setLoading(false);
-      next();
-    } else {
-      next();
-    }
-  },
+  // async beforeRouteLeave(to, from, next) {
+  //   if (!this.cnodeTopics.length) {
+  //     this.setLoading(true);
+  //     await this.fetchTopics();
+  //     this.setLoading(false);
+  //     next();
+  //   } else {
+  //     next();
+  //   }
+  // },
   mixins: [titleMixin],
   title() {
     return this.detail.title;

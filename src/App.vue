@@ -1,12 +1,11 @@
 <template>
   <div id="app">
-    <img src="~public/images/common/rx.png" width="10" height="10" alt="" />
     <my-head />
     <div :class="classObject" >
       <div class="window-isLoading" v-show="isLoading">
         <div class="ball-clip-rotate"><div></div></div>
       </div>
-      <router-view/>
+      <router-view />
     </div>
     <img
       class="ypy"
@@ -14,48 +13,30 @@
   </div>
 </template>
 <script>
-import { mapState } from 'vuex';
+import { mapState, mapMutations } from 'vuex';
 import lazyload from '@/libs/lazyload';
 import MyHead from '@/component/Head/Head';
 
-// const MyHead = r => require.ensure([], () => r(require('./component/Head/Head')), 'Head');
 export default {
   components: {
     MyHead,
   },
   updated() {
     lazyload();
-    // console.error('*******************updated*********************');
-  },
-  created() {
-    // console.error('*******************created*********************');
   },
   mounted() {
     lazyload();
-
-    // console.error('*******************mounted*********************');
   },
   computed: {
     ...mapState({
-      // showNav(state) {
-      //   return state.header.showNav;
-      // },
-      // showTab(state) {
-      //   return state.header.showTab;
-      // },
-      // showHead(state) {
-      //   return state.header.showHead;
-      // },
       isLoading(state) {
         return state.header.isLoading;
       },
     }),
     classObject() {
-      // const { showHead, showTab, showNav } = this;
       const {name} = this.$route;
       const array = ['v2ex', 'cnode', 'test'];
       if (!array.includes(name)) return { 'main-wrap-body-hide': true };
-      // if (showNav && !showTab) return { 'main-wrap-body-showNav': true };
       return {
         'main-wrap-body-showTab': true,
       };

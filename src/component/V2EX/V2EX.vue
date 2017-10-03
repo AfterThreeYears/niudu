@@ -3,7 +3,8 @@
     <ul>
       <li
         class="V2EX-List"
-        v-for="topic in v2exTopics"
+        v-for="(topic, index) in v2exTopics"
+        :key="index"
       >
         <router-link :to="{ name: 'v2exDetail', params: { id: topic.id }}">
           <section class="clearfix V2EX-detail-imgWrap">
