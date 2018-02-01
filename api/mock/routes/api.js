@@ -31,7 +31,7 @@ router.get('/vv', (ctx) => {
         let text = arr.shift();
         text = text ? `<p style="color: #abcdef">${text}</p>` : null;
         this.push(text);
-      }, 1000);
+      }, 3000);
     }
   }));
 });
