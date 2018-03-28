@@ -8,21 +8,21 @@ const generatorText = ({
 
 const url = 'https://m.meipu.cn/mobile/brokerage/queryIncome';
 
-const handleFetchPrice = (arr) => {
-  const promiseList = arr.map(async ({ account, token }) => axios.create({
-    headers: {
-      'access-token': token,
-      'X-account': account,
-    },
-  }).post(url));
-  return Promise.all(promiseList)
-    .then((resList) => resList.map(({ config, data }) => ({
-      account: config.headers['X-account'],
-      data: generatorText(data.data),
-    })))
-    .catch((error) => {
-      console.log('请求失败', error);
-    });
+const handleFetchPrice = async (arr) => {
+  const responses = [];
+  for (let i = 0; i < arr.length; i += 1) {
+    const { token, account } = arr[i];
+    responses.push(await axios.create({ // eslint-disable-line
+      headers: {
+        'access-token': token,
+        'X-account': account,
+      },
+    }).post(url));
+  }
+  return responses.map(({ config, data }) => ({
+    account: config.headers['X-account'],
+    data: generatorText(data.data),
+  }));
 };
 
 module.exports = {
