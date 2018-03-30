@@ -21,7 +21,7 @@ const handleFetchPrice = async (arr) => {
   }
   return responses.map(({ config, data }) => ({
     account: config.headers['X-account'],
-    data: generatorText(data.data),
+    data: data.success ? generatorText(data.data) : data.errorMSG,
   }));
 };
 
