@@ -19,7 +19,8 @@ const router = new Router({
 });
 
 router.get('/726wbb', async (ctx) => {
-  ctx.body = await handleFetchPrice(require(path.resolve(__dirname, '../../../passwd/shoujsData.js')));
+  const data = await handleFetchPrice(require(path.resolve(__dirname, '../../../passwd/shoujsData.js')));
+  ctx.body = `<pre>${JSON.stringify(data, null, 2)}</pre>`;
 });
 
 router.post('/test1', (ctx) => {

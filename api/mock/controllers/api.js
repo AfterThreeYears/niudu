@@ -8,10 +8,12 @@ const generatorText = ({
 
 const url = 'https://m.meipu.cn/mobile/brokerage/queryIncome';
 
-const handleFetchPrice = async (arr) => {
+const handleFetchPrice = async (map) => {
   const responses = [];
-  for (let i = 0; i < arr.length; i += 1) {
-    const { token, account } = arr[i];
+  const keys = Object.keys(map);
+  for (let i = 0; i < keys.length; i++) {
+    const account = keys[i];
+    const token = map[account];
     responses.push(await axios.create({ // eslint-disable-line
       headers: {
         'access-token': token,
@@ -20,8 +22,7 @@ const handleFetchPrice = async (arr) => {
     }).post(url));
   }
   return responses.map(({ config, data }) => ({
-    account: config.headers['X-account'],
-    data: data.success ? generatorText(data.data) : data.errorMSG,
+    [config.headers['X-account']]: data.success ? generatorText(data.data) : data.errorMSG,
   }));
 };
 
