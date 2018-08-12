@@ -19,8 +19,7 @@ const fn = (ctx, { id, pageIndex }) => new Promise((resolve, reject) => {
         reject(err);
         return;
       }
-      // console.log('text --->', res);
-      resolve(getListData(res.text));
+      resolve(getListData(res.text, pageIndex));
     });
 });
 

@@ -1,6 +1,6 @@
 const cheerio = require('cheerio');
 
-function getListData(text) {
+function getListData(text, pageIndex = 1) {
   const $ = cheerio.load(text, { decodeEntities: false });
   const title = $('h1').html();
   const lastReply = $('.header .gray').html();
@@ -16,6 +16,11 @@ function getListData(text) {
       replyContent: $table.find('.reply_content').html(),
     };
   });
+  /**
+   * (26 回复  |  直到 2018-08-12 21:38:53 +08:00) --获取--> 26
+   */
+  const execResults = /^(\d*)\s回复/.exec($('.cell .gray').text()) || [];
+  const isNoMoreData = execResults[1] <= pageIndex * 100;
   const result = {
     content: {
       title,
@@ -24,6 +29,7 @@ function getListData(text) {
       once,
     },
     replier,
+    isNoMoreData,
   };
   return result;
 }
