@@ -20,7 +20,7 @@ function getListData(text, pageIndex = 1) {
    * (26 回复  |  直到 2018-08-12 21:38:53 +08:00) --获取--> 26
    */
   const execResults = /^(\d*)\s回复/.exec($('.cell .gray').text()) || [];
-  const isNoMoreData = execResults[1] <= pageIndex * 100;
+  const isNoMoreData = (execResults[1] || 0) <= pageIndex * 100;
   const result = {
     content: {
       title,
