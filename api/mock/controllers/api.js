@@ -6,7 +6,7 @@ const generatorText = ({
   totalRevenue,
 }) => `一共收益${totalRevenue}，可用${deposits}，待用${expectDeposits}`;
 
-const url = 'https://m.meipu.cn/mobile/brokerage/queryIncome';
+const url = 'https://m.me1ipu.cn/mobile/brokerage/queryIncome';
 
 const handleFetchPrice = async (map) => {
   const responses = [];

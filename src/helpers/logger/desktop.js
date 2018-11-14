@@ -3,7 +3,7 @@ const log4js = require('log4js');
 log4js.configure({
   appenders: [
     process.env.NODE_ENV === 'production'
-      ? { type: 'file', filename: '/www/log/meipu_vinci/log4js-desktop.log' }
+      ? { type: 'file', filename: '/www/log/_vinci/log4js-desktop.log' }
       : { type: 'console' },
   ],
 });

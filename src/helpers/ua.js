@@ -7,7 +7,6 @@ export const env = (userAgent) => {
   const weChat = /MicroMessenger/gi.test(ua);
   const weibo = /weibo/gi.test(ua);
   const limited = qq || weChat || qzone || weibo;
-  const meipu = /com\.meitu\.meipu/gi.test(ua);
 
   const osVersion = ua.match(/iphone os (\d*)/);
   const supportUniversalLink = osVersion && osVersion[1] >= 9;
@@ -21,7 +20,6 @@ export const env = (userAgent) => {
     weChat,
     weibo,
     limited,
-    meipu,
     supportUniversalLink,
   };
 };

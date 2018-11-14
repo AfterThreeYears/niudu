@@ -11,7 +11,7 @@ function topic(existId) {
       {
         type: 'image',
         params: {
-          url: 'http://stage.meitudata.com/meitupu/FvX4rSaBmkcTGNJGMfpQVQNnEqh-',
+          url: 'http://stage.mei1tudata.com/mei1tupu/FvX4rSaBmkcTGNJGMfpQVQNnEqh-',
         },
       },
       {
@@ -29,7 +29,7 @@ function topic(existId) {
       {
         type: 'video',
         params: {
-          url: 'http://stage.meitudata.com/meitupu/luFQWKz0E0TSoXTysM8JxzwSxXxV',
+          url: 'http://stage.1data.com/mei1tupu/luFQWKz0E0TSoXTysM8JxzwSxXxV',
         },
       },
     ],

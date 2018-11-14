@@ -16,7 +16,7 @@ function roll(model, start) {
 }
 
 function image() {
-  const host = process.env.NODE_ENV === 'production' ? 'http://daily.vinci-mock.meipu.cn/' : 'http://localhost:3001/';
+  const host = process.env.NODE_ENV === 'production' ? 'http://daily.vinci-mock.cn/' : 'http://localhost:3001/';
   return `${host}assets/item-${_.random(1, 8)}.jpeg`;
 }
 
